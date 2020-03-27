@@ -1,17 +1,10 @@
-package edu.brockport.localization.utilities;
+package edu.brockport.localization.utilities.database;
 
 public class QueryBuilder {
 
     private QueryBuilder(){
 
     }
-
-    /*
-     * Insert Into Queries --- done
-     * Delete Queries --- done
-     * Update/Alter Queries do for tomorrow
-     * Create Table Queries --- done
-     */
 
     /**
      * Generates an 'INSERT INTO' query of the form "INSERT INTO tableName (dbFields) VALUES (dbValues)"
@@ -82,7 +75,6 @@ public class QueryBuilder {
         return query;
     }
 
-    // update test set Source='ur dad' where ID=1
     public static String updateQuery(String tableName, String[] updateFields, String[] updateValues, String whereClauseField, String whereClauseValue){
         if(updateFields.length != updateValues.length){
             return null;
@@ -106,6 +98,18 @@ public class QueryBuilder {
             query += whereClauseValue;
         } else {
             query += "'" + whereClauseValue + "'";
+        }
+
+        return query;
+    }
+
+    public static String selectQuery(String tableName, String operand, String field, String value){
+        String query = "SELECT " + operand + " FROM " + tableName + " WHERE " + field + "=";
+
+        if(isInt(value)){
+            query += value;
+        } else {
+            query += "'" + value + "'";
         }
 
         return query;
