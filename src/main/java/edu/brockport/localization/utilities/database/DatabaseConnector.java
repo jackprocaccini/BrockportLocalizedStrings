@@ -8,7 +8,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Arrays;
 import java.util.Properties;
 
 public class DatabaseConnector {
@@ -124,10 +123,24 @@ public class DatabaseConnector {
         return true;
     }
 
-    public boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
+    private boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
         String query = QueryBuilder.selectQuery(tableName, operand, field, value);
         Statement st = myDbConn.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs.next();
+    }
+
+    public ResultSet selectFromTable(String tableName, String operand, String field, String value) throws SQLException{
+        String query = QueryBuilder.selectQuery(tableName, operand, field, value);
+        Statement st = myDbConn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        return rs;
+    }
+
+    public ResultSet selectStarFromTable(String tableName) throws SQLException{
+        String query = QueryBuilder.selectStarQuery(tableName);
+        Statement st = myDbConn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        return rs;
     }
 }

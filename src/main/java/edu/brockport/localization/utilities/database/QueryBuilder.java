@@ -161,12 +161,16 @@ public class QueryBuilder {
      * @param str The String you wish to check
      * @return True or False, depending if the passed String is just a number
      */
-    public static boolean isInt(String str){
+    private static boolean isInt(String str){
         try{
             Integer.parseInt(str);
             return true;
         } catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public static String selectStarQuery(String tableName){
+        return "SELECT * FROM " + tableName;
     }
 }
