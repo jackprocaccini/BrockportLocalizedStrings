@@ -11,29 +11,29 @@ import java.io.IOException;
 
 public class ControllerServlet extends HttpServlet {
 
-    //MAKE SURE TO MAP THIS SERVLET IN WEB.XML YA DINGUS @JACK
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         if(req.getParameter("display") == null){
             res.sendRedirect("index.jsp");
         }
-        HttpSession session = req.getSession();
         String displayType = req.getParameter("display");
         DatabaseConnector dbc;
 
         try{
             dbc = DatabaseConnector.getInstance();
         } catch (Exception e) {
+            HttpSession session = req.getSession();
             session.setAttribute("error", e.getLocalizedMessage());
             res.sendRedirect("index.jsp");
         }
 
-        if(displayType.equalsIgnoreCase("javascript")){
-            //use the dbc to get all of the js translations
-        } else if(displayType.equalsIgnoreCase("resx")){
-            //use the dbc to get all of the resx translations
+        if(displayType.equalsIgnoreCase("javascript") || displayType.equalsIgnoreCase("resx")){
+            HttpSession session = req.getSession();
+            session.setAttribute("display", displayType);
+            res.sendRedirect("translations.jsp");
         } else {
+            HttpSession session = req.getSession();
             session.setAttribute("error", "Unrecognized translation type: " + displayType);
             res.sendRedirect("index.jsp");
         }
