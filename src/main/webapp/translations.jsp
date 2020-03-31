@@ -12,7 +12,7 @@
         }
     %>
 
-    <table>
+    <table align="center">
         <caption>Translations List <%=displayType%></caption>
         <tr id="headers">
             <th>Key</th>
@@ -24,7 +24,7 @@
         <tr>
             <%
                 for(int i : nums){
-                    out.println("<td>" + i + "</td>");
+                    out.println("<td style=\"text-align:center\">" + i + "</td>");
                 }
             %>
         </tr>
