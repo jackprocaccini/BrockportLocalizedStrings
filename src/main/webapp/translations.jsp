@@ -15,7 +15,7 @@
     <table align="center">
         <caption>Translations List <%=displayType%></caption>
         <tr id="headers">
-            <th>Key</th>
+            <th>Key Test</th>
             <th>Translation</th>
             <th>Locale</th>
             <th>Status</th>
