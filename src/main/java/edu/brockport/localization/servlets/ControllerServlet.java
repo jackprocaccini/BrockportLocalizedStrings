@@ -1,6 +1,7 @@
 package edu.brockport.localization.servlets;
 
 import edu.brockport.localization.utilities.database.DatabaseConnector;
+import edu.brockport.localization.utilities.database.Translation;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("index.jsp");
         }
         String displayType = req.getParameter("display");
-        DatabaseConnector dbc;
+        DatabaseConnector dbc = null;
 
         try{
             dbc = DatabaseConnector.getInstance();
@@ -29,11 +30,20 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("index.jsp");
         }
 
+        ArrayList<Translation> translations = new ArrayList<>();
 
+        try {
+            translations = dbc.getTranslationList();
+        } catch (Exception e) {
+            HttpSession session = req.getSession();
+            session.setAttribute("error", e.getLocalizedMessage());
+            res.sendRedirect("index.jsp");
+        }
 
         if(displayType.equalsIgnoreCase("javascript") || displayType.equalsIgnoreCase("resx")){
             HttpSession session = req.getSession();
             session.setAttribute("display", displayType);
+            session.setAttribute("translations", translations);
             res.sendRedirect("translations.jsp");
         } else {
             HttpSession session = req.getSession();
