@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -27,6 +28,8 @@ public class ControllerServlet extends HttpServlet {
             session.setAttribute("error", e.getLocalizedMessage());
             res.sendRedirect("index.jsp");
         }
+
+
 
         if(displayType.equalsIgnoreCase("javascript") || displayType.equalsIgnoreCase("resx")){
             HttpSession session = req.getSession();

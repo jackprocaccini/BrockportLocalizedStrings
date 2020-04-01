@@ -8,6 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class DatabaseConnector {
@@ -35,7 +36,7 @@ public class DatabaseConnector {
 
     public boolean insertIntoTable(String tableName, String[] dbFields, String[] dbFieldsValues) throws SQLException {
         try {
-            String query = QueryBuilder.insertIntoQuery(tableName, dbFields, dbFieldsValues);
+            String query = QueryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
             Statement st = myDbConn.createStatement();
             st.executeUpdate(query);
             st.close();
@@ -47,7 +48,7 @@ public class DatabaseConnector {
 
     public boolean deleteFromTable(String tableName, String field, String value) throws SQLException {
         try{
-            String query = QueryBuilder.deleteQuery(tableName, field, value);
+            String query = QueryBuilder.deleteStatement(tableName, field, value);
             Statement st = myDbConn.createStatement();
             st.executeUpdate(query);
             st.close();
@@ -143,4 +144,25 @@ public class DatabaseConnector {
         ResultSet rs = st.executeQuery(query);
         return rs;
     }
+
+    public ResultSet selectJoinFromTable() throws SQLException {
+        String query = QueryBuilder.selectJoinQuery();
+        Statement st = myDbConn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        return rs;
+    }
+
+
+
+    public ArrayList<Translation> getTranslationList() throws Exception {
+        DatabaseConnector dbc = DatabaseConnector.getInstance();
+        ArrayList<Translation> translations = new ArrayList<>();
+        ResultSet resultSet = dbc.selectJoinFromTable();
+        while(resultSet.next()) {
+            Translation translation = new Translation(resultSet.getString("TransKey"), resultSet.getString("Locale"), resultSet.getString("Translation"));
+            translations.add(translation);
+        }
+        return translations;
+    }
+
 }

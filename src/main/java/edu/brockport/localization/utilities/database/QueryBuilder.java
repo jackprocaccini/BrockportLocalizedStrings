@@ -13,7 +13,7 @@ public class QueryBuilder {
      * @param dbValues String array. The information that you wish to insert into the table (for example 22, Jack, Proc).
      * @return A valid SQL INSERT INTO query in the form of a String
      */
-    public static String insertIntoQuery(String tableName, String[] dbFields, String[] dbValues){
+    public static String insertIntoStatement(String tableName, String[] dbFields, String[] dbValues){
         String fields;
         String values;
 
@@ -30,7 +30,7 @@ public class QueryBuilder {
      * @param value String. The value in the table that you would like to delete.
      * @return A valid SQL DELETE query in the form of a String.
      */
-    public static String deleteQuery(String tableName, String field, String value){
+    public static String deleteStatement(String tableName, String field, String value){
         if(isInt(value)){
             return "DELETE FROM " + tableName + " WHERE " + field + "=" + value;
         } else {
@@ -54,7 +54,7 @@ public class QueryBuilder {
      *                   Pass 'null' as the foreignKey parameter if you do not intend for your table to have a foreign key.
      * @return String - A valid SQL CREATE TABLE query in the form of a String. Returns 'null' if fields.length != fieldTypes.length
      */
-    public static String createTableQuery(String tableName, String[] fields, String[] fieldTypes, String primaryKey, String foreignKey){
+    public static String createTableStatement(String tableName, String[] fields, String[] fieldTypes, String primaryKey, String foreignKey){
         if(fields.length != fieldTypes.length){
             return null;
         }
@@ -75,7 +75,27 @@ public class QueryBuilder {
         return query;
     }
 
-    public static String updateQuery(String tableName, String[] updateFields, String[] updateValues, String whereClauseField, String whereClauseValue){
+    /**
+     * Builds an SQL update statement based on the information passed in as parameters.
+     * @param tableName String. The name of the table.
+     * @param updateFields String Array. The fields of the table that you wish to update. updateFields entries must
+     *                     correspond with updateValues entries. The values at index 'i' of both arrays must contain values that are
+     *                     related to each other.
+     *
+     *                     updateFields[0] = "FirstName"       updateValues[0] = "Jack" correct
+     *                     updateFields[1] = "LastName"        updateValues[1] = "CSC409" incorrect, CSC429 is not a last name
+     *                     updateFields[2] = "Course"          updateValues[2] = "Procaccini" incorrect, Procaccini is not a course
+     *
+     * @param updateValues String Array. The values of the table that you wish to update. updateValues entries must correspond
+     *                     with updateFields entries. The values at index 'i' of both arrays must contain values that are
+     *                     related to each other. See above for concrete example.
+     * @param whereClauseField String. The field of the table where the condition is. For example in the statement "SELECT NAMES
+     *                         from Students WHERE ID=1", the whereClauseField in this case would be "ID".
+     * @param whereClauseValue String. The value of the field that you wish to compare to. For example in the statement "SELECT NAMES
+     *                         from Students WHERE ID=1", the whereClauseValue in this case would be "1".
+     * @return A formatted SQL String which updates any number of values from a given table.
+     */
+    public static String updateStatement(String tableName, String[] updateFields, String[] updateValues, String whereClauseField, String whereClauseValue){
         if(updateFields.length != updateValues.length){
             return null;
         }
@@ -103,6 +123,17 @@ public class QueryBuilder {
         return query;
     }
 
+    /**
+     * Builds an SQL select query based on the information passed in as parameters
+     * @param tableName String. The name of the table that you wish to select data from
+     * @param operand String. What you want to view from the table. For example in the statement "Select Names from Students",
+     *                the clause "Names" would be the operand.
+     * @param field String. The field of the table that you wish to select from. For example in the statement "SELECT NAMES
+     *              from Students WHERE ID=1", the field in this case would be "ID".
+     * @param value String. The value of the field that you are comparing. For example in the statement "SELECT NAMES
+     *      *              from Students WHERE ID=1", the value in this case would be "1".
+     * @return A formatted SQL String which selects values from a given table.
+     */
     public static String selectQuery(String tableName, String operand, String field, String value){
         String query = "SELECT " + operand + " FROM " + tableName + " WHERE " + field + "=";
 
@@ -170,7 +201,21 @@ public class QueryBuilder {
         }
     }
 
+    /**
+     * Returns a string representing a SELECT * FROM tableName
+     * @param tableName The name of the table that you wish to select from
+     * @return A formatted SQL which selects everything from a given table.
+     */
     public static String selectStarQuery(String tableName){
         return "SELECT * FROM " + tableName;
+    }
+
+
+    public static String selectJoinQuery(){
+        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation " +
+                "FROM translationkeys, translations " +
+                "WHERE (translationkeys.ID = translations.TransKeyFK) " +
+                "ORDER BY translationkeys.TransKey;";
+        return query;
     }
 }
