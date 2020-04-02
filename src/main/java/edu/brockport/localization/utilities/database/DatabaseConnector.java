@@ -16,6 +16,11 @@ public class DatabaseConnector {
     private String url;
     private static DatabaseConnector myInstance = null;
 
+    /**
+     * Used to connect to the MySQL database and provide utility methods to manipulate the database's information.
+     * Use the getInstance() method to invoke this class.
+     * @throws SQLException Throws SQL exception if the mysql driver class cannot be found.
+     */
     private DatabaseConnector() throws SQLException {
         url ="jdbc:mysql://brockportpaychex.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         try{
@@ -27,6 +32,11 @@ public class DatabaseConnector {
         myDbConn = DriverManager.getConnection(url, "Brockport@brockportpaychex", "Paychex2020");
     }
 
+    /**
+     * Gets an instance of DatabaseConnector. Used to implement the singleton pattern.
+     * @return A DatabaseConnector object
+     * @throws Exception
+     */
     public static DatabaseConnector getInstance() throws Exception {
         if(myInstance == null){
             myInstance = new DatabaseConnector();
@@ -34,6 +44,14 @@ public class DatabaseConnector {
         return myInstance;
     }
 
+    /**
+     * Inserts any number of values into a given table. Returns true if data was successfully inserted into the given
+     * table, returns false otherwise. Makes use of the QueryBuilder class.
+     * @param tableName String. The name of the table that you wish to insert data into.
+     * @param dbFields String Array. Contains the field (or column) headers of the table.
+     * @param dbFieldsValues String Array. Contains the values that you wish to insert. Values at position i must correspond to an entry in dbFields at the same index.
+     * @return True if passed data was inserted into the given table, false if otherwise.
+     */
     public boolean insertIntoTable(String tableName, String[] dbFields, String[] dbFieldsValues) throws SQLException {
         try {
             String query = QueryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
@@ -46,6 +64,14 @@ public class DatabaseConnector {
         }
     }
 
+    /**
+     * Deletes a single entry from a given table. Makes use of the QueryBuilder class.
+     * @param tableName String. The name of the table that you wish to delete data from.
+     * @param field String. The field (or column) header within the table.
+     * @param value String. Contains the value from the field (or column) that you wish to delete.
+     * @return True if data was successfully deleted from the given table, returns false otherwise.
+     * @throws SQLException
+     */
     public boolean deleteFromTable(String tableName, String field, String value) throws SQLException {
         try{
             String query = QueryBuilder.deleteStatement(tableName, field, value);
@@ -59,6 +85,13 @@ public class DatabaseConnector {
 
     }
 
+    /**
+     * Inserts all information contained within a js file into the database. Makes use of QueryBuilder and jsPropertiesBuilder.
+     * @param jsFile The javascript file that you would like to insert
+     * @return True if all information was inserted into the database, false otherwise.
+     * @throws IOException
+     * @throws SQLException
+     */
     public boolean insertJSIntoDatabase(File jsFile) throws IOException, SQLException {
         jsPropertiesBuilder jsBuilder = new jsPropertiesBuilder(jsFile);
         Properties jsProperties = jsBuilder.getProps();
@@ -92,6 +125,14 @@ public class DatabaseConnector {
         return true;
     }
 
+    /**
+     * Inserts all information contained within a resx file into the database. Makes use of QueryBuilder and xmlPropertiesBuilder.
+     * @param resxFile The resx file that you wish to insert into the database.
+     * @return True if all information was inserted into the database, false otherwise.
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public boolean insertRESXIntoDatabase(File resxFile) throws ParserConfigurationException, SAXException, IOException {
         xmlPropertiesBuilder xmlBuilder = new xmlPropertiesBuilder(resxFile);
         Properties xmlProperties = xmlBuilder.getProps();
@@ -124,6 +165,15 @@ public class DatabaseConnector {
         return true;
     }
 
+    /**
+     * Utility method. Checks if a given entry exists within a given table. Makes use of the QueryBuilder class.
+     * @param tableName String. The name of the table that you wish to select data from.
+     * @param operand String. What value you want to retrieve from the table.
+     * @param field String. The field (or column) header within the table that you are comparing.
+     * @param value String. Contains the value from the field (or column) that you wish to compare to.
+     * @return True if the specified entry exists, false otherwise.
+     * @throws SQLException
+     */
     private boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
         String query = QueryBuilder.selectQuery(tableName, operand, field, value);
         Statement st = myDbConn.createStatement();
@@ -131,6 +181,16 @@ public class DatabaseConnector {
         return rs.next();
     }
 
+    /**
+     * Selects entries from a table based on given parameters. Returns a ResultSet containing all information retrieved
+     * from the database. Makes use of the QueryBuilder class.
+     * @param tableName String. The name of the table that you wish to select data from.
+     * @param operand String. What value you want to retrieve from the table.
+     * @param field String. The field (or column) header within the table that you are comparing.
+     * @param value String. Contains the value from the field (or column) that you wish to compare to.
+     * @return A ResultSet containing all entries based on the search criteria. Could possibly be empty.
+     * @throws SQLException
+     */
     public ResultSet selectFromTable(String tableName, String operand, String field, String value) throws SQLException{
         String query = QueryBuilder.selectQuery(tableName, operand, field, value);
         Statement st = myDbConn.createStatement();
@@ -138,6 +198,12 @@ public class DatabaseConnector {
         return rs;
     }
 
+    /**
+     * Selects every entrie from a given table. Makes use of the QueryBuilder class.
+     * @param tableName The name of the table that you wish to select data from.
+     * @return A ResultSet containing all information retrieved from the database.
+     * @throws SQLException
+     */
     public ResultSet selectStarFromTable(String tableName) throws SQLException{
         String query = QueryBuilder.selectStarQuery(tableName);
         Statement st = myDbConn.createStatement();
@@ -151,8 +217,6 @@ public class DatabaseConnector {
         ResultSet rs = st.executeQuery(query);
         return rs;
     }
-
-
 
     public ArrayList<Translation> getTranslationList() throws Exception {
         ArrayList<Translation> translations = new ArrayList<>();

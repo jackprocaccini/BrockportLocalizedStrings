@@ -7,6 +7,14 @@ public class Translation {
     private String status;
     private String resourceType;
 
+    /**
+     * Used for storing generic translation data. Each tuple of a table equates to one Translation object
+     * @param transKey String. The key of your translation.
+     * @param locale String. The locale of your translation.
+     * @param transValue String. The translation associated with 'transKey'
+     * @param status String. The status of your translation, either 'Active' or 'Inactive'
+     * @param resourceType String. The resource type of your translation (.js, .NET, etc.)
+     */
     public Translation(String transKey, String locale, String transValue, String status, String resourceType) {
         this.transKey = transKey;
         this.locale = locale;
