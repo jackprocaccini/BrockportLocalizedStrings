@@ -12,6 +12,7 @@
             <form id="formButtons" action="/controller" method="post">
                 <button type="submit" class="buttons" name="display" value="javascript">Javascript Translations</button>
                 <button type="submit" class="buttons" name="display" value="resx">Resx Translations</button>
+                <button type="submit" class="buttons" name="display" value="all">All</button>
             </form>
         </nav>
 

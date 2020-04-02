@@ -73,6 +73,13 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("translations.jsp");
             return;
 
+        } else if(displayType.equalsIgnoreCase("all")) {
+            HttpSession session = req.getSession();
+            session.setAttribute("display", displayType);
+            session.setAttribute("translations", translations);
+            res.sendRedirect("translations.jsp");
+            return;
+
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("error", "Unrecognized translation type: " + displayType);
