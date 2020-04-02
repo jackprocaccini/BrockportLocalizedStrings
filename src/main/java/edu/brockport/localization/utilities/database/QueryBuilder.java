@@ -210,12 +210,15 @@ public class QueryBuilder {
         return "SELECT * FROM " + tableName;
     }
 
-
     public static String selectJoinQuery(){
-        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status " +
-                "FROM translationkeys, translations " +
-                "WHERE (translationkeys.ID = translations.TransKeyFK) " +
+        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status, sourceresource.ResourceName " +
+                "FROM translationkeys, translations, sourceresource " +
+                "WHERE (translationkeys.ID = translations.TransKeyFK AND sourceresource.ID = translationkeys.SourceResourceKeyFK) " +
                 "ORDER BY translationkeys.TransKey;";
+//        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status " +
+//                "FROM translationkeys, translations " +
+//                "WHERE (translationkeys.ID = translations.TransKeyFK) " +
+//                "ORDER BY translationkeys.TransKey;";
         return query;
     }
 }

@@ -34,7 +34,7 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
 
-        ArrayList<Translation> translations = new ArrayList<>();
+        ArrayList<Translation> translations;
 
         try {
             translations = dbc.getTranslationList();
@@ -45,12 +45,34 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
 
-        if(displayType.equalsIgnoreCase("javascript") || displayType.equalsIgnoreCase("resx")){
+        if(displayType.equalsIgnoreCase("javascript")){
+            ArrayList<Translation> jsTranslations = new ArrayList<Translation>();
+            for(int i = 0; i < translations.size(); i++){
+                if(translations.get(i).getResourceType().equalsIgnoreCase("js")){
+                    jsTranslations.add(translations.get(i));
+                }
+            }
+
             HttpSession session = req.getSession();
             session.setAttribute("display", displayType);
-            session.setAttribute("translations", translations);
+            session.setAttribute("translations", jsTranslations);
             res.sendRedirect("translations.jsp");
             return;
+
+        } else if(displayType.equalsIgnoreCase("resx")){
+            ArrayList<Translation> resxTranslations = new ArrayList<Translation>();
+            for(int i = 0; i < translations.size(); i++){
+                if(translations.get(i).getResourceType().equalsIgnoreCase(".NET")){
+                    resxTranslations.add(translations.get(i));
+                }
+            }
+
+            HttpSession session = req.getSession();
+            session.setAttribute("display", displayType);
+            session.setAttribute("translations", resxTranslations);
+            res.sendRedirect("translations.jsp");
+            return;
+
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("error", "Unrecognized translation type: " + displayType);
@@ -59,3 +81,9 @@ public class ControllerServlet extends HttpServlet {
         }
     }
 }
+
+//else {
+//        HttpSession session = req.getSession();
+//        session.setAttribute("error", "Unrecognized translation type: " + displayType);
+//        res.sendRedirect("index.jsp");
+//        return;

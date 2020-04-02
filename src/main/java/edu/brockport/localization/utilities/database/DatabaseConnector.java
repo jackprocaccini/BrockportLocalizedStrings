@@ -159,8 +159,10 @@ public class DatabaseConnector {
         ResultSet resultSet = selectJoinFromTable();
         while(resultSet.next()) {
             Translation translation = new Translation(resultSet.getString("TransKey"),
-                    resultSet.getString("Locale"), resultSet.getString("Translation"),
-                    resultSet.getString("Status"));
+                    resultSet.getString("Locale"),
+                    resultSet.getString("Translation"),
+                    resultSet.getString("Status"),
+                    resultSet.getString("ResourceName"));
             translations.add(translation);
         }
         return translations;
