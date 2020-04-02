@@ -17,7 +17,10 @@ public class ControllerServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         if(req.getParameter("display") == null){
+            HttpSession session = req.getSession();
+            session.setAttribute("error", "display type is null");
             res.sendRedirect("index.jsp");
+            return;
         }
         String displayType = req.getParameter("display");
         DatabaseConnector dbc = null;
@@ -28,6 +31,7 @@ public class ControllerServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("error", e.getLocalizedMessage());
             res.sendRedirect("index.jsp");
+            return;
         }
 
         ArrayList<Translation> translations = new ArrayList<>();
@@ -38,6 +42,7 @@ public class ControllerServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("error", e.getLocalizedMessage());
             res.sendRedirect("index.jsp");
+            return;
         }
 
         if(displayType.equalsIgnoreCase("javascript") || displayType.equalsIgnoreCase("resx")){
@@ -45,10 +50,12 @@ public class ControllerServlet extends HttpServlet {
             session.setAttribute("display", displayType);
             session.setAttribute("translations", translations);
             res.sendRedirect("translations.jsp");
+            return;
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("error", "Unrecognized translation type: " + displayType);
             res.sendRedirect("index.jsp");
+            return;
         }
     }
 }

@@ -32,7 +32,7 @@
                         out.println("<td style=\"text-align:center\">" + translations.get(i).getTransKey() + "</td>");
                         out.println("<td style=\"text-align:center\">" + translations.get(i).getTransValue() + "</td>");
                         out.println("<td style=\"text-align:center\">" + translations.get(i).getLocale() + "</td>");
-                        out.println("<td style=\"text-align:center\">Active</td>");
+                        out.println("<td style=\"text-align:center\">" + translations.get(i).getStatus() + "</td>");
                         out.println("</tr>");
                     }
                 }

@@ -17,7 +17,7 @@
 
         <div id="errorSection">
             <%
-                String error = request.getParameter("error");
+                String error = (String)session.getAttribute("error");
 
                 if(error != null){
                     out.println("<p style=\"color: red\">" + error + "</p>");

@@ -212,7 +212,7 @@ public class QueryBuilder {
 
 
     public static String selectJoinQuery(){
-        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation " +
+        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status " +
                 "FROM translationkeys, translations " +
                 "WHERE (translationkeys.ID = translations.TransKeyFK) " +
                 "ORDER BY translationkeys.TransKey;";

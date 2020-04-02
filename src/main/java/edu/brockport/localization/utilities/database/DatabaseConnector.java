@@ -155,11 +155,12 @@ public class DatabaseConnector {
 
 
     public ArrayList<Translation> getTranslationList() throws Exception {
-        DatabaseConnector dbc = DatabaseConnector.getInstance();
         ArrayList<Translation> translations = new ArrayList<>();
-        ResultSet resultSet = dbc.selectJoinFromTable();
+        ResultSet resultSet = selectJoinFromTable();
         while(resultSet.next()) {
-            Translation translation = new Translation(resultSet.getString("TransKey"), resultSet.getString("Locale"), resultSet.getString("Translation"));
+            Translation translation = new Translation(resultSet.getString("TransKey"),
+                    resultSet.getString("Locale"), resultSet.getString("Translation"),
+                    resultSet.getString("Status"));
             translations.add(translation);
         }
         return translations;
