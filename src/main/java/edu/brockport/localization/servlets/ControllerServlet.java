@@ -19,7 +19,7 @@ public class ControllerServlet extends HttpServlet {
         if(req.getParameter("display") == null){
             HttpSession session = req.getSession();
             session.setAttribute("error", "display type is null");
-            res.sendRedirect("index.jsp");
+            res.sendRedirect("stringchoices.jsp");
             return;
         }
         String displayType = req.getParameter("display");
@@ -30,7 +30,7 @@ public class ControllerServlet extends HttpServlet {
         } catch (Exception e) {
             HttpSession session = req.getSession();
             session.setAttribute("error", e.getLocalizedMessage());
-            res.sendRedirect("index.jsp");
+            res.sendRedirect("stringchoices.jsp");
             return;
         }
 
@@ -41,7 +41,7 @@ public class ControllerServlet extends HttpServlet {
         } catch (Exception e) {
             HttpSession session = req.getSession();
             session.setAttribute("error", e.getLocalizedMessage());
-            res.sendRedirect("index.jsp");
+            res.sendRedirect("stringchoices.jsp");
             return;
         }
 
@@ -83,7 +83,7 @@ public class ControllerServlet extends HttpServlet {
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("error", "Unrecognized translation type: " + displayType);
-            res.sendRedirect("index.jsp");
+            res.sendRedirect("stringchoices.jsp");
             return;
         }
     }
@@ -92,5 +92,5 @@ public class ControllerServlet extends HttpServlet {
 //else {
 //        HttpSession session = req.getSession();
 //        session.setAttribute("error", "Unrecognized translation type: " + displayType);
-//        res.sendRedirect("index.jsp");
+//        res.sendRedirect("stringchoices.jsp");
 //        return;

@@ -1,29 +1,33 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: User
+  Date: 4/6/2020
+  Time: 3:20 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-    <head>
-        <Title>Brockport Localized Strings</Title>
-    </head>
+<head>
+    <title>Brockport Localized Strings - Login</title>
+</head>
+<body style="text-align: center">
+    <form action="/login" method="post">
+        <label for="reqUser">Username</label>
+        <input type="text" id="reqUser" name="reqUser"><br>
+        <label for="reqPassword">Password</label>
+        <input type="password" id="reqPassword" name="reqPassword">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
 
-    <body style="text-align: center">
-        <header class="pageHeader">
-            <h1 id="pageTitle">Localized Strings</h1>
-        </header>
+    <div id="errorSection">
+        <%
+            String error = (String)session.getAttribute("error");
 
-        <nav id="indexButtonsNav" style="align-content: space-evenly">
-            <form id="formButtons" action="/controller" method="post">
-                <button type="submit" class="buttons" name="display" value="javascript">Javascript Translations</button>
-                <button type="submit" class="buttons" name="display" value="resx">Resx Translations</button>
-                <button type="submit" class="buttons" name="display" value="all">All</button>
-            </form>
-        </nav>
-
-        <div id="errorSection">
-            <%
-                String error = (String)session.getAttribute("error");
-
-                if(error != null){
-                    out.println("<p style=\"color: red\">" + error + "</p>");
-                }
-            %>
-        </div>
-    </body>
+            if(error != null){
+                out.println("<p style=\"color: red\">" + error + "</p>");
+            }
+        %>
+    </div>
+</body>
 </html>

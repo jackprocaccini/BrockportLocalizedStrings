@@ -39,6 +39,6 @@
             %>
         </tr>
     </table>
-    <a href="index.jsp">Back to main</a>
+    <a href="stringchoices.jsp">Back to main</a>
 </body>
 </html>
