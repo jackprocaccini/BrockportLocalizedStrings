@@ -56,6 +56,7 @@ public class ControllerServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("display", displayType);
             session.setAttribute("translations", jsTranslations);
+            session.setAttribute("error", "");
             res.sendRedirect("translations.jsp");
             return;
 
@@ -70,6 +71,7 @@ public class ControllerServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("display", displayType);
             session.setAttribute("translations", resxTranslations);
+            session.setAttribute("error", "");
             res.sendRedirect("translations.jsp");
             return;
 
@@ -77,6 +79,7 @@ public class ControllerServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("display", displayType);
             session.setAttribute("translations", translations);
+            session.setAttribute("error", "");
             res.sendRedirect("translations.jsp");
             return;
 

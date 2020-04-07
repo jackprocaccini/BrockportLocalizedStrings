@@ -27,13 +27,6 @@ public class DatabaseConnector {
         url ="jdbc:mysql://brockportpaychex.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         username = "Brockport@brockportpaychex";
         password = "Paychex2020";
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//        } catch(ClassNotFoundException e){
-//            System.out.println("Class Not Found");
-//            System.exit(0);
-//        }
-//        myDbConn = DriverManager.getConnection(url, "Brockport@brockportpaychex", "Paychex2020");
     }
 
     /**
@@ -41,7 +34,7 @@ public class DatabaseConnector {
      * @return A DatabaseConnector object
      * @throws Exception
      */
-    public static DatabaseConnector getInstance() throws Exception {
+    public static DatabaseConnector getInstance(){
         if(myInstance == null){
             myInstance = new DatabaseConnector();
         }
@@ -184,7 +177,7 @@ public class DatabaseConnector {
      * @return True if the specified entry exists, false otherwise.
      * @throws SQLException
      */
-    private boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
+    public boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
         String query = QueryBuilder.selectQuery(tableName, operand, field, value);
 //        Statement st = myDbConn.createStatement();
         Statement st = getConnection().createStatement();
