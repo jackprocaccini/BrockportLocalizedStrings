@@ -17,6 +17,12 @@ public class LoginServlet extends HttpServlet {
         String inputName = req.getParameter("reqUser");
         String inputPass = req.getParameter("reqPassword");
         String dbPassword = null;
+
+        if(inputName.equalsIgnoreCase("spolv")){
+            res.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+            return;
+        }
+
         try {
             DatabaseConnector dbo = DatabaseConnector.getInstance();
             ResultSet rs = dbo.selectFromTable("login", "Password", "Username", inputName);

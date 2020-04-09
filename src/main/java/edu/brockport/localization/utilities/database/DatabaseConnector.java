@@ -52,10 +52,8 @@ public class DatabaseConnector {
     public boolean insertIntoTable(String tableName, String[] dbFields, String[] dbFieldsValues) throws SQLException {
         try {
             String query = QueryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
-//            Statement st = myDbConn.createStatement();
             Statement st = getConnection().createStatement();
             st.executeUpdate(query);
-//            st.close();
             return true;
         } catch(Exception e){
             return false;
@@ -73,10 +71,8 @@ public class DatabaseConnector {
     public boolean deleteFromTable(String tableName, String field, String value) throws SQLException {
         try{
             String query = QueryBuilder.deleteStatement(tableName, field, value);
-//            Statement st = myDbConn.createStatement();
             Statement st = getConnection().createStatement();
             st.executeUpdate(query);
-//            st.close();
             return true;
         } catch(Exception e){
             return false;
@@ -100,22 +96,18 @@ public class DatabaseConnector {
             for(String key : jsProperties.stringPropertyNames()){
                 if(existsInTable("TranslationKeys", "ID", "TransKey", key)){
                     String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-//                    Statement st = myDbConn.createStatement();
                     Statement st = getConnection().createStatement();
                     ResultSet rs = st.executeQuery(keyIDQuery);
                     rs.next();
                     String keyID = rs.getString("ID");
-//                    st.close();
                     insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
                 } else {
                     insertIntoTable("TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "1", "Active"});
                     String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-//                    Statement st = myDbConn.createStatement();
                     Statement st = getConnection().createStatement();
                     ResultSet rs = st.executeQuery(keyIDQuery);
                     rs.next();
                     String keyID = rs.getString("ID");
-//                    st.close();
                     insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
                 }
             }
@@ -143,22 +135,18 @@ public class DatabaseConnector {
             for(String key : xmlProperties.stringPropertyNames()){
                 if(existsInTable("TranslationKeys", "ID", "TransKey", key)){
                     String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-//                    Statement st = myDbConn.createStatement();
                     Statement st = getConnection().createStatement();
                     ResultSet rs = st.executeQuery(keyIDQuery);
                     rs.next();
                     String keyID = rs.getString("ID");
-//                    st.close();
                     insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
                 } else {
                     insertIntoTable("TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "2", "Active"});
                     String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-//                    Statement st = myDbConn.createStatement();
                     Statement st = getConnection().createStatement();
                     ResultSet rs = st.executeQuery(keyIDQuery);
                     rs.next();
                     String keyID = rs.getString("ID");
-//                    st.close();
                     insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
                 }
             }
@@ -179,7 +167,6 @@ public class DatabaseConnector {
      */
     public boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
         String query = QueryBuilder.selectQuery(tableName, operand, field, value);
-//        Statement st = myDbConn.createStatement();
         Statement st = getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs.next();
@@ -197,7 +184,6 @@ public class DatabaseConnector {
      */
     public ResultSet selectFromTable(String tableName, String operand, String field, String value) throws SQLException{
         String query = QueryBuilder.selectQuery(tableName, operand, field, value);
-//        Statement st = myDbConn.createStatement();
         Statement st = getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
@@ -211,7 +197,6 @@ public class DatabaseConnector {
      */
     public ResultSet selectStarFromTable(String tableName) throws SQLException{
         String query = QueryBuilder.selectStarQuery(tableName);
-//        Statement st = myDbConn.createStatement();
         Statement st = getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
@@ -219,7 +204,6 @@ public class DatabaseConnector {
 
     public ResultSet selectJoinFromTable() throws SQLException {
         String query = QueryBuilder.selectJoinQuery();
-//        Statement st = myDbConn.createStatement();
         Statement st = getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
