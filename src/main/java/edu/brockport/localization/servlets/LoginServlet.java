@@ -1,6 +1,7 @@
 package edu.brockport.localization.servlets;
 
 import edu.brockport.localization.utilities.database.DatabaseConnector;
+import edu.brockport.localization.utilities.database.Translation;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class LoginServlet extends HttpServlet {
 
@@ -17,6 +19,8 @@ public class LoginServlet extends HttpServlet {
         String inputName = req.getParameter("reqUser");
         String inputPass = req.getParameter("reqPassword");
         String dbPassword = null;
+        DatabaseConnector dbc = null;
+        ArrayList<Translation> translations;
 
         if(inputName.equalsIgnoreCase("spolv")){
             res.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
@@ -24,8 +28,8 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
-            DatabaseConnector dbo = DatabaseConnector.getInstance();
-            ResultSet rs = dbo.selectFromTable("login", "Password", "Username", inputName);
+            dbc = DatabaseConnector.getInstance();
+            ResultSet rs = dbc.selectFromTable("login", "Password", "Username", inputName);
             if(rs.next()){
                 dbPassword = rs.getString("password");
 
@@ -37,7 +41,11 @@ public class LoginServlet extends HttpServlet {
             }
 
             if(inputPass.equals(dbPassword)){
-                res.sendRedirect("stringchoices.jsp");
+                translations = dbc.getTranslationList();
+                HttpSession session = req.getSession();
+                session.setAttribute("display", "all translations");
+                session.setAttribute("translations", translations);
+                res.sendRedirect("translations.jsp");
                 return;
 
             } else {
