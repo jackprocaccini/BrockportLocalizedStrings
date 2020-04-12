@@ -1,6 +1,6 @@
 /**
  * Sorts an HTML table
- *
+ * 
  * @param {HTMLTableElement} table The table to sort
  * @param {number} column The index of the column to sort
  * @param {boolean} asc Determines if the sorting will be in ascending order
@@ -25,7 +25,7 @@ function sortTableByColumn(table, column, asc = true){
         }
     });
 
-    console.log(sortedRows);
+    // console.log(sortedRows);
 
     //remove existing table rows from the table
     while(tBody.firstChild){
@@ -41,12 +41,16 @@ function sortTableByColumn(table, column, asc = true){
 }
 
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
-    headerCell.addEventListener("click", () => {
-        // console.log("header clicked");
+    console.log("Text Content: " + headerCell.textContent);
+    if(headerCell.textContent != "Select"){
+        console.log("Header cell should not be 'Select', value: " + headerCell.textContent);
+        headerCell.addEventListener("click", () => {
         const tableElement = headerCell.parentElement.parentElement.parentElement;
         const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
         const currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
         sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
-    });
+        }); 
+    }
+    
 });

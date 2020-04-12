@@ -20,7 +20,13 @@ public class Translation {
         this.locale = locale;
         this.transValue = transValue;
         this.status = status;
-        this.resourceType = resourceType;
+        if(resourceType.equalsIgnoreCase("js")){
+            this.resourceType = "javascript";
+        } else if(resourceType.equalsIgnoreCase(".NET")){
+            this.resourceType = "resx";
+        } else {
+            this.resourceType = resourceType;
+        }
     }
 
     public String getTransKey() {
