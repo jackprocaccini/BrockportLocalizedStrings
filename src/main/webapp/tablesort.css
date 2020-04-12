@@ -1,0 +1,42 @@
+.table-sortable th {
+    cursor: pointer;
+}
+
+.table-sortable .th-sort-asc::after {
+    content: "\25b4";
+}
+
+.table-sortable .th-sort-desc::after {
+    content: "\25be";
+}
+
+.table-sortable .th-sort-asc::after,
+.table-sortable .th-sort-desc::after {
+    margin-left: 5px;
+}
+
+.table{
+    font-family:Arial, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: lightgrey;
+}
+
+tr:nth-child(even){
+    background-color: lightgrey;
+}
+
+tr:hover {
+    background-color: rgb(85, 106, 165);
+}
