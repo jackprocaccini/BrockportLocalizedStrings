@@ -46,12 +46,15 @@
             %>
         </tbody>
     </table>
+
+    <p id="selectedInfoStrings"></p>
+
     <a href="../index.jsp">Back to main</a>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../javascript/tablesort.js"></script>
 
     <script type="text/javascript">
-        //checkbox stuff
+        //whenever a checkbox is clicked, all the data pertaining to that checkbox's row is collected
         const $selectedInformation = $("#selectedInfoStrings");
         // $selectedInformation.hide();
         var $checkboxes = $(".check");
