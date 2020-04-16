@@ -14,13 +14,9 @@ public class jsPropertiesBuilder {
      * @throws IOException
      */
     public jsPropertiesBuilder(File jsFile) throws IOException {
-        try {
-            this.jsFile = jsFile;
-            if(!this.jsFile.getName().endsWith(".js")){
-                throw new IOException("File must have the .js extention");
-            }
-        } catch(IOException e){
-            e.printStackTrace();
+        this.jsFile = jsFile;
+        if(!this.jsFile.getName().endsWith(".js")){
+            throw new IOException("File must have the .js extention");
         }
         language = jsFile.getName().substring(jsFile.getName().lastIndexOf("-") + 1, jsFile.getName().lastIndexOf("."));
         if(language.equalsIgnoreCase("es")){

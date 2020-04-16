@@ -22,11 +22,6 @@ public class LoginServlet extends HttpServlet {
         DatabaseConnector dbc = null;
         ArrayList<Translation> translations;
 
-        if(inputName.equalsIgnoreCase("spolv")){
-            res.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-            return;
-        }
-
         try {
             dbc = DatabaseConnector.getInstance();
             ResultSet rs = dbc.selectFromTable("login", "Password", "Username", inputName);
@@ -45,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("display", "all translations");
                 session.setAttribute("translations", translations);
-                res.sendRedirect("translations.jsp");
+                res.sendRedirect("jsp/translations.jsp");
                 return;
 
             } else {

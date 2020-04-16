@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Translations</title>
-    <link rel="stylesheet" href="tablesort.css">
+    <link rel="stylesheet" href="../tablesort.css">
 </head>
 <body>
     <%
@@ -46,9 +46,9 @@
             %>
         </tbody>
     </table>
-    <a href="index.jsp">Back to main</a>
+    <a href="../index.jsp">Back to main</a>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="tablesort.js"></script>
+    <script type="text/javascript" src="../javascript/tablesort.js"></script>
 
     <script type="text/javascript">
         //checkbox stuff
