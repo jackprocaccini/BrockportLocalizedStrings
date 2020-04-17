@@ -11,13 +11,15 @@
         ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translations");
     %>
 
-    <select align="center" id="selectionchoice">
+    <select align="center" id="selectionChoice">
         <option value="javascript">Javascript</option>
         <option value="resx">Resx</option>
         <option value="en_US">en_US</option>
         <option value="es_ES">es_ES</option>
         <option value="all">All</option>
     </select>
+
+    <input type="text" id="searchBox" placeholder="Search">
 
     <table class="table table-sortable">
         <thead>
@@ -34,7 +36,7 @@
             <%
                 if(translations != null){
                     for(int i = 0; i < translations.size(); i++){
-                        out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + "\">");
+                        out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
                         out.println("<td>" + translations.get(i).getTransKey() + "</td>");
                         out.println("<td>" + translations.get(i).getTransValue() + "</td>");
                         out.println("<td>" + translations.get(i).getLocale() + "</td>");
@@ -78,36 +80,56 @@
 
     <script type="text/javascript">
         // Whenever the selection is changed in the dropdown menu, the table updates based on the selection
-        $("#selectionchoice").change(function() {
-            var selectedType = $("#selectionchoice :selected").val();
+        $("#selectionChoice").change(function() {
+            var selectedType = $("#selectionChoice :selected").val();
             console.log(selectedType);
             displayTranslations(selectedType);
             // console.log($("#translationchoice :selected").val());
         });
 
         // Displays table contents based on the drop down menu's selected type
-        function displayTranslations(selectedType){
-            console.log("display function: " + selectedType);
-            console.log($("." + selectedType).text());
+        function displayTranslations(translationType){
+            console.log("display function: " + translationType);
+            console.log($("." + translationType).text());
 
             var $tableRows = $("tbody tr");
 
             console.log($tableRows);
 
-            if(selectedType == "all"){
-                $tableRows.each(function(){
+            $tableRows.each(function(){
+                if($(this).hasClass(translationType)){
                     $(this).show();
-                });
-            } else {
-                $tableRows.each(function(){
-                    if(!$(this).hasClass(selectedType)){
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        $("#searchBox").keyup(function(){
+            let searchVal = $("#searchBox").val();
+
+            if(!searchVal){ //if x is an empty string, display all translations based on the current dropdown selection
+                console.log("Emtpy String!")
+                displayTranslations($("#selectionChoice").val());
+            } else { //otherwise, get all currently visible information and check if the input from the search box is present
+                let $visibleData = $("tbody ." + $("#selectionChoice").val());
+                console.log("visible data: " + $visibleData.text());
+                let temp = "";
+
+                $visibleData.each(function(){
+                    temp = $(this).text();
+                    console.log("Index of " + searchVal + " in " + temp + ": " + temp.indexOf(searchVal));
+
+                    if(temp.indexOf(searchVal) == -1){
                         $(this).hide();
                     } else {
                         $(this).show();
                     }
                 });
             }
-        }
+        });
     </script>
 </body>
 </html>
