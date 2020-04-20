@@ -9,7 +9,6 @@
 <body>
     <%
         ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translations");
-        //test
     %>
 
     <select align="center" id="selectionChoice">
