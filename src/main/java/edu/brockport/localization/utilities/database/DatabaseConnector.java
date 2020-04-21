@@ -23,7 +23,6 @@ public class DatabaseConnector implements IDatabaseConnector {
      * Use the getInstance() method to invoke this class.
      * @throws SQLException Throws SQL exception if the mysql driver class cannot be found.
      */
-
     private DatabaseConnector(){
         url ="jdbc:mysql://brockportpaychex.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         username = "Brockport@brockportpaychex";
