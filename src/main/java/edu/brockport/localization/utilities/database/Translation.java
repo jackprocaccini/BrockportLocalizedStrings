@@ -1,5 +1,8 @@
 package edu.brockport.localization.utilities.database;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 public class Translation {
     private String transKey;
     private String transValue;
@@ -47,5 +50,19 @@ public class Translation {
 
     public String getResourceType() {
         return resourceType;
+    }
+
+    public ArrayList<Translation> getTranslationList(ResultSet resultSet) throws Exception {
+        ArrayList<Translation> translations = new ArrayList<>();
+//        ResultSet resultSet = selectJoinFromTable();
+        while(resultSet.next()) {
+            Translation translation = new Translation(resultSet.getString("TransKey"),
+                    resultSet.getString("Locale"),
+                    resultSet.getString("Translation"),
+                    resultSet.getString("Status"),
+                    resultSet.getString("ResourceName"));
+            translations.add(translation);
+        }
+        return translations;
     }
 }

@@ -1,10 +1,6 @@
 package edu.brockport.localization.utilities.database;
 
-public class QueryBuilder {
-
-    private QueryBuilder(){
-
-    }
+public class QueryBuilder extends AbstractQueryBuilder{
 
     /**
      * Generates an 'INSERT INTO' query of the form "INSERT INTO tableName (dbFields) VALUES (dbValues)"
@@ -13,7 +9,7 @@ public class QueryBuilder {
      * @param dbValues String array. The information that you wish to insert into the table (for example 22, Jack, Proc).
      * @return A valid SQL INSERT INTO query in the form of a String
      */
-    public static String insertIntoStatement(String tableName, String[] dbFields, String[] dbValues){
+    public String insertIntoStatement(String tableName, String[] dbFields, String[] dbValues){
         String fields;
         String values;
 
@@ -30,7 +26,7 @@ public class QueryBuilder {
      * @param value String. The value in the table that you would like to delete.
      * @return A valid SQL DELETE query in the form of a String.
      */
-    public static String deleteStatement(String tableName, String field, String value){
+    public String deleteStatement(String tableName, String field, String value){
         if(isInt(value)){
             return "DELETE FROM " + tableName + " WHERE " + field + "=" + value;
         } else {
@@ -50,11 +46,11 @@ public class QueryBuilder {
      * @param fieldTypes String array. The data types of your table's fields. Each value should have a corresponding field
      *                   in the 'fields' array at the same index.
      * @param primaryKey String. The primary key of your table. Should be a String that is present in the 'fields' array.
-     * @param foreignKey String. The foreign key of your table. Should be a String that is present in the 'fields' array.
+     * @param foreignKeys String. The foreign key of your table. Should be a String that is present in the 'fields' array.
      *                   Pass 'null' as the foreignKey parameter if you do not intend for your table to have a foreign key.
      * @return String - A valid SQL CREATE TABLE query in the form of a String. Returns 'null' if fields.length != fieldTypes.length
      */
-    public static String createTableStatement(String tableName, String[] fields, String[] fieldTypes, String primaryKey, String foreignKey){
+    public String createTableStatement(String tableName, String[] fields, String[] fieldTypes, String primaryKey, String[] foreignKeys){
         if(fields.length != fieldTypes.length){
             return null;
         }
@@ -65,8 +61,13 @@ public class QueryBuilder {
             query += fields[i] + " " + fieldTypes[i] + ", ";
         }
 
-        if(foreignKey != null){
-            query += "PRIMARY KEY(" + primaryKey + "), " + "FOREIGN KEY(" + foreignKey + "))";
+        if(foreignKeys.length != 0 || !(foreignKeys == null)){
+            //test at some point later
+            query += "PRIMARY KEY(" + primaryKey + "), ";
+            for(String foreginKey: foreignKeys){
+                query += " FOREIGN KEY(" + foreginKey + "),";
+            }
+            query = query.substring(0, query.length() - 1);
         } else {
             query += "PRIMARY KEY(" + primaryKey + "))";
         }
@@ -95,7 +96,7 @@ public class QueryBuilder {
      *                         from Students WHERE ID=1", the whereClauseValue in this case would be "1".
      * @return A formatted SQL String which updates any number of values from a given table.
      */
-    public static String updateStatement(String tableName, String[] updateFields, String[] updateValues, String whereClauseField, String whereClauseValue){
+    public String updateStatement(String tableName, String[] updateFields, String[] updateValues, String whereClauseField, String whereClauseValue){
         if(updateFields.length != updateValues.length){
             return null;
         }
@@ -134,7 +135,7 @@ public class QueryBuilder {
      *      *              from Students WHERE ID=1", the value in this case would be "1".
      * @return A formatted SQL String which selects values from a given table.
      */
-    public static String selectQuery(String tableName, String operand, String field, String value){
+    public String selectQuery(String tableName, String operand, String field, String value){
         String query = "SELECT " + operand + " FROM " + tableName + " WHERE " + field + "=";
 
         if(isInt(value)){
@@ -153,7 +154,7 @@ public class QueryBuilder {
      * @param values The values that you wish to use in your sql statement
      * @return A formatted SQL String which places values in the form (field1, field2, ...)
      */
-    private static String valuesParenthesisMaker(String[] values){
+    private String valuesParenthesisMaker(String[] values){
         String str = "(";
 
         for(int i = 0; i < values.length; i++){
@@ -175,7 +176,7 @@ public class QueryBuilder {
      * @param fields The fields of the table you are working with
      * @return A formatted SQL String which places fields in the form (field1, field2, ...)
      */
-    private static String fieldsParenthesisMaker(String[] fields){
+    private String fieldsParenthesisMaker(String[] fields){
         String str = "(";
 
         for(int i = 0; i < fields.length; i++){
@@ -192,7 +193,7 @@ public class QueryBuilder {
      * @param str The String you wish to check
      * @return True or False, depending if the passed String is just a number
      */
-    private static boolean isInt(String str){
+    private boolean isInt(String str){
         try{
             Integer.parseInt(str);
             return true;
@@ -206,19 +207,7 @@ public class QueryBuilder {
      * @param tableName The name of the table that you wish to select from
      * @return A formatted SQL which selects everything from a given table.
      */
-    public static String selectStarQuery(String tableName){
+    public String selectStarQuery(String tableName){
         return "SELECT * FROM " + tableName;
-    }
-
-    public static String selectJoinQuery(){
-        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status, sourceresource.ResourceName " +
-                "FROM translationkeys, translations, sourceresource " +
-                "WHERE (translationkeys.ID = translations.TransKeyFK AND sourceresource.ID = translationkeys.SourceResourceKeyFK) " +
-                "ORDER BY translationkeys.TransKey;";
-//        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status " +
-//                "FROM translationkeys, translations " +
-//                "WHERE (translationkeys.ID = translations.TransKeyFK) " +
-//                "ORDER BY translationkeys.TransKey;";
-        return query;
     }
 }

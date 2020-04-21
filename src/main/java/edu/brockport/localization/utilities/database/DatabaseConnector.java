@@ -1,5 +1,7 @@
 package edu.brockport.localization.utilities.database;
 
+import edu.brockport.localization.interfaces.IDatabaseConnector;
+import edu.brockport.localization.interfaces.IQueryBuilder;
 import edu.brockport.localization.utilities.js.jsPropertiesBuilder;
 import edu.brockport.localization.utilities.xml.xmlPropertiesBuilder;
 import org.xml.sax.SAXException;
@@ -8,11 +10,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
-public class DatabaseConnector {
-//    private Connection myDbConn;
+public class DatabaseConnector implements IDatabaseConnector {
     private String url;
     private String username;
     private String password;
@@ -23,6 +23,7 @@ public class DatabaseConnector {
      * Use the getInstance() method to invoke this class.
      * @throws SQLException Throws SQL exception if the mysql driver class cannot be found.
      */
+
     private DatabaseConnector(){
         url ="jdbc:mysql://brockportpaychex.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         username = "Brockport@brockportpaychex";
@@ -49,15 +50,10 @@ public class DatabaseConnector {
      * @param dbFieldsValues String Array. Contains the values that you wish to insert. Values at position i must correspond to an entry in dbFields at the same index.
      * @return True if passed data was inserted into the given table, false if otherwise.
      */
-    public boolean insertIntoTable(String tableName, String[] dbFields, String[] dbFieldsValues) throws SQLException {
-        try {
-            String query = QueryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
-            Statement st = getConnection().createStatement();
-            st.executeUpdate(query);
-            return true;
-        } catch(Exception e){
-            return false;
-        }
+    public void insertIntoTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String[] dbFields, String[] dbFieldsValues) throws SQLException {
+        String query = queryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
+        Statement st = connection.createStatement();
+        st.executeUpdate(query);
     }
 
     /**
@@ -68,16 +64,10 @@ public class DatabaseConnector {
      * @return True if data was successfully deleted from the given table, returns false otherwise.
      * @throws SQLException
      */
-    public boolean deleteFromTable(String tableName, String field, String value) throws SQLException {
-        try{
-            String query = QueryBuilder.deleteStatement(tableName, field, value);
-            Statement st = getConnection().createStatement();
-            st.executeUpdate(query);
-            return true;
-        } catch(Exception e){
-            return false;
-        }
-
+    public void deleteFromTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String field, String value) throws SQLException {
+        String query = queryBuilder.deleteStatement(tableName, field, value);
+        Statement st = connection.createStatement();
+        st.executeUpdate(query);
     }
 
     /**
@@ -87,35 +77,31 @@ public class DatabaseConnector {
      * @throws IOException
      * @throws SQLException
      */
-    public boolean insertJSIntoDatabase(File jsFile) throws IOException, SQLException {
+    public void insertJSIntoDatabase(Connection connection, IQueryBuilder queryBuilder, File jsFile) throws IOException, SQLException {
         jsPropertiesBuilder jsBuilder = new jsPropertiesBuilder(jsFile);
         Properties jsProperties = jsBuilder.getProps();
         String locale = jsBuilder.getLanguage();
 
-        try {
-            for(String key : jsProperties.stringPropertyNames()){
-                if(existsInTable("TranslationKeys", "ID", "TransKey", key)){
-                    String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-                    Statement st = getConnection().createStatement();
-                    ResultSet rs = st.executeQuery(keyIDQuery);
-                    rs.next();
-                    String keyID = rs.getString("ID");
-                    insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
-                } else {
-                    insertIntoTable("TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "1", "Active"});
-                    String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-                    Statement st = getConnection().createStatement();
-                    ResultSet rs = st.executeQuery(keyIDQuery);
-                    rs.next();
-                    String keyID = rs.getString("ID");
-                    insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
-                }
+        for(String key : jsProperties.stringPropertyNames()) {
+            if (existsInTable(getConnection(),queryBuilder, "TranslationKeys", "ID", "TransKey", key)) {
+                String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(keyIDQuery);
+                rs.next();
+                String keyID = rs.getString("ID");
+//              insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
+                insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status",},
+                        new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
+            } else {
+                insertIntoTable(getConnection(), queryBuilder, "TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "1", "Active"});
+                String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(keyIDQuery);
+                rs.next();
+                String keyID = rs.getString("ID");
+                insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
             }
-        } catch(Exception e){
-            return false;
         }
-
-        return true;
     }
 
     /**
@@ -126,34 +112,30 @@ public class DatabaseConnector {
      * @throws SAXException
      * @throws IOException
      */
-    public boolean insertRESXIntoDatabase(File resxFile) throws ParserConfigurationException, SAXException, IOException {
+    public void insertRESXIntoDatabase(Connection connection, IQueryBuilder queryBuilder, File resxFile) throws ParserConfigurationException, SAXException, IOException, SQLException {
         xmlPropertiesBuilder xmlBuilder = new xmlPropertiesBuilder(resxFile);
         Properties xmlProperties = xmlBuilder.getProps();
         String locale = xmlBuilder.getLanguage();
 
-        try{
-            for(String key : xmlProperties.stringPropertyNames()){
-                if(existsInTable("TranslationKeys", "ID", "TransKey", key)){
-                    String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-                    Statement st = getConnection().createStatement();
-                    ResultSet rs = st.executeQuery(keyIDQuery);
-                    rs.next();
-                    String keyID = rs.getString("ID");
-                    insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
-                } else {
-                    insertIntoTable("TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "2", "Active"});
-                    String keyIDQuery = QueryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
-                    Statement st = getConnection().createStatement();
-                    ResultSet rs = st.executeQuery(keyIDQuery);
-                    rs.next();
-                    String keyID = rs.getString("ID");
-                    insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
-                }
+        for(String key : xmlProperties.stringPropertyNames()){
+            if(existsInTable(getConnection(),queryBuilder,"TranslationKeys", "ID", "TransKey", key)){
+                String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(keyIDQuery);
+                rs.next();
+                String keyID = rs.getString("ID");
+                insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"},
+                        new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
+            } else {
+                insertIntoTable(getConnection(), queryBuilder,"TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "2", "Active"});
+                String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(keyIDQuery);
+                rs.next();
+                String keyID = rs.getString("ID");
+                insertIntoTable(getConnection(), queryBuilder,"Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
             }
-        } catch(Exception e){
-            return false;
         }
-        return true;
     }
 
     /**
@@ -165,9 +147,9 @@ public class DatabaseConnector {
      * @return True if the specified entry exists, false otherwise.
      * @throws SQLException
      */
-    public boolean existsInTable(String tableName, String operand, String field, String value) throws SQLException {
-        String query = QueryBuilder.selectQuery(tableName, operand, field, value);
-        Statement st = getConnection().createStatement();
+    public boolean existsInTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String operand, String field, String value) throws SQLException {
+        String query = queryBuilder.selectQuery(tableName, operand, field, value);
+        Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs.next();
     }
@@ -182,9 +164,9 @@ public class DatabaseConnector {
      * @return A ResultSet containing all entries based on the search criteria. Could possibly be empty.
      * @throws SQLException
      */
-    public ResultSet selectFromTable(String tableName, String operand, String field, String value) throws SQLException{
-        String query = QueryBuilder.selectQuery(tableName, operand, field, value);
-        Statement st = getConnection().createStatement();
+    public ResultSet selectFromTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String operand, String field, String value) throws SQLException{
+        String query = queryBuilder.selectQuery(tableName, operand, field, value);
+        Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
     }
@@ -195,35 +177,21 @@ public class DatabaseConnector {
      * @return A ResultSet containing all information retrieved from the database.
      * @throws SQLException
      */
-    public ResultSet selectStarFromTable(String tableName) throws SQLException{
-        String query = QueryBuilder.selectStarQuery(tableName);
-        Statement st = getConnection().createStatement();
+    public ResultSet selectStarFromTable(Connection connection, IQueryBuilder queryBuilder, String tableName) throws SQLException{
+        String query = queryBuilder.selectStarQuery(tableName);
+        Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
     }
 
-    public ResultSet selectJoinFromTable() throws SQLException {
-        String query = QueryBuilder.selectJoinQuery();
-        Statement st = getConnection().createStatement();
+    public ResultSet selectJoinFromTable(Connection connection, AbstractQueryBuilder queryBuilder) throws SQLException {
+        String query = queryBuilder.selectJoinQuery();
+        Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
     }
 
-    public ArrayList<Translation> getTranslationList() throws Exception {
-        ArrayList<Translation> translations = new ArrayList<>();
-        ResultSet resultSet = selectJoinFromTable();
-        while(resultSet.next()) {
-            Translation translation = new Translation(resultSet.getString("TransKey"),
-                    resultSet.getString("Locale"),
-                    resultSet.getString("Translation"),
-                    resultSet.getString("Status"),
-                    resultSet.getString("ResourceName"));
-            translations.add(translation);
-        }
-        return translations;
-    }
-
-    private Connection getConnection(){
+    public Connection getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(url, username, password);
