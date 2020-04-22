@@ -53,6 +53,8 @@ public class DatabaseConnector implements IDatabaseConnector {
         String query = queryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
         Statement st = connection.createStatement();
         st.executeUpdate(query);
+        st.close();
+        connection.close();
     }
 
     /**
@@ -67,6 +69,8 @@ public class DatabaseConnector implements IDatabaseConnector {
         String query = queryBuilder.deleteStatement(tableName, field, value);
         Statement st = connection.createStatement();
         st.executeUpdate(query);
+        st.close();
+        connection.close();
     }
 
     /**
@@ -101,6 +105,7 @@ public class DatabaseConnector implements IDatabaseConnector {
                 insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
             }
         }
+        connection.close();
     }
 
     /**
@@ -135,6 +140,8 @@ public class DatabaseConnector implements IDatabaseConnector {
                 insertIntoTable(getConnection(), queryBuilder,"Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
             }
         }
+
+        connection.close();
     }
 
     /**

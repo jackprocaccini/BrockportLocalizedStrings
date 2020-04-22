@@ -50,31 +50,31 @@ public class QueryBuilder extends AbstractQueryBuilder{
      *                   Pass 'null' as the foreignKey parameter if you do not intend for your table to have a foreign key.
      * @return String - A valid SQL CREATE TABLE query in the form of a String. Returns 'null' if fields.length != fieldTypes.length
      */
-    public String createTableStatement(String tableName, String[] fields, String[] fieldTypes, String primaryKey, String[] foreignKeys){
-        if(fields.length != fieldTypes.length){
-            return null;
-        }
-
-        String query = "CREATE TABLE " + tableName + " (";
-
-        for(int i = 0; i < fields.length; i++){
-            query += fields[i] + " " + fieldTypes[i] + ", ";
-        }
-
-        if(foreignKeys.length != 0 || !(foreignKeys == null)){
-            //test at some point later
-            query += "PRIMARY KEY(" + primaryKey + "), ";
-            for(String foreginKey: foreignKeys){
-                query += " FOREIGN KEY(" + foreginKey + "),";
-            }
-            query = query.substring(0, query.length() - 1);
-        } else {
-            query += "PRIMARY KEY(" + primaryKey + "))";
-        }
-
-
-        return query;
-    }
+//    public String createTableStatement(String tableName, String[] fields, String[] fieldTypes, String primaryKey, String[] foreignKeys){
+//        if(fields.length != fieldTypes.length){
+//            return null;
+//        }
+//
+//        String query = "CREATE TABLE " + tableName + " (";
+//
+//        for(int i = 0; i < fields.length; i++){
+//            query += fields[i] + " " + fieldTypes[i] + ", ";
+//        }
+//
+//        if(foreignKeys.length != 0 || !(foreignKeys == null)){
+//            //test at some point later
+//            query += "PRIMARY KEY(" + primaryKey + "), ";
+//            for(String foreginKey: foreignKeys){
+//                query += " FOREIGN KEY(" + foreginKey + ") ,";
+//            }
+//            query = query.substring(0, query.length() - 1);
+//        } else {
+//            query += "PRIMARY KEY(" + primaryKey + "))";
+//        }
+//
+//
+//        return query;
+//    }
 
     /**
      * Builds an SQL update statement based on the information passed in as parameters.
