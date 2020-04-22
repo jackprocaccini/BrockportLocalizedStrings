@@ -51,7 +51,8 @@ public class DatabaseConnector implements IDatabaseConnector {
      */
     public void insertIntoTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String[] dbFields, String[] dbFieldsValues) throws SQLException {
         String query = queryBuilder.insertIntoStatement(tableName, dbFields, dbFieldsValues);
-        Statement st = connection.createStatement();
+        Statement st = null;
+        st = connection.createStatement();
         st.executeUpdate(query);
         st.close();
         connection.close();

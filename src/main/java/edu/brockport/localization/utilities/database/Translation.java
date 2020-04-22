@@ -1,6 +1,7 @@
 package edu.brockport.localization.utilities.database;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Translation {
@@ -52,7 +53,7 @@ public class Translation {
         return resourceType;
     }
 
-    public ArrayList<Translation> getTranslationList(ResultSet resultSet) throws Exception {
+    public static ArrayList<Translation> getTranslationList(ResultSet resultSet) throws SQLException {
         ArrayList<Translation> translations = new ArrayList<>();
 //        ResultSet resultSet = selectJoinFromTable();
         while(resultSet.next()) {

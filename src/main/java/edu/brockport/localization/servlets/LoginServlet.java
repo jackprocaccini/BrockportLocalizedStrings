@@ -1,6 +1,7 @@
 package edu.brockport.localization.servlets;
 
 import edu.brockport.localization.utilities.database.DatabaseConnector;
+import edu.brockport.localization.utilities.database.QueryBuilder;
 import edu.brockport.localization.utilities.database.Translation;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
         try {
             dbc = DatabaseConnector.getInstance();
-            ResultSet rs = dbc.selectFromTable("login", "Password", "Username", inputName);
+            ResultSet rs = dbc.selectFromTable(dbc.getConnection(),new QueryBuilder(),"login", "Password", "Username", inputName);
             if(rs.next()){
                 dbPassword = rs.getString("password");
 
@@ -36,7 +37,8 @@ public class LoginServlet extends HttpServlet {
             }
 
             if(inputPass.equals(dbPassword)){
-                translations = dbc.getTranslationList();
+                ResultSet translationsRs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
+                translations = Translation.getTranslationList(translationsRs);
                 HttpSession session = req.getSession();
                 session.setAttribute("display", "all translations");
                 session.setAttribute("translations", translations);
