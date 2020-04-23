@@ -79,7 +79,6 @@ public class DatabaseConnector implements IDatabaseConnector {
     /**
      * Inserts all information contained within a js file into the database. Makes use of QueryBuilder and jsPropertiesBuilder.
      * @param jsFile The javascript file that you would like to insert
-     * @return True if all information was inserted into the database, false otherwise.
      * @throws IOException
      * @throws SQLException
      */
