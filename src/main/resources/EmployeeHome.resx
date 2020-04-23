@@ -1,0 +1,1917 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="AmountUnits" xml:space="preserve">
+    <value>Amount/Units</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="ApprovalSaved" xml:space="preserve">
+    <value>Approval Saved</value>
+  </data>
+  <data name="BeginBreak" xml:space="preserve">
+    <value>Begin Break</value>
+  </data>
+  <data name="BeginMeal" xml:space="preserve">
+    <value>Begin Meal</value>
+  </data>
+  <data name="CalendarView" xml:space="preserve">
+    <value>Calendar View</value>
+  </data>
+  <data name="ClockIn" xml:space="preserve">
+    <value>Clock In</value>
+  </data>
+  <data name="ClockOut" xml:space="preserve">
+    <value>Clock Out</value>
+  </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
+  <data name="CurrentPayPeriod" xml:space="preserve">
+    <value>Current Pay Period</value>
+  </data>
+  <data name="CurrentWeek" xml:space="preserve">
+    <value>Current Week</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="EndBreak" xml:space="preserve">
+    <value>End Break</value>
+  </data>
+  <data name="EndMeal" xml:space="preserve">
+    <value>End Meal</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="HoursWorked" xml:space="preserve">
+    <value>Hours Worked</value>
+  </data>
+  <data name="LaborLevel" xml:space="preserve">
+    <value>{LaborLevel}</value>
+  </data>
+  <data name="LastPunch" xml:space="preserve">
+    <value>Last Punch:</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legend</value>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>List View</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="NextButton" xml:space="preserve">
+    <value>&gt;&gt;</value>
+  </data>
+  <data name="NextPayPeriod" xml:space="preserve">
+    <value>Next &gt;&gt;</value>
+    <comment>duplicate -- can be removed !</comment>
+  </data>
+  <data name="NextWeek" xml:space="preserve">
+    <value>Next &gt;&gt;</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="OT" xml:space="preserve">
+    <value>OT</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="PreviousButton" xml:space="preserve">
+    <value>&lt;&lt;</value>
+  </data>
+  <data name="PreviousPayPeriod" xml:space="preserve">
+    <value>&lt;&lt; Previous</value>
+    <comment>duplicate -- can be removed !</comment>
+  </data>
+  <data name="PreviousWeek" xml:space="preserve">
+    <value>&lt;&lt; Previous</value>
+  </data>
+  <data name="PunchSaved" xml:space="preserve">
+    <value>Punch was saved</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Reg</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="ScheduleCalendarView" xml:space="preserve">
+    <value>Schedule - Calendar View</value>
+  </data>
+  <data name="ScheduleListView" xml:space="preserve">
+    <value>Schedule - List View</value>
+  </data>
+  <data name="Schedules" xml:space="preserve">
+    <value>Schedules</value>
+  </data>
+  <data name="ScheduleTimelineView" xml:space="preserve">
+    <value>Schedule - Timeline View</value>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="SupervisorApproved" xml:space="preserve">
+    <value>Manager Approved</value>
+  </data>
+  <data name="TimeCard" xml:space="preserve">
+    <value>Time Card</value>
+  </data>
+  <data name="TimeIn" xml:space="preserve">
+    <value>Time In</value>
+  </data>
+  <data name="TimeLineView" xml:space="preserve">
+    <value>Timeline View</value>
+  </data>
+  <data name="TimeOff" xml:space="preserve">
+    <value>Time Off</value>
+  </data>
+  <data name="TimeOut" xml:space="preserve">
+    <value>Time Out</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalAdjustments" xml:space="preserve">
+    <value>Total Adjustments</value>
+  </data>
+  <data name="TotalHours" xml:space="preserve">
+    <value>Total Hours</value>
+  </data>
+  <data name="TotalScheduledHours" xml:space="preserve">
+    <value>Total Scheduled Hours</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>Unpaid</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="CurrentShiftDuration" xml:space="preserve">
+    <value>Shift Duration:</value>
+  </data>
+  <data name="CurrentBreakDuration" xml:space="preserve">
+    <value>Break Duration:</value>
+  </data>
+  <data name="CurrentMealDuration" xml:space="preserve">
+    <value>Meal Duration:</value>
+  </data>
+  <data name="stringFormat_D1HoursD1Minutes" xml:space="preserve">
+    <value>{0} Hours &amp; {1} Minutes</value>
+  </data>
+  <data name="stringFormat_D1Minutes" xml:space="preserve">
+    <value>{0} Minutes</value>
+  </data>
+  <data name="confirmMessage" xml:space="preserve">
+    <value>Click OK to continue.&lt;br/&gt;</value>
+  </data>
+  <data name="ErrorDescription" xml:space="preserve">
+    <value>Error description:</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>There was an error on this page.&lt;br/&gt;</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>[default]</value>
+  </data>
+  <data name="stringFormat_D1HourD1Minutes" xml:space="preserve">
+    <value>{0} Hour &amp; {1} Minutes</value>
+  </data>
+  <data name="Blank" xml:space="preserve">
+    <value>&lt;Blank&gt;</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CurrentPunchesTitle" xml:space="preserve">
+    <value>Today's Punches</value>
+  </data>
+  <data name="PeriodEntry" xml:space="preserve">
+    <value>Period Entry</value>
+  </data>
+  <data name="Punch" xml:space="preserve">
+    <value>Punch</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SchedulesTitle" xml:space="preserve">
+    <value>Today's Schedule</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TemplateEntry" xml:space="preserve">
+    <value>Template Entry</value>
+  </data>
+  <data name="TimeSheetEntry" xml:space="preserve">
+    <value>Time Sheet Entry</value>
+  </data>
+  <data name="TOREmailBody" xml:space="preserve">
+    <value>A new Time Off Request has been posted. &lt;br/&gt; &lt;br/&gt; &lt;b&gt;&lt;I&gt;From&lt;/I&gt;&lt;/b&gt; : {0} &lt;br/&gt; 
+&lt;b&gt;&lt;I&gt;Requested Dates&lt;/I&gt;&lt;/b&gt;: {1} to {2} &lt;br/&gt; &lt;b&gt;&lt;I&gt;Duration&lt;/I&gt;&lt;/b&gt;: {3} hours/day &lt;br/&gt; &lt;b&gt;&lt;I&gt;Request Type&lt;/I&gt;&lt;/b&gt;: {4} &lt;br/&gt; &lt;br/&gt; &lt;br/&gt; **Do Not Reply To This Email**</value>
+  </data>
+  <data name="TOREmailSubject" xml:space="preserve">
+    <value>New Time Off Request from {0}</value>
+  </data>
+  <data name="AddLine" xml:space="preserve">
+    <value>Add Line</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="BySender" xml:space="preserve">
+    <value>By Sender</value>
+  </data>
+  <data name="CreateAlert" xml:space="preserve">
+    <value>Create Alert</value>
+  </data>
+  <data name="CreateNewMessage" xml:space="preserve">
+    <value>Create New Message</value>
+  </data>
+  <data name="DeleteWarning" xml:space="preserve">
+    <value>Are you sure  you want to delete this message?</value>
+  </data>
+  <data name="EmployeesRead" xml:space="preserve">
+    <value>Employees who have read messages:</value>
+  </data>
+  <data name="EmployeesUnread" xml:space="preserve">
+    <value>Employees who have not read messages:</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Expires:</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From:</value>
+  </data>
+  <data name="FW" xml:space="preserve">
+    <value>FW:</value>
+  </data>
+  <data name="GenerateFromSchedule" xml:space="preserve">
+    <value>Generate From Schedule</value>
+  </data>
+  <data name="Inbox" xml:space="preserve">
+    <value>Inbox</value>
+  </data>
+  <data name="MarkasUnread" xml:space="preserve">
+    <value>Mark as Unread</value>
+  </data>
+  <data name="MessageReadTitle" xml:space="preserve">
+    <value>Message Read/Unread Details</value>
+  </data>
+  <data name="MessageWithColon" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="Newest" xml:space="preserve">
+    <value>Newest</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>New Message</value>
+  </data>
+  <data name="Oldest" xml:space="preserve">
+    <value>Oldest</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="OriginalMessage" xml:space="preserve">
+    <value>-----Original Message ----</value>
+  </data>
+  <data name="OT1" xml:space="preserve">
+    <value>OT1</value>
+  </data>
+  <data name="OT2" xml:space="preserve">
+    <value>OT2</value>
+  </data>
+  <data name="OT3" xml:space="preserve">
+    <value>OT3</value>
+  </data>
+  <data name="PeriodEntryText1" xml:space="preserve">
+    <value>Divide Hours over</value>
+  </data>
+  <data name="PeriodEntryText2" xml:space="preserve">
+    <value>Days, beginning with</value>
+  </data>
+  <data name="RE" xml:space="preserve">
+    <value>RE:</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="SentOn" xml:space="preserve">
+    <value>Sent:</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="TemplateEntrySettings" xml:space="preserve">
+    <value>Template Entry Settings</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Employee Home</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To:</value>
+  </data>
+  <data name="Accrued" xml:space="preserve">
+    <value>Accrued</value>
+  </data>
+  <data name="BalanceDetails" xml:space="preserve">
+    <value>Balance Details</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>For more details on the balances, click on the type to display the details</value>
+  </data>
+  <data name="Balances" xml:space="preserve">
+    <value>Balances</value>
+  </data>
+  <data name="CalcThru" xml:space="preserve">
+    <value>Calc Thru</value>
+  </data>
+  <data name="CurrentBalance" xml:space="preserve">
+    <value>Current Balance</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Granted" xml:space="preserve">
+    <value>Granted</value>
+  </data>
+  <data name="LastRollOver" xml:space="preserve">
+    <value>Last Roll Over</value>
+  </data>
+  <data name="PayType" xml:space="preserve">
+    <value>Pay Type</value>
+  </data>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>Request Status</value>
+  </data>
+  <data name="RequestStatusInfo" xml:space="preserve">
+    <value>The status of previously submitted requests are listed below.  If you delete an approved request, it will require manager approval before it is removed.</value>
+  </data>
+  <data name="RequestTimeOff" xml:space="preserve">
+    <value>Request Time Off</value>
+  </data>
+  <data name="ResetDay" xml:space="preserve">
+    <value>Reset Day (mm/dd)</value>
+  </data>
+  <data name="StatusChangedBy" xml:space="preserve">
+    <value>Status Changed By</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="TimeOffAccruals" xml:space="preserve">
+    <value>Time Off Accruals</value>
+  </data>
+  <data name="TimeOffRequest" xml:space="preserve">
+    <value>Time Off Request</value>
+  </data>
+  <data name="TimeOffRequests" xml:space="preserve">
+    <value>Time Off Requests</value>
+  </data>
+  <data name="TORDetails" xml:space="preserve">
+    <value>Request Status Details</value>
+  </data>
+  <data name="Used" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="ViewCalendar" xml:space="preserve">
+    <value>View Calendar</value>
+  </data>
+  <data name="ViewTimeOff" xml:space="preserve">
+    <value>Request Time Off</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date Range:</value>
+  </data>
+  <data name="HoursPerDay" xml:space="preserve">
+    <value>Hours Per Day:</value>
+  </data>
+  <data name="IncludeWeekends" xml:space="preserve">
+    <value>Include Weekends</value>
+  </data>
+  <data name="ProjectedBalance" xml:space="preserve">
+    <value>Projected Balance:</value>
+  </data>
+  <data name="TORStep1" xml:space="preserve">
+    <value>Step 1 - Select a Type:</value>
+  </data>
+  <data name="TORStep2" xml:space="preserve">
+    <value>Step 2 - Choose When:</value>
+  </data>
+  <data name="TORStep3" xml:space="preserve">
+    <value>Step 3 - Submit the Request:</value>
+  </data>
+  <data name="EmpNotes" xml:space="preserve">
+    <value>Employee Notes</value>
+  </data>
+  <data name="MgrNotes" xml:space="preserve">
+    <value>Manager Notes</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Are you sure you want delete?</value>
+  </data>
+  <data name="DurationRestriction" xml:space="preserve">
+    <value>Please enter duration value greater than 0 and less than 24</value>
+  </data>
+  <data name="InsertTransfer" xml:space="preserve">
+    <value>Insert Transfer</value>
+  </data>
+  <data name="ApproveAll" xml:space="preserve">
+    <value>Approve All</value>
+  </data>
+  <data name="MessageEmailBody" xml:space="preserve">
+    <value>You have received a new message.
+&lt;br/&gt; &lt;br/&gt; &lt;b&gt;&lt;I&gt;From&lt;/I&gt;&lt;/b&gt; : {0} &lt;br/&gt; 
+&lt;b&gt;&lt;I&gt;Subject&lt;/I&gt;&lt;/b&gt;: {1} &lt;br/&gt; &lt;b&gt;&lt;I&gt;Content&lt;/I&gt;&lt;/b&gt;: &lt;pre style='font-family: arial, sans-serif;'&gt;{2}&lt;/pre&gt; &lt;br/&gt; &lt;br/&gt; &lt;br/&gt; **Do not reply to this email**</value>
+  </data>
+  <data name="MessageEmailSubject" xml:space="preserve">
+    <value>New message from {0}</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Units" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="MessageDeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want delete this message?</value>
+  </data>
+  <data name="ReturnToMessages" xml:space="preserve">
+    <value>Return to Messages</value>
+  </data>
+  <data name="ViewPastWelcomeMessages" xml:space="preserve">
+    <value>View Past Welcome Messages</value>
+  </data>
+  <data name="WelcomeMessages" xml:space="preserve">
+    <value>Welcome Messages</value>
+  </data>
+  <data name="DateFirstViewed" xml:space="preserve">
+    <value>Date First Viewed - </value>
+  </data>
+  <data name="ViewChart" xml:space="preserve">
+    <value>View Chart</value>
+  </data>
+  <data name="TemplateEditDisabled" xml:space="preserve">
+    <value>Template Edit permission is not enabled. Please contact your manager</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More...</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="FormatType" xml:space="preserve">
+    <value>Format Type</value>
+  </data>
+  <data name="GeneratedReports" xml:space="preserve">
+    <value>Generated Reports</value>
+  </data>
+  <data name="Generating" xml:space="preserve">
+    <value>Generating</value>
+  </data>
+  <data name="Past" xml:space="preserve">
+    <value>Past</value>
+  </data>
+  <data name="PayTypes" xml:space="preserve">
+    <value>Pay Types</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ReportSettingStep1" xml:space="preserve">
+    <value>Step 1: Date Range</value>
+  </data>
+  <data name="ReportSettingStep2" xml:space="preserve">
+    <value>Step 2: Report Setting</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="UserDefined" xml:space="preserve">
+    <value>User Defined</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="Column1" xml:space="preserve">
+    <value>Column 1:</value>
+  </data>
+  <data name="Column2" xml:space="preserve">
+    <value>Column 2:</value>
+  </data>
+  <data name="Column3" xml:space="preserve">
+    <value>Column 3:</value>
+  </data>
+  <data name="SettingDescription1" xml:space="preserve">
+    <value>Select the columns that will display after the Date, Type and Hours columns</value>
+  </data>
+  <data name="SettingDescription2" xml:space="preserve">
+    <value>Select the columns that will display after the Type and Hours columns</value>
+  </data>
+  <data name="ShowMyTOR" xml:space="preserve">
+    <value>Show only my Time Off</value>
+  </data>
+  <data name="CurrentWorkShiftDuration" xml:space="preserve">
+    <value>Today’s Hours:</value>
+  </data>
+  <data name="StatusBoard" xml:space="preserve">
+    <value>Status Board</value>
+  </data>
+  <data name="Absent" xml:space="preserve">
+    <value>Absent</value>
+  </data>
+  <data name="Break" xml:space="preserve">
+    <value>Break</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>In</value>
+  </data>
+  <data name="LastTransaction" xml:space="preserve">
+    <value>Last Transaction</value>
+  </data>
+  <data name="Meal" xml:space="preserve">
+    <value>Meal</value>
+  </data>
+  <data name="Out" xml:space="preserve">
+    <value>Out</value>
+  </data>
+  <data name="ExpressEntry" xml:space="preserve">
+    <value>Express Entry</value>
+  </data>
+  <data name="SubmitForApproval" xml:space="preserve">
+    <value>Submit For Approval</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Column4" xml:space="preserve">
+    <value>Column 4:</value>
+  </data>
+  <data name="ShiftsPerDay" xml:space="preserve">
+    <value>Shifts per day:</value>
+  </data>
+  <data name="TimeOffChart" xml:space="preserve">
+    <value>Time Off Chart</value>
+  </data>
+  <data name="MultipleWarning" xml:space="preserve">
+    <value>Time Off Policy only allows entry in multiples of</value>
+  </data>
+  <data name="EEDashOverlay_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="EEDashOverlay_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="EEDashOverlay_Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="EEDashOverlay_PunchDock" xml:space="preserve">
+    <value>View your last punch and make your next punch</value>
+  </data>
+  <data name="EEDashOverlay_Schedule" xml:space="preserve">
+    <value>View your schedule here</value>
+  </data>
+  <data name="EEDashOverlay_Time" xml:space="preserve">
+    <value>Current Time</value>
+  </data>
+  <data name="EEDashOverlay_TimeCards" xml:space="preserve">
+    <value>View totals here, or click the icon for details.</value>
+  </data>
+  <data name="EEDashOverlay_TimeOff" xml:space="preserve">
+    <value>View your available hours or make a Time Off Request</value>
+  </data>
+  <data name="EEDashOverlay_UserMenu" xml:space="preserve">
+    <value>Click here to view Preferences and log out</value>
+  </data>
+  <data name="EmployeeRestrictionMsg" xml:space="preserve">
+    <value>{0} of {1} employees displayed</value>
+  </data>
+  <data name="AddTimeSheet" xml:space="preserve">
+    <value>Add Timesheet</value>
+  </data>
+  <data name="AddPunch" xml:space="preserve">
+    <value>Add Punch</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ColumnsToDisplay" xml:space="preserve">
+    <value>Columns to display...</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Reg" xml:space="preserve">
+    <value>Reg</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Thru" xml:space="preserve">
+    <value>thru</value>
+  </data>
+  <data name="NoDataExists" xml:space="preserve">
+    <value>No data exists for selected date range.</value>
+  </data>
+  <data name="ApproveTimecard" xml:space="preserve">
+    <value>Approve Time Card</value>
+  </data>
+  <data name="TimecardApproval" xml:space="preserve">
+    <value>Timecard Approval</value>
+  </data>
+  <data name="TimecardApproved" xml:space="preserve">
+    <value>This time range has already been approved</value>
+  </data>
+  <data name="ApproveTimecardConfirmation" xml:space="preserve">
+    <value>Are you sure you want to aprove the data ranges {0} thru {1}?</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="NoTimeOffDataExists" xml:space="preserve">
+    <value>No Time Off balance data exists</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>Columns</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="TimeOffRequestNotAllowed" xml:space="preserve">
+    <value>Time Off Request is not enabled, please contact your manager.</value>
+  </data>
+  <data name="TimeOffSuccess" xml:space="preserve">
+    <value>Your request was successfully submitted.</value>
+  </data>
+  <data name="NotApproved" xml:space="preserve">
+    <value>Not Approved</value>
+  </data>
+  <data name="UnApproveTimecard" xml:space="preserve">
+    <value>Unapprove Time Card</value>
+  </data>
+  <data name="TimeCardApprovalsMessage" xml:space="preserve">
+    <value>Time Cards partially approved, Please fix the missing punches first</value>
+  </data>
+  <data name="TimeCardsApproved" xml:space="preserve">
+    <value>Time Cards Approved</value>
+  </data>
+  <data name="TimeCardsUnApproved" xml:space="preserve">
+    <value>Time Cards Unapproved</value>
+  </data>
+  <data name="MissingPunch" xml:space="preserve">
+    <value>Click to fix the missing punch</value>
+  </data>
+  <data name="OverlappingShifts" xml:space="preserve">
+    <value>Please add continuous shifts</value>
+  </data>
+  <data name="AddAnotherRequest" xml:space="preserve">
+    <value>Add Another Request</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="ClickForDetails" xml:space="preserve">
+    <value>Click For Details</value>
+  </data>
+  <data name="Denied" xml:space="preserve">
+    <value>Denied</value>
+  </data>
+  <data name="EmployeeApproved" xml:space="preserve">
+    <value>Employee Approved</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="ManagerApproved" xml:space="preserve">
+    <value>Manager Approved</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Requested</value>
+  </data>
+  <data name="TimeCardDetailHelp1" xml:space="preserve">
+    <value>This view is used to see your time card entry in detail.</value>
+  </data>
+  <data name="TimeCardDetails" xml:space="preserve">
+    <value>Time Card - Details</value>
+  </data>
+  <data name="TimeOffHelp1" xml:space="preserve">
+    <value>This view is used to view time off requests.  To request time off click the 'Request' button.</value>
+  </data>
+  <data name="TimeOffSummary" xml:space="preserve">
+    <value>Time Off - Summary</value>
+  </data>
+  <data name="TORDeleteSuccessMessage" xml:space="preserve">
+    <value>Your request(s) were successfully submitted for cancellation/removal.</value>
+  </data>
+  <data name="ViewSummary" xml:space="preserve">
+    <value>ViewSummary</value>
+  </data>
+  <data name="EndBalance" xml:space="preserve">
+    <value>End Balance</value>
+  </data>
+  <data name="Projected" xml:space="preserve">
+    <value>Projected</value>
+  </data>
+  <data name="StartBalance" xml:space="preserve">
+    <value>Start Balance</value>
+  </data>
+  <data name="Holidays" xml:space="preserve">
+    <value>Holiday(s)</value>
+  </data>
+  <data name="CompTime" xml:space="preserve">
+    <value>Comp Time</value>
+  </data>
+  <data name="InvalidDateMsg" xml:space="preserve">
+    <value>Enter valid From &amp; To dates</value>
+  </data>
+  <data name="InvalidNoMsg" xml:space="preserve">
+    <value>Enter a valid number</value>
+  </data>
+  <data name="TimeOffHelp2" xml:space="preserve">
+    <value>This view is used to submit new time off request. Please select a valid Start/End Date, Start Time and Hours. &lt;br/&gt;&lt;br/&gt; Projected Balance section displays the Available/Projected  hours for the selected Start/End date.</value>
+  </data>
+  <data name="AdditionalBankHoursToPay" xml:space="preserve">
+    <value>Additional {0} hours to pay: {1}</value>
+  </data>
+  <data name="ApprovedBy" xml:space="preserve">
+    <value>Approved By</value>
+  </data>
+  <data name="BankCompTime" xml:space="preserve">
+    <value>Bank Comp Time</value>
+  </data>
+  <data name="CompTimeBalance" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; Balance: {1}</value>
+  </data>
+  <data name="CompTimeMaxError" xml:space="preserve">
+    <value>Maximum {0} Hours can be converted to Bank.</value>
+  </data>
+  <data name="NotesC" xml:space="preserve">
+    <value>Notes:</value>
+  </data>
+  <data name="PayOutWithColon" xml:space="preserve">
+    <value>Pay Out: </value>
+  </data>
+  <data name="PayOutCH" xml:space="preserve">
+    <value>Pay Out: {0}</value>
+  </data>
+  <data name="ToBankWithColon" xml:space="preserve">
+    <value>To Bank: </value>
+  </data>
+  <data name="ToBankCH" xml:space="preserve">
+    <value>To Bank: {0}</value>
+  </data>
+  <data name="TotalWithColon" xml:space="preserve">
+    <value>Total: </value>
+  </data>
+  <data name="CompTimeRequestDelete" xml:space="preserve">
+    <value>Click here to delete this item.</value>
+  </data>
+  <data name="CompTimeBalanceTitle" xml:space="preserve">
+    <value>This is your current Comp Time Balance (regardless of the selected date range). It does not reflect any pending transfers.</value>
+  </data>
+  <data name="CompTimePayoutTitle" xml:space="preserve">
+    <value>These hours were transferred from your Comp Time Balance to your Time Card. This does not reflect Time Off, it is simply increasing the hours eligible to be paid.</value>
+  </data>
+  <data name="OvertimeAvailableTitle" xml:space="preserve">
+    <value>This is the number of hours currently available to be transferred into Comp Time. If no action is taken (i.e. transferred to Comp Time) these hours will be paid as overtime.</value>
+  </data>
+  <data name="OvertimeEarnedTitle" xml:space="preserve">
+    <value>This is the total amount of overtime earned within the chosen date range.</value>
+  </data>
+  <data name="PendingTransferTitle" xml:space="preserve">
+    <value>These hours will be transferred into the Comp Time Balance after the transfer has been approved by a manager.</value>
+  </data>
+  <data name="TransferHours" xml:space="preserve">
+    <value>Transfer Hours</value>
+  </data>
+  <data name="CompTimeAllowedHours" xml:space="preserve">
+    <value>Maximum allowed hours {0}</value>
+  </data>
+  <data name="CompTimeBalanceLabel" xml:space="preserve">
+    <value>Comp Time Balance:</value>
+  </data>
+  <data name="CompTimePayout" xml:space="preserve">
+    <value>Comp Time Payout:</value>
+  </data>
+  <data name="ConversionPayType" xml:space="preserve">
+    <value>Conversion Pay Type</value>
+  </data>
+  <data name="ConversionPayTypeErrorMessage" xml:space="preserve">
+    <value>Please select the Conversion Pay Type</value>
+  </data>
+  <data name="OvertimeAvailable" xml:space="preserve">
+    <value>Overtime Available:</value>
+  </data>
+  <data name="OvertimeEarned" xml:space="preserve">
+    <value>Overtime Earned:</value>
+  </data>
+  <data name="PayOutAsPayType" xml:space="preserve">
+    <value>Pay Out As Pay Type</value>
+  </data>
+  <data name="PendingTransfer" xml:space="preserve">
+    <value>Pending Transfer:</value>
+  </data>
+  <data name="FixMissingPunch" xml:space="preserve">
+    <value>Fix Missing Punch</value>
+  </data>
+  <data name="PunchDateTime" xml:space="preserve">
+    <value>Punch Date time:</value>
+  </data>
+  <data name="PunchType" xml:space="preserve">
+    <value>Punch type:</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="CompTimeFeatureAccessWarning" xml:space="preserve">
+    <value>You dont have access to Comp Time feature. Please contact administrator.</value>
+  </data>
+  <data name="CompTimeTimecardClosedWarning" xml:space="preserve">
+    <value>Your Time Card entries for selected date range are closed or locked.</value>
+  </data>
+  <data name="AdditionalHours" xml:space="preserve">
+    <value>Additional Hours</value>
+  </data>
+  <data name="CompTimeEmailDescription" xml:space="preserve">
+    <value>A new Comp Time request has been posted.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;From:&lt;/b&gt; {0}&lt;br/&gt;&lt;b&gt;Submitted On:&lt;/b&gt; {1}&lt;br/&gt; &lt;b&gt;Hours:&lt;/b&gt; {2}&lt;br/&gt;&lt;br/&gt;**Do Not Reply To This Email**</value>
+  </data>
+  <data name="CompTimeAlertMessage" xml:space="preserve">
+    <value>{0} - {1} Requested {2} hours of Comp Time.</value>
+  </data>
+  <data name="ErroredReportWarning" xml:space="preserve">
+    <value>The report encountered an error and has been canceled.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginLink" xml:space="preserve">
+    <value>&lt;br /&gt;Please {0} to approve or deny request</value>
+  </data>
+  <data name="TOREmail" xml:space="preserve">
+    <value>A new Time Off Request has been posted. &lt;br/&gt; &lt;br/&gt; &lt;b&gt;&lt;I&gt;From&lt;/I&gt;&lt;/b&gt; : {0} &lt;br/&gt; 
+&lt;b&gt;&lt;I&gt;Requested Dates&lt;/I&gt;&lt;/b&gt;: {1} to {2} &lt;br/&gt; &lt;b&gt;&lt;I&gt;Duration&lt;/I&gt;&lt;/b&gt;: {3} hours/day &lt;br/&gt; &lt;b&gt;&lt;I&gt;Request Type&lt;/I&gt;&lt;/b&gt;: {4} &lt;br/&gt; &lt;br/&gt; {5} &lt;br/&gt;&lt;br/&gt; **Do Not Reply To This Email**</value>
+  </data>
+  <data name="AddNewTime" xml:space="preserve">
+    <value>Add New Time</value>
+  </data>
+  <data name="ApproveTheSelectedDateRange" xml:space="preserve">
+    <value>Approve the selected Date Range?</value>
+  </data>
+  <data name="AwaitingApproval" xml:space="preserve">
+    <value>Awaiting Approval</value>
+  </data>
+  <data name="ChooseFromModes" xml:space="preserve">
+    <value>2. Choose from modes below</value>
+  </data>
+  <data name="ChooseType" xml:space="preserve">
+    <value>Choose Type...</value>
+  </data>
+  <data name="ConfirmCopy" xml:space="preserve">
+    <value>Confirm Copy</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Confirm Delete</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="DateRangeApproved" xml:space="preserve">
+    <value>Date Range Approved</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditMode" xml:space="preserve">
+    <value>Edit mode allows you to add and remove time entries.</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>Include...</value>
+  </data>
+  <data name="MassCopyEntries" xml:space="preserve">
+    <value>Mass copy entries from one day to another.</value>
+  </data>
+  <data name="MassDeleteEntries" xml:space="preserve">
+    <value>Mass delete entries from a specific date range.</value>
+  </data>
+  <data name="MobileDetails" xml:space="preserve">
+    <value>Details...</value>
+  </data>
+  <data name="MobileMore" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="Modes" xml:space="preserve">
+    <value>Modes</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NoTimeExistCopyDescription" xml:space="preserve">
+    <value>No Time exists to copy for selected date range. Please redefine your search criteria</value>
+  </data>
+  <data name="NoTimeExistsToDeleteDesc" xml:space="preserve">
+    <value>No Time exists to delete for selected date range. Please redefine your search criteria</value>
+  </data>
+  <data name="NoTimesFound" xml:space="preserve">
+    <value>No Times Found</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>- or -</value>
+  </data>
+  <data name="PleaseContactYourManager" xml:space="preserve">
+    <value>Please contact your manager.</value>
+  </data>
+  <data name="PleaseFinalizeClockingOut" xml:space="preserve">
+    <value>Please finalize clocking out</value>
+  </data>
+  <data name="SelectDateRange" xml:space="preserve">
+    <value>1. Select date range to edit</value>
+  </data>
+  <data name="STEP1_SelectTimes" xml:space="preserve">
+    <value>STEP 1: Select Times</value>
+  </data>
+  <data name="STEP2_CopyTo" xml:space="preserve">
+    <value>STEP 2: Copy To</value>
+  </data>
+  <data name="TimecardApprovalsNotEnabled" xml:space="preserve">
+    <value>Time card approvals not enabled.</value>
+  </data>
+  <data name="TimeCardApproveDesc" xml:space="preserve">
+    <value>This view is used to rapidly enter your time for a date range.  Click the 'Approve Time Card' button and all your time in the given data range is approved.</value>
+  </data>
+  <data name="TimeCardCloseWarning" xml:space="preserve">
+    <value>Contact your Manager to close your time card.</value>
+  </data>
+  <data name="TimeCardEntry" xml:space="preserve">
+    <value>Time Card Entry</value>
+  </data>
+  <data name="TimeCardMissing" xml:space="preserve">
+    <value>Time Card is missing a closing punch.</value>
+  </data>
+  <data name="TimecardPermissionMessage" xml:space="preserve">
+    <value>*Either Timecard is Manager Approved/Closed/Locked/do not have permission to edit.</value>
+  </data>
+  <data name="TimeCardTypes" xml:space="preserve">
+    <value>Edit, copy and delete time card data.</value>
+  </data>
+  <data name="TimeCard_Summary" xml:space="preserve">
+    <value>Time Card - Summary</value>
+  </data>
+  <data name="TimeRangeApproved" xml:space="preserve">
+    <value>Time range has been approved.</value>
+  </data>
+  <data name="ToChangeStatusWarning" xml:space="preserve">
+    <value>To change status please contact your manager.</value>
+  </data>
+  <data name="UnapproveTheSelectedDateRange" xml:space="preserve">
+    <value>Unapprove the selected Date Range?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="MobileLaborLevelTitle" xml:space="preserve">
+    <value>Labor Level</value>
+  </data>
+  <data name="ChooseADay" xml:space="preserve">
+    <value>Choose A Day</value>
+  </data>
+  <data name="EmployeeHomeDesc" xml:space="preserve">
+    <value>The employee home view allows you to clock in/out and give you access to other employee options.</value>
+  </data>
+  <data name="EmployeeHomeTitle" xml:space="preserve">
+    <value>Employee Home</value>
+  </data>
+  <data name="EmployeeMenu" xml:space="preserve">
+    <value>Employee Menu</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>Entry</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpNotDefined" xml:space="preserve">
+    <value>Help is not defined for this view</value>
+  </data>
+  <data name="HideMenu" xml:space="preserve">
+    <value>Hide Menu</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ManagerDashboard" xml:space="preserve">
+    <value>Manager Dashboard</value>
+  </data>
+  <data name="MoreDetails" xml:space="preserve">
+    <value>More Details...</value>
+  </data>
+  <data name="NotesRequiredWarning" xml:space="preserve">
+    <value>You did not leave any notes for this request</value>
+  </data>
+  <data name="NoTimeOffRequestsFound" xml:space="preserve">
+    <value>No Time Off Requests Found</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="PunchDetailDescription" xml:space="preserve">
+    <value>To clock in or out select the 'Select Punch Type' drop down menu and choose the appropriate punch type.</value>
+  </data>
+  <data name="Punching" xml:space="preserve">
+    <value>Punching</value>
+  </data>
+  <data name="RefreshPage" xml:space="preserve">
+    <value>Refresh Page</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Requests</value>
+  </data>
+  <data name="SelectPunchType" xml:space="preserve">
+    <value>Select Punch Type</value>
+  </data>
+  <data name="TheLastPunchTypeThatWasRecorded" xml:space="preserve">
+    <value>The last punch type that was recorded.</value>
+  </data>
+  <data name="YourNotes" xml:space="preserve">
+    <value>Your Notes</value>
+  </data>
+  <data name="EditTimes" xml:space="preserve">
+    <value>Edit Times</value>
+  </data>
+  <data name="Step1RequiredError" xml:space="preserve">
+    <value>Required:(Step1) Select Time that need to be copied</value>
+  </data>
+  <data name="CancellationApproved" xml:space="preserve">
+    <value>Cancellation Approved</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ManagerNotes" xml:space="preserve">
+    <value>Manager Notes</value>
+  </data>
+  <data name="RequestType" xml:space="preserve">
+    <value>Request Type</value>
+  </data>
+  <data name="TodaysDate" xml:space="preserve">
+    <value>Todays Date</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="PercentageEntry" xml:space="preserve">
+    <value>Percentage Entry</value>
+  </data>
+  <data name="PleaseEnterEndTime" xml:space="preserve">
+    <value>Please enter end time</value>
+  </data>
+  <data name="PleaseEnterStartTime" xml:space="preserve">
+    <value>Please enter start time</value>
+  </data>
+  <data name="Step2RequiredError" xml:space="preserve">
+    <value>Required:(Step2) Choose day(s) for which the Time need be copied to</value>
+  </data>
+  <data name="Column5" xml:space="preserve">
+    <value>Column 5:</value>
+  </data>
+  <data name="Column6" xml:space="preserve">
+    <value>Column 6:</value>
+  </data>
+  <data name="Column7" xml:space="preserve">
+    <value>Column 7:</value>
+  </data>
+  <data name="dificitMessage" xml:space="preserve">
+    <value>There is a deficit of {0} hours on your timecard.&lt;br/&gt;&lt;br/&gt; If you continue, {1} hours will automatically be deducted from your bank.</value>
+  </data>
+  <data name="hoursMessage" xml:space="preserve">
+    <value>You have {0} hours more than required on your timesheet You will be paid {1} hours of additional pay, and any remainder will be added to your bank.</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="SelectTypeMessage" xml:space="preserve">
+    <value>Select atleast one Pay Type</value>
+  </data>
+  <data name="showAllLLs" xml:space="preserve">
+    <value>Display all {LaborLevels}</value>
+  </data>
+  <data name="submissionMessage" xml:space="preserve">
+    <value>Your timecard will be submitted to your supervisor for approval. No further action is required.</value>
+  </data>
+  <data name="TimeOffProcessingMessage" xml:space="preserve">
+    <value>[Processing] - Time off balances are being recalculated. Totals may not reflect actual balances until calculation is complete</value>
+  </data>
+  <data name="SelectLaborLevels" xml:space="preserve">
+    <value>Select Labor Levels</value>
+  </data>
+  <data name="AddingMissingPunch" xml:space="preserve">
+    <value>Adding Missing Punch</value>
+  </data>
+  <data name="GeneratingSchedules" xml:space="preserve">
+    <value>Generating from schedules</value>
+  </data>
+  <data name="PunchSuccess" xml:space="preserve">
+    <value>Punches are saved successfully</value>
+  </data>
+  <data name="SubmittingPunch" xml:space="preserve">
+    <value>Submitting Punch</value>
+  </data>
+  <data name="TimeSheetSubmit" xml:space="preserve">
+    <value>Submitting</value>
+  </data>
+  <data name="HoursSummary" xml:space="preserve">
+    <value>Hours Summary</value>
+  </data>
+  <data name="LaborLevelSummary" xml:space="preserve">
+    <value>Labor Level Summary</value>
+  </data>
+  <data name="TORCancellationMailContent" xml:space="preserve">
+    <value>Time Off Request Cancellation request has been posted. &lt;br/&gt; &lt;br/&gt; &lt;b&gt;&lt;I&gt;From&lt;/I&gt;&lt;/b&gt; : {0} &lt;br/&gt; 
+&lt;b&gt;&lt;I&gt;Requested Dates&lt;/I&gt;&lt;/b&gt;: {1} to {2} &lt;br/&gt; &lt;b&gt;&lt;I&gt;Duration&lt;/I&gt;&lt;/b&gt;: {3} hours/day &lt;br/&gt; &lt;b&gt;&lt;I&gt;Request Type&lt;/I&gt;&lt;/b&gt;: {4} &lt;br/&gt; &lt;br/&gt; {5} &lt;br/&gt;&lt;br/&gt; **Do Not Reply To This Email**</value>
+  </data>
+  <data name="TORCancellationMailSubject" xml:space="preserve">
+    <value>Time Off Request Cancellation from {0}</value>
+  </data>
+  <data name="Unapproved" xml:space="preserve">
+    <value>Unapproved</value>
+  </data>
+  <data name="GroupBy" xml:space="preserve">
+    <value>GroupBy:</value>
+  </data>
+  <data name="LaborLevelsHours" xml:space="preserve">
+    <value>Labor Levels Hours</value>
+  </data>
+  <data name="Summaries" xml:space="preserve">
+    <value>Summaries</value>
+  </data>
+  <data name="TemplateMinHours" xml:space="preserve">
+    <value>Hours Minminum duration is 1 minute (0.02 in decimal format)</value>
+  </data>
+  <data name="TORDeleteMailContent" xml:space="preserve">
+    <value>Time Off Request has been cancelled. &lt;br/&gt; &lt;br/&gt; &lt;b&gt;&lt;I&gt;From&lt;/I&gt;&lt;/b&gt; : {0} &lt;br/&gt; 
+&lt;b&gt;&lt;I&gt;Requested Dates&lt;/I&gt;&lt;/b&gt;: {1} to {2} &lt;br/&gt; &lt;b&gt;&lt;I&gt;Duration&lt;/I&gt;&lt;/b&gt;: {3} hours/day &lt;br/&gt; &lt;b&gt;&lt;I&gt;Request Type&lt;/I&gt;&lt;/b&gt;: {4} &lt;br/&gt; &lt;br/&gt; {5} &lt;br/&gt;&lt;br/&gt; **Do Not Reply To This Email**</value>
+  </data>
+  <data name="TORDeleteMailSubject" xml:space="preserve">
+    <value>Time Off Request has been cancelled by {0}</value>
+  </data>
+  <data name="NonWork" xml:space="preserve">
+    <value>Non-Work:</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>Work:</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="TotalWorkedHours" xml:space="preserve">
+    <value>Total work hours on {0} : &lt;b&gt;{1}&lt;/b&gt;</value>
+  </data>
+  <data name="TimeOffAccessRestrictionMessage" xml:space="preserve">
+    <value>Time Off access is not enabled for you. Please contact your Administrator.</value>
+  </data>
+  <data name="TimeOffRequestRestrictionMessage" xml:space="preserve">
+    <value>Time Off Request is not enabled for you. Please contact your Administrator.</value>
+  </data>
+  <data name="ApprovalButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="PayAdjustmentApprovalsUpdated" xml:space="preserve">
+    <value>Pay Adjustment Approvals Updated</value>
+  </data>
+  <data name="TimeCardsApprovalsUpdated" xml:space="preserve">
+    <value>Time Card Approvals Updated</value>
+  </data>
+  <data name="AddPeriodEntry" xml:space="preserve">
+    <value>Add Period Entry</value>
+  </data>
+  <data name="AddTimeSheetEntry" xml:space="preserve">
+    <value>Add Time Sheet Entry</value>
+  </data>
+  <data name="TORAEmail" xml:space="preserve">
+    <value>Your Time off request has been posted. &lt;br/&gt; &lt;br/&gt; 
+&lt;b&gt;&lt;I&gt;Requested Dates&lt;/I&gt;&lt;/b&gt;: {0} to {1} &lt;br/&gt; &lt;b&gt;&lt;I&gt;Duration&lt;/I&gt;&lt;/b&gt;: {2} hours/day &lt;br/&gt; &lt;b&gt;&lt;I&gt;Request Type&lt;/I&gt;&lt;/b&gt;: {3} &lt;br/&gt;&lt;br/&gt; **Do Not Reply To This Email**</value>
+  </data>
+  <data name="TORAEmailSubject" xml:space="preserve">
+    <value>Time off request submitted</value>
+  </data>
+  <data name="CallbackStart" xml:space="preserve">
+    <value>Start Call Back</value>
+  </data>
+  <data name="ErrMsgStarttimeEmpty" xml:space="preserve">
+    <value>Start Time can't be empty</value>
+  </data>
+  <data name="ErrMsgDateRangeEmpty" xml:space="preserve">
+    <value>Date Field cannot be empty</value>
+  </data>
+  <data name="ErrMsgStarttimeInValid" xml:space="preserve">
+    <value>Start Time is invalid</value>
+  </data>
+  <data name="EnterNotes" xml:space="preserve">
+    <value>Enter Notes</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="ScheduleAccessRestrictionMessage" xml:space="preserve">
+    <value>Schedule access is not enabled for you. Please contact your Administrator.</value>
+  </data>
+  <data name="PleaseEnterNotes" xml:space="preserve">
+    <value>Please enter notes</value>
+  </data>
+  <data name="NoSchedulesFound" xml:space="preserve">
+    <value>No Schedules Found</value>
+  </data>
+  <data name="TimeSheetSubmitEmailDescription" xml:space="preserve">
+    <value>{0} has submitted time sheet for approval.{4}&lt;br/&gt;&lt;br/&gt;&lt;b&gt;From:&lt;/b&gt; {0}&lt;br/&gt;&lt;b&gt;Submitted On:&lt;/b&gt; {3}&lt;br/&gt; &lt;b&gt;Period:&lt;/b&gt; {1}-{2}&lt;br/&gt;&lt;br/&gt;**Do Not Reply To This Email**</value>
+  </data>
+  <data name="TimeSheetSubmitEmailMessage" xml:space="preserve">
+    <value>{0} has submitted time sheet for approval for the period of {1}-{2}</value>
+  </data>
+  <data name="LoginLinkTimeSheetSubmit" xml:space="preserve">
+    <value>&lt;br /&gt;Please click {0} to review those hours and approve for payment</value>
+  </data>
+  <data name="LoginTimeSheetSubmit" xml:space="preserve">
+    <value>here</value>
+  </data>
+  <data name="Availability" xml:space="preserve">
+    <value>Availability</value>
+  </data>
+  <data name="EmployeeAvailability" xml:space="preserve">
+    <value>Employee Availability</value>
+  </data>
+  <data name="NoDataExistsForDay" xml:space="preserve">
+    <value>No data exists for the day</value>
+  </data>
+  <data name="RoundedHours" xml:space="preserve">
+    <value>Time off request is rounded to {0}</value>
+  </data>
+  <data name="PayxFlexLoginUrlN0" xml:space="preserve">
+    <value>https://myappsimpn.paychex.com</value>
+  </data>
+  <data name="PayxFlexLoginUrlN1" xml:space="preserve">
+    <value>https://myappsimp.paychex.com</value>
+  </data>
+  <data name="PayxFlexLoginUrlN2A" xml:space="preserve">
+    <value>https://myappsimp6.paychex.com</value>
+  </data>
+  <data name="PayxFlexLoginUrlN2B" xml:space="preserve">
+    <value>https://vcmyappsn2b.paychex.com</value>
+  </data>
+  <data name="PayxFlexLoginUrlPROD" xml:space="preserve">
+    <value>https://myapps.paychex.com</value>
+  </data>
+  <data name="ScheduleDetailsInfoLabel" xml:space="preserve">
+    <value>Schedule - Details</value>
+  </data>
+  <data name="Adjustments" xml:space="preserve">
+    <value>Adjustments</value>
+  </data>
+  <data name="Report_Summary" xml:space="preserve">
+    <value>Report Summary</value>
+  </data>
+  <data name="OverlappingShiftErrorMsg" xml:space="preserve">
+    <value>Overlapping shifts are not allowed.</value>
+  </data>
+  <data name="IncludeProjectedBalance" xml:space="preserve">
+    <value>Include Projected Balance</value>
+  </data>
+  <data name="TimeCardApprovalEmailSubject" xml:space="preserve">
+    <value>Approve Time Card [Action Required]</value>
+  </data>
+  <data name="const_CalendarShiftSwapView" xml:space="preserve">
+    <value>Schedule - Shift Swap</value>
+  </data>
+  <data name="CancelPendingPostRequest" xml:space="preserve">
+    <value>Cancel Pending Post Request</value>
+  </data>
+  <data name="CancelPendingAddRequest" xml:space="preserve">
+    <value>Cancel Pending Add Request</value>
+  </data>
+  <data name="PostShift" xml:space="preserve">
+    <value>Post Shift</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="CancelPostRequest" xml:space="preserve">
+    <value>Cancel Post Request</value>
+  </data>
+  <data name="CancelPostRequestConfirmation" xml:space="preserve">
+    <value>Are you sure you want to cancel post request?</value>
+  </data>
+  <data name="AddShift" xml:space="preserve">
+    <value>Add Shift</value>
+  </data>
+  <data name="CancelAddRequest" xml:space="preserve">
+    <value>Cancel Add Request</value>
+  </data>
+  <data name="CancelAddRequestConfirmation" xml:space="preserve">
+    <value>Are you sure you want to cancel add request?</value>
+  </data>
+  <data name="LaborLevelText" xml:space="preserve">
+    <value>Labor Level</value>
+  </data>
+  <data name="Wage" xml:space="preserve">
+    <value>Wage</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ScheduleDetailsHeader" xml:space="preserve">
+    <value>Schedule Details: {0}</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>Scheduled For</value>
+  </data>
+  <data name="CancelRequest" xml:space="preserve">
+    <value>Cancel Request</value>
+  </data>
+  <data name="ScheduleAlreadyRequestedAdd" xml:space="preserve">
+    <value>Schedule already requested for add and waiting for manager approval</value>
+  </data>
+  <data name="ScheduleAlreadyRequestedPost" xml:space="preserve">
+    <value>Schedule already requested for post and waiting for manager approval</value>
+  </data>
+  <data name="ScheduleDetail" xml:space="preserve">
+    <value>Schedule Details</value>
+  </data>
+  <data name="Wages" xml:space="preserve">
+    <value>Wages</value>
+  </data>
+  <data name="DoubleClickToViewScheduleDeatils" xml:space="preserve">
+    <value>Double click here to view the schedule details</value>
+  </data>
+  <data name="AvailableSchedules" xml:space="preserve">
+    <value>Available Schedules</value>
+  </data>
+  <data name="OpenShift" xml:space="preserve">
+    <value>Open Shift</value>
+  </data>
+  <data name="ScheduleSwap" xml:space="preserve">
+    <value>Schedule Swap</value>
+  </data>
+  <data name="ShiftSwap" xml:space="preserve">
+    <value>Shift Swap</value>
+  </data>
+  <data name="ShiftSwapHelp1" xml:space="preserve">
+    <value>View schedules of other employees</value>
+  </data>
+  <data name="ShiftSwapHelp2" xml:space="preserve">
+    <value>View available shifts</value>
+  </data>
+  <data name="ShiftSwapHelp3" xml:space="preserve">
+    <value>post the shift</value>
+  </data>
+  <data name="ShiftSwapHelp4" xml:space="preserve">
+    <value>request available shift</value>
+  </data>
+  <data name="ShiftSwapHelpHeader" xml:space="preserve">
+    <value>Using this screen you can</value>
+  </data>
+  <data name="ScheduleSwapRequestStatus" xml:space="preserve">
+    <value>Request Status</value>
+  </data>
+  <data name="NoRequestFound" xml:space="preserve">
+    <value>No Requests Found</value>
+  </data>
+  <data name="OpenShiftLabel" xml:space="preserve">
+    <value>[ Open Shift ]</value>
+  </data>
+  <data name="ExcludeUnits" xml:space="preserve">
+    <value>Exclude Units</value>
+  </data>
+  <data name="EstimatedWages" xml:space="preserve">
+    <value>Estimated Wages</value>
+  </data>
+  <data name="NextAccrualTierChangeDate" xml:space="preserve">
+    <value>Next Accrual Tier Change..</value>
+  </data>
+  <data name="NextAccrualTierChangeDateToolTip" xml:space="preserve">
+    <value>Next Accrual Tier Change Date</value>
+  </data>
+  <data name="InvalidHrsPerDay" xml:space="preserve">
+    <value>Invalid Hours Per Day value [{0}] received. Please enter duration value greater than 0 and less than 24</value>
+  </data>
+  <data name="TimeOffPendingMessage" xml:space="preserve">
+    <value>*[Pending] - Time off balances are waiting to be processed. Totals may not reflect actual balances until processing is complete</value>
+  </data>
+  <data name="TORIgnoreHolidayTypeMessage" xml:space="preserve">
+    <value>{0} date(s) will be skipped because it's a holiday.</value>
+  </data>
+  <data name="AccrualRate" xml:space="preserve">
+    <value>Accrual Rate</value>
+  </data>
+  <data name="RemainingAccrual" xml:space="preserve">
+    <value>Remaining Accrual</value>
+  </data>
+  <data name="YearEndBalance" xml:space="preserve">
+    <value>Year End Balance</value>
+  </data>
+  <data name="ApprovedHours" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="TimeCardAccessRestrictionMessage" xml:space="preserve">
+    <value>Time Card access is not enabled for you. Please contact your Administrator.</value>
+  </data>
+  <data name="GenerateForYear" xml:space="preserve">
+    <value>Generate for year(yyyy):</value>
+  </data>
+  <data name="EnterValidYearRange" xml:space="preserve">
+    <value>Enter a year between 2017 to {0}.</value>
+  </data>
+  <data name="AnnualPTOCalenderReportSetting" xml:space="preserve">
+    <value>Report Setting</value>
+  </data>
+  <data name="BlackoutDay" xml:space="preserve">
+    <value>Blackout Day</value>
+  </data>
+  <data name="PayTypeName" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="ShowInactivePayTypes" xml:space="preserve">
+    <value>Show Inactive</value>
+  </data>
+  <data name="ScheduleNote" xml:space="preserve">
+    <value>Schedule Notes</value>
+  </data>
+  <data name="AdjustmentsYTD" xml:space="preserve">
+    <value>Adjustments YTD</value>
+  </data>
+  <data name="LastRolloverBalance" xml:space="preserve">
+    <value>Last Rollover Balance</value>
+  </data>
+  <data name="MaximumNoOfDaysOffOnOneRequest" xml:space="preserve">
+    <value>Time off requests cannot exceed {0} days. Please submit in smaller increments.</value>
+  </data>
+  <data name="AppSpecificPassword" xml:space="preserve">
+    <value>App Specific Password</value>
+  </data>
+  <data name="AppSpecificPasswordHelpToolTipText" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Navigate to Appleid.apple.com from your web browser and sign in with your Apple ID and Password.&lt;/li&gt;&lt;li&gt;Verify your identity with two-factor authentication.&lt;/li&gt;&lt;li&gt;Under the Security section, select "Generate Passwords"(If you dont see the option to generate app-specific passwords, you wll need to enable two-factor authentication).&lt;/li&gt;&lt;li&gt;Enter a label for the password. Be sure the name relates to the app for which you are generating the password, like "My Schedule".&lt;/li&gt;&lt;li&gt;Select “Create”.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="CalenderIntegrationFeatureNotAssigned" xml:space="preserve">
+    <value>Calender Integration feature not assigned</value>
+  </data>
+  <data name="DataToSync" xml:space="preserve">
+    <value>Data To Sync</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmployeeAlreadyRegisteredCalendar" xml:space="preserve">
+    <value>Employee already registered with a calendar</value>
+  </data>
+  <data name="EmployeeNotActive" xml:space="preserve">
+    <value>Employee is not active</value>
+  </data>
+  <data name="InvalidEmailAddress" xml:space="preserve">
+    <value>Invalid email address</value>
+  </data>
+  <data name="RegistrationInProgress" xml:space="preserve">
+    <value>Registration is in progress. Verification link is sent to your email ID. Please click on the link to successfully complete the registration</value>
+  </data>
+  <data name="SuccessfullyUnregistered" xml:space="preserve">
+    <value>Successfully Unregistered</value>
+  </data>
+  <data name="EmailVerificationPending" xml:space="preserve">
+    <value>Email verification pending</value>
+  </data>
+  <data name="AuthenticationFailed" xml:space="preserve">
+    <value>Please confirm your account information is accurate, unregister, and try again.</value>
+  </data>
+  <data name="EmailVerificationFailed" xml:space="preserve">
+    <value>Email verification failed. Please register again</value>
+  </data>
+  <data name="EmailVerificationSuccess" xml:space="preserve">
+    <value>Email Verification Success</value>
+  </data>
+  <data name="ReportSettingDollarsEstimated" xml:space="preserve">
+    <value>The dollar value is estimated</value>
+  </data>
+  <data name="EmailLinkExpired" xml:space="preserve">
+    <value>Verification link is not valid</value>
+  </data>
+  <data name="HowGenerateAppSpecificPassword" xml:space="preserve">
+    <value>How to generate an app-specific password</value>
+  </data>
+  <data name="Holiday" xml:space="preserve">
+    <value>Holiday</value>
+  </data>
+  <data name="AccountAuthorizedSuccessfully" xml:space="preserve">
+    <value>Account has been Authorized Successfully.</value>
+  </data>
+  <data name="GoogleAuthorizationPending" xml:space="preserve">
+    <value>Please click Authorize below to complete your registration</value>
+  </data>
+  <data name="OutlookAuthorizationPending" xml:space="preserve">
+    <value>Please click Authorize below to complete your registration</value>
+  </data>
+  <data name="RegistrationFailed" xml:space="preserve">
+    <value>Registration Failed.</value>
+  </data>
+  <data name="CalendaraccountVerificationEmailBody" xml:space="preserve">
+    <value>&lt;table width='100%' border='0' cellpadding='0' cellspacing='0' align='center' style='min-width:640px'&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td width='100%' valign='top' bgcolor='#ffffff' style='padding-top:20px'&gt;&lt;table width='580' border='0' cellpadding='0' cellspacing='0' align='center' bgcolor='#ffffff' style='margin:0 auto'&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style='font-size:13px;color:#282828;font-weight:normal;text-align:left;font-family:Open Sans,sans-serif;line-height:24px;vertical-align:top;padding:15px 8px 10px 8px' bgcolor='#ffffff'&gt;&lt;p style='text-align:center'&gt;You are one step away from syncing your schedules and/or time off events to your calendar! &lt;/p&gt;&lt;p style='text-align:center'&gt;To complete your setup, please register with below code within 24 hours.&lt;/p&gt;&lt;label style='letter-spacing: 18px;padding:10px;width:300px;display:block;text-decoration:none;border:1px solid #ff6c37;text-align:center;font-weight:bold;font-size:14px;font-family:Open Sans,sans-serif;color:#ffffff;background:#ff6c37;border-radius:5px;line-height:17px;margin:0 auto'&gt;TOKEN&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</value>
+  </data>
+  <data name="CalendaraccountVerificationEmailHeader" xml:space="preserve">
+    <value>Please Confirm Your Calendar Account Registration</value>
+  </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>You can now close this window</value>
+  </data>
+  <data name="AppleAuthorizationPending" xml:space="preserve">
+    <value>Please click Authorize below to complete your registration</value>
+  </data>
+  <data name="EmployeeAlreadyRegistered" xml:space="preserve">
+    <value>Employee already registered</value>
+  </data>
+  <data name="EmployeeRegistrationDetailsNotFound" xml:space="preserve">
+    <value>Employee registration details not found</value>
+  </data>
+  <data name="OTPExpired" xml:space="preserve">
+    <value>One time code expired.Please click "Resend New Code" to generate a new one.</value>
+  </data>
+  <data name="OTPMismatch" xml:space="preserve">
+    <value>Please enter correct one time code or click "Resend New Code" to generate a new one.</value>
+  </data>
+  <data name="OTPResentSuccess" xml:space="preserve">
+    <value>One time code resent successfully.</value>
+  </data>
+  <data name="RegistrationSuccess" xml:space="preserve">
+    <value>Registration completed successfully</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Authorize</value>
+  </data>
+  <data name="CalendarAccount" xml:space="preserve">
+    <value>Calendar Account:</value>
+  </data>
+  <data name="GetOTP" xml:space="preserve">
+    <value>Resend New Code</value>
+  </data>
+  <data name="OneTimePassword" xml:space="preserve">
+    <value>One Time Code:</value>
+  </data>
+  <data name="OneTimePasswordAlert" xml:space="preserve">
+    <value>A one time code has been sent to your email ID. Please validate to complete the registration process.</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="NoMileagePayAdjustmentTypeAvaialble" xml:space="preserve">
+    <value>No Mileage Pay Adjustment types found. Please contact your administrator.</value>
+    <comment>Translation Needed</comment>
+  </data>
+  <data name="MyLocation" xml:space="preserve">
+    <value>My Location</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Accuracy: </value>
+  </data>
+  <data name="AddStop" xml:space="preserve">
+    <value>Add Stop</value>
+  </data>
+  <data name="CancelTrip" xml:space="preserve">
+    <value>Cancel Trip</value>
+  </data>
+  <data name="CurrentLocation" xml:space="preserve">
+    <value>Current Location: </value>
+  </data>
+  <data name="DistanceCovered" xml:space="preserve">
+    <value>Distance Covered: </value>
+  </data>
+  <data name="EndTrip" xml:space="preserve">
+    <value>End Trip</value>
+  </data>
+  <data name="Metres" xml:space="preserve">
+    <value>metres</value>
+  </data>
+  <data name="Mileage" xml:space="preserve">
+    <value>Mileage</value>
+  </data>
+  <data name="Mileage_Record_AddStop" xml:space="preserve">
+    <value>Add stops for mileage trip</value>
+  </data>
+  <data name="Mileage_Record_CancelTrip" xml:space="preserve">
+    <value>Cancel the mileage trip</value>
+  </data>
+  <data name="Mileage_Record_EndTrip" xml:space="preserve">
+    <value>End of mileage trip</value>
+  </data>
+  <data name="Mileage_Record_Info" xml:space="preserve">
+    <value>Use this screen to Add a Mileage.</value>
+  </data>
+  <data name="Mileage_Record_StartTrip" xml:space="preserve">
+    <value>Start the mileage trip</value>
+  </data>
+  <data name="Miles" xml:space="preserve">
+    <value>miles</value>
+  </data>
+  <data name="Routes" xml:space="preserve">
+    <value>Routes</value>
+  </data>
+  <data name="StartTrip" xml:space="preserve">
+    <value>Start Trip</value>
+  </data>
+  <data name="UnsavedMileageData" xml:space="preserve">
+    <value>You have unsaved mileage data. Click submit to add mileage pay adjustment.</value>
+  </data>
+  <data name="RecordMileage" xml:space="preserve">
+    <value>Record Mileage</value>
+  </data>
+  <data name="AllowLocationService" xml:space="preserve">
+    <value>In order to use this feature, please allow the use of your location by this site</value>
+  </data>
+  <data name="PinnedLocation" xml:space="preserve">
+    <value>Pinned Locations</value>
+  </data>
+  <data name="Mileage_Confirm_Cancel_Desc" xml:space="preserve">
+    <value>This cannot be undone.</value>
+  </data>
+  <data name="Mileage_Confirm_Cancel_Header" xml:space="preserve">
+    <value>Confirm cancel</value>
+  </data>
+  <data name="Mileage_Confirm_Cancel_Title" xml:space="preserve">
+    <value>Are you sure you want to cancel the trip?</value>
+  </data>
+  <data name="Mileage_Record_AddStop_Desc" xml:space="preserve">
+    <value>To add stop to the mileage trip click the 'Add Stop' button</value>
+  </data>
+  <data name="Mileage_Record_CancelTrip_Desc" xml:space="preserve">
+    <value>To cancel the mileage trip click the 'Cancel trip' button</value>
+  </data>
+  <data name="Mileage_Record_EndTrip_Desc" xml:space="preserve">
+    <value>To end the mileage trip click the 'End trip' button</value>
+  </data>
+  <data name="Mileage_Record_StartTrip_Desc" xml:space="preserve">
+    <value>To start the mileage trip click the 'Start trip' button</value>
+  </data>
+  <data name="AccuracyTooLowWarning" xml:space="preserve">
+    <value>Accuracy too low. Are you sure you want to continue anyway?</value>
+  </data>
+  <data name="BuyoutTitle" xml:space="preserve">
+    <value>Buyout Request</value>
+  </data>
+  <data name="BuyoutStep1" xml:space="preserve">
+    <value>Step 1: Enter Buyout Hours:</value>
+  </data>
+  <data name="BuyoutPayPeriodBalance" xml:space="preserve">
+    <value>Pay Period Balance:</value>
+  </data>
+  <data name="BuyoutLabel" xml:space="preserve">
+    <value>Buyout:</value>
+  </data>
+  <data name="BuyoutMaxHours" xml:space="preserve">
+    <value>Max hours for buyout:</value>
+  </data>
+  <data name="BuyoutStep2" xml:space="preserve">
+    <value>Step 2 - Submit the Request:</value>
+  </data>
+  <data name="BuyoutHoursValidationMessage" xml:space="preserve">
+    <value>Hours entered must be less than or equal to max amount of {0}</value>
+  </data>
+  <data name="BuyoutHoursConfirmationMsg" xml:space="preserve">
+    <value>You are about to submit a buyout for {0} hours. Are you sure?</value>
+  </data>
+  <data name="BuyoutHoursCalcMsg" xml:space="preserve">
+    <value>Hours x Rate = {0}</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="BuyoutInfo" xml:space="preserve">
+    <value>A Buyout allows a certain number of hours to be 'cashed out' without taking the time. The Buyout will apply to the current pay period.</value>
+  </data>
+  <data name="BuyoutType" xml:space="preserve">
+    <value>Buyout Hours?</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="RequiredFieldErrorMessage" xml:space="preserve">
+    <value>This field is required</value>
+    <comment>Translation Needed</comment>
+  </data>
+  <data name="RequiredFieldErrorMessageWithStar" xml:space="preserve">
+    <value>* This field is required</value>
+    <comment>Translation Needed</comment>
+  </data>
+  <data name="MessageDisplayWarning" xml:space="preserve">
+    <value>*Note: Messages older than 90 days will not be displayed.</value>
+  </data>
+</root>

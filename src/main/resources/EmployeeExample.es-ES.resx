@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="Actions" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+    <data name="AmountUnits" xml:space="preserve">
+    <value>Cantidad / unidades</value>
+  </data>
+    <data name="Approval" xml:space="preserve">
+    <value>Aprobación</value>
+  </data>
+    <data name="ApprovalSaved" xml:space="preserve">
+    <value>Aprobación Guardado</value>
+  </data>
+    <data name="BeginBreak" xml:space="preserve">
+    <value>Comenzar Descanso</value>
+  </data>
+    <data name="BeginMeal" xml:space="preserve">
+    <value>Comenzar Comida</value>
+  </data>
+    <data name="CalendarView" xml:space="preserve">
+    <value>Vista de Calendario</value>
+  </data>
+    <data name="PunchSaved" xml:space="preserve">
+    <value>Ponche se salvó</value>
+  </data>
+    <data name="Regular" xml:space="preserve">
+    <value>Reg</value>
+  </data>
+    <data name="Reports" xml:space="preserve">
+    <value>Reportes</value>
+  </data>
+    <data name="ScheduleCalendarView" xml:space="preserve">
+    <value>Calendario - Calendar View</value>
+  </data>
+    <data name="ScheduleListView" xml:space="preserve">
+    <value>Vista de Listado de Horarios</value>
+  </data>
+</root>
