@@ -18,39 +18,20 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseConnectorTest {
-    private ResultSet mockResultSet;
     private ResultSet mockIDResultSet;
     private Connection mockConnection;
     private Statement mockStatement;
 
     @BeforeEach
-    void setUp() throws SQLException {
+    void setUp(){
         mockConnection = Mockito.mock(Connection.class);
         mockStatement = Mockito.mock(Statement.class);
         mockIDResultSet = Mockito.mock(ResultSet.class);
-        mockResultSet = Mockito.mock(ResultSet.class);
-        Mockito.when(mockResultSet.next()).thenReturn(true).thenReturn(false);
-        Mockito.when(mockResultSet.getString("TransKey")).thenReturn("TestTransKey");
-        Mockito.when(mockResultSet.getString("Locale")).thenReturn("en_US");
-        Mockito.when(mockResultSet.getString("Translation")).thenReturn("test translation");
-        Mockito.when(mockResultSet.getString("Status")).thenReturn("Active");
-        Mockito.when(mockResultSet.getString("ResourceName")).thenReturn("Javascript");
     }
 
     @Test
     void testGetInstance() {
         assertNotNull(DatabaseConnector.getInstance());
-    }
-
-    @Test
-    void testGetTranslationList() throws SQLException {
-        DatabaseConnector dbc = Mockito.mock(DatabaseConnector.class);
-        Mockito.when(dbc.selectJoinFromTable(Mockito.any(Connection.class), Mockito.any(AbstractQueryBuilder.class))).thenReturn(mockResultSet);
-
-        ResultSet rs = dbc.selectJoinFromTable(Mockito.mock(Connection.class), new QueryBuilder());
-
-        ArrayList<Translation> translations = Translation.getTranslationList(rs);
-        assertTrue(translations.size() != 0 && translations.get(0).getTransValue().equals("test translation"));
     }
 
     @Test
