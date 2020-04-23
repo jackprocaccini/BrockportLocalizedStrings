@@ -11,13 +11,15 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class DatabaseConnector implements IDatabaseConnector {
     private String url;
     private String username;
     private String password;
     private static DatabaseConnector myInstance = null;
-
+    private static final Logger log = LogManager.getLogger(DatabaseConnector.class);
     /**
      * Used to connect to the MySQL database and provide utility methods to manipulate the database's information.
      * Use the getInstance() method to invoke this class.
@@ -203,6 +205,7 @@ public class DatabaseConnector implements IDatabaseConnector {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(url, username, password);
         } catch(Exception e){
+            log.error( "Cannot obtain connection to DataBase. " + e.getMessage());
             return null;
         }
     }

@@ -3,11 +3,15 @@ package edu.brockport.localization.utilities.js;
 import java.io.*;
 import java.util.Properties;
 
+import edu.brockport.localization.servlets.LoginServlet;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 public class jsPropertiesBuilder {
     private File jsFile;
     private String language;
     private Properties props;
-
+    private static final Logger log = LogManager.getLogger(jsPropertiesBuilder.class);
     /**
      * Builds a properties object based on the .js provided by Paychex
      * @param jsFile The file that you wish to read
@@ -16,7 +20,8 @@ public class jsPropertiesBuilder {
     public jsPropertiesBuilder(File jsFile) throws IOException {
         this.jsFile = jsFile;
         if(!this.jsFile.getName().endsWith(".js")){
-            throw new IOException("File must have the .js extention");
+            log.error("Incompatible file type");
+            throw new IOException("File must have the .js extension");
         }
         language = jsFile.getName().substring(jsFile.getName().lastIndexOf("-") + 1, jsFile.getName().lastIndexOf("."));
         if(language.equalsIgnoreCase("es")){

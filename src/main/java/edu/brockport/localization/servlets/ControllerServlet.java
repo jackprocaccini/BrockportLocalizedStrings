@@ -12,9 +12,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class ControllerServlet extends HttpServlet {
 
+    private static final Logger log = LogManager.getLogger(ControllerServlet.class);
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -23,10 +26,12 @@ public class ControllerServlet extends HttpServlet {
         ArrayList<Translation> translations;
 
         try {
+            dbc = DatabaseConnector.getInstance();
             ResultSet rs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
             translations = Translation.getTranslationList(rs);
 //            translations = dbc.getTranslationList();
         } catch (Exception e) {
+            log.error("Error in ControllerServlet " + e.getMessage());
             HttpSession session = req.getSession();
             session.setAttribute("error", e.getLocalizedMessage());
             res.sendRedirect("index.jsp");
