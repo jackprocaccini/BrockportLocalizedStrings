@@ -21,6 +21,9 @@
 
     <input type="text" id="searchBox" placeholder="Search">
 
+    //Start of form for translations
+    <form>
+
     <table class="table table-sortable">
         <thead>
             <tr>
@@ -32,24 +35,29 @@
             </tr>
         </thead>
 
+        //Enclose in form
+
         <tbody>
-            <%
-                if(translations != null){
-                    for(int i = 0; i < translations.size(); i++){
-                        out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
-                        out.println("<td>" + translations.get(i).getTransKey() + "</td>");
-                        out.println("<td>" + translations.get(i).getTransValue() + "</td>");
-                        out.println("<td>" + translations.get(i).getLocale() + "</td>");
-                        out.println("<td>" + translations.get(i).getStatus() + "</td>");
-                        out.println("<td>" + "<input type=\"checkbox\" class=\"check\"" + "</td>");
-                        out.println("</tr>");
-                    }
+        <%
+            if(translations != null){
+                for(int i = 0; i < translations.size(); i++){
+                    out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
+                    out.println("<td><input type='hidden' id='resourceType' name='resourceType'>" + translations.get(i).getResourceType() + "</input></td>");
+                    out.println("<td><div id='transKey' name='transKey'>" + translations.get(i).getTransKey() + "</div></td>");
+                    out.println("<td><div id='transValue' name='transValue'>" + translations.get(i).getTransValue() + "</div></td>");
+                    out.println("<td><div id='locale' name='locale'>" + translations.get(i).getLocale() + "</div></td>");
+                    out.println("<td><div id='status' name='status'>" + translations.get(i).getStatus() + "</div></td>");
+                    out.println("<td>" + "<input type=\"checkbox\" class=\"check\"" + "</td>");
+                    out.println("</tr>");
                 }
-            %>
+            }
+        %>
+
         </tbody>
     </table>
 
-    //form
+    </form>
+    //form for log
     <form action="/controller" method="post">
         <button type="submit" value="log">View Logs</button>
     </form>
