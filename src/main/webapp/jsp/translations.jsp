@@ -50,7 +50,7 @@
     </table>
 
     <form action="/controller" method="post">
-        <button type="submit" value="log">View Logs</button>
+        <button type="submit" name="changeState" value="log">View Logs</button>
     </form>
 
     <p id="selectedInfoStrings"></p>

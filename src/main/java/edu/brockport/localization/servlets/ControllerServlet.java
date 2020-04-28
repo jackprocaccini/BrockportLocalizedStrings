@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -21,28 +24,27 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        DatabaseConnector dbc = null;
+        String stateChange = req.getParameter("changeState");
 
-        ArrayList<Translation> translations;
-
-        try {
-            dbc = DatabaseConnector.getInstance();
-            ResultSet rs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
-            translations = Translation.getTranslationList(rs);
-//            translations = dbc.getTranslationList();
-        } catch (Exception e) {
-            log.error("Error in ControllerServlet " + e.getMessage());
+        if(stateChange.equals("log")){
+            Scanner sc = new Scanner(new File("src/main/java/edu/brockport/localization/logs/ErrorLog.log"));
+            String logContents = "";
+            while(sc.hasNextLine()){
+                logContents += sc.nextLine() + "\n";
+            }
             HttpSession session = req.getSession();
-            session.setAttribute("error", e.getLocalizedMessage());
+            session.setAttribute("logContents", logContents);
+            res.sendRedirect("jsp/log.jsp");
+            return;
+
+        }else{
+            log.error("Error in ControllerServlet: stateChange parameter is null!");
+            HttpSession session = req.getSession();
+            session.setAttribute("error", "Error in ControllerServlet: stateChange parameter is null!");
             res.sendRedirect("index.jsp");
             return;
         }
 
-        HttpSession session = req.getSession();
-        session.setAttribute("display", "all translations");
-        session.setAttribute("translations", translations);
-        res.sendRedirect("translations.jsp");
-        return;
 
     }
 }
