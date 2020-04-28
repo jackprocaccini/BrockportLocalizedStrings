@@ -48,6 +48,7 @@
             %>
         </tbody>
     </table>
+    //new table form
 
     <form action="/controller" method="post">
         <button type="submit" value="log">View Logs</button>
