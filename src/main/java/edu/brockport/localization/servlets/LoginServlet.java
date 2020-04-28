@@ -28,13 +28,13 @@ public class LoginServlet extends HttpServlet {
         ArrayList<Translation> translations;
 
         try {
-            dbc = DatabaseConnector.getInstance();
+            dbc = getDatabaseConnector();
             ResultSet rs = dbc.selectFromTable(dbc.getConnection(),new QueryBuilder(),"login", "Password", "Username", inputName);
             if(rs.next()){
                 dbPassword = rs.getString("password");
 
             } else {
-                log.warn("Incorrect username inputted");
+                log.warn("Incorrect username. User " + inputName + " not found.");
                 HttpSession session = req.getSession();
                 session.setAttribute("error", "Incorrect username. User " + inputName + " not found.");
                 res.sendRedirect("index.jsp");
@@ -60,10 +60,15 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (Exception e) {
             log.error("Error in LoginServlet " + e.getMessage());
+            System.out.println(e);
             HttpSession session = req.getSession();
             session.setAttribute("error", "Something went wrong: " + e.getLocalizedMessage());
             res.sendRedirect("index.jsp");
             return;
         }
+    }
+
+    public DatabaseConnector getDatabaseConnector(){
+        return DatabaseConnector.getInstance();
     }
 }
