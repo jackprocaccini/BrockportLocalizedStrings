@@ -12,45 +12,44 @@
     %>
 
     <select align="center" id="selectionChoice">
-        <option value="javascript">Javascript</option>
-        <option value="resx">Resx</option>
+        <option value="all">All</option>
+        <option value="js">Javascript</option>
+        <option value="resx">.NET</option>
         <option value="en_US">en_US</option>
         <option value="es_ES">es_ES</option>
-        <option value="all">All</option>
     </select>
 
     <input type="text" id="searchBox" placeholder="Search">
 
-    <table class="table table-sortable">
-        <thead>
-            <tr>
-                <th>Key</th>
-                <th>Translation</th>
-                <th>Locale</th>
-                <th>Status</th>
-                <th>Select</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <%
-                if(translations != null){
-                    for(int i = 0; i < translations.size(); i++){
-                        out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
-                        out.println("<td>" + translations.get(i).getTransKey() + "</td>");
-                        out.println("<td>" + translations.get(i).getTransValue() + "</td>");
-                        out.println("<td>" + translations.get(i).getLocale() + "</td>");
-                        out.println("<td>" + translations.get(i).getStatus() + "</td>");
-                        out.println("<td>" + "<input type=\"checkbox\" class=\"check\"" + "</td>");
-                        out.println("</tr>");
-                    }
-                }
-            %>
-        </tbody>
-    </table>
-
     <form action="/controller" method="post">
-        <button type="submit" name="changeState" value="log">View Logs</button>
+        <table class="table table-sortable">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Translation</th>
+                    <th>Locale</th>
+                    <th>Status</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <%
+                    if(translations != null){
+                        for(int i = 0; i < translations.size(); i++){
+                            out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
+                            out.println("<td>" + translations.get(i).getTransKey() + "</td>");
+                            out.println("<td>" + translations.get(i).getTransValue() + "</td>");
+                            out.println("<td>" + translations.get(i).getLocale() + "</td>");
+                            out.println("<td>" + translations.get(i).getStatus() + "</td>");
+                            out.println("<td>" + "<input type=\"checkbox\" class=\"check\" name=\"translationsList\" value=\"" + translations.get(i).toString() + "\">" + "</td>");
+                            out.println("</tr>");
+                        }
+                    }
+                %>
+            </tbody>
+        </table>
+        <button type="submit" name="changeState" value=""></button>
     </form>
 
     <p id="selectedInfoStrings"></p>
