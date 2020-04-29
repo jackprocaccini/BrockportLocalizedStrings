@@ -21,7 +21,7 @@
 
     <input type="text" id="searchBox" placeholder="Search">
 
-    <form action="/controller" method="post">
+    <form action="/selection" method="post">
         <table class="table table-sortable">
             <thead>
                 <tr>
@@ -49,7 +49,7 @@
                 %>
             </tbody>
         </table>
-        <button type="submit" name="changeState" value=""></button>
+        <button type="submit">Flag Translations</button>
     </form>
 
     <p id="selectedInfoStrings"></p>
@@ -61,7 +61,7 @@
     <script type="text/javascript">
         //whenever a checkbox is clicked, all the data pertaining to that checkbox's row is collected
         const $selectedInformation = $("#selectedInfoStrings");
-        // $selectedInformation.hide();
+        $selectedInformation.hide();
         var $checkboxes = $(".check");
         for(var i = 0; i < $checkboxes.length; i++){
             var $thischeckbox = $($checkboxes[i]);
