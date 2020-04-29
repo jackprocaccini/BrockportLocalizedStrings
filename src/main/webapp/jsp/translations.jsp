@@ -21,7 +21,7 @@
 
     <input type="text" id="searchBox" placeholder="Search">
 
-    <form action="/selection" method="post">
+    <form action="/controller" method="post">
         <table class="table table-sortable">
             <thead>
                 <tr>
@@ -49,7 +49,11 @@
                 %>
             </tbody>
         </table>
-        <button type="submit">Flag Translations</button>
+        <button type="submit" name="changeState" value="selections">Flag Translations</button>
+    </form>
+
+    <form action="/controller" method="post">
+        <button type="submit" name="changeState" value="log">View Logs</button>
     </form>
 
     <p id="selectedInfoStrings"></p>

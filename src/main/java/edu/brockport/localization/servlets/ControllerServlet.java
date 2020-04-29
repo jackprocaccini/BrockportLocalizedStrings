@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.Logger;
@@ -37,7 +36,19 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("jsp/log.jsp");
             return;
 
-        }else{
+        } else if(stateChange.equals("selections")){
+            String[] selectedInfo = req.getParameterValues("translationsList");
+            PrintWriter out = res.getWriter();
+
+            if(selectedInfo == null){
+                out.println("selectedInfo is null");
+            } else {
+                for(int i = 0; i < selectedInfo.length; i++){
+                    out.println("selected info " + i + ": " + selectedInfo[i] +"\n");
+                }
+            }
+            return;
+        } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");
             HttpSession session = req.getSession();
             session.setAttribute("error", "Error in ControllerServlet: stateChange parameter is null!");
