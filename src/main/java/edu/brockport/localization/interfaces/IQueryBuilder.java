@@ -8,5 +8,6 @@ public interface IQueryBuilder {
     public String updateStatement(String tableName, String[] updateFields, String[] updateValues, String whereClauseField, String whereClauseValue);
     public String selectQuery(String tableName, String operand, String field, String value);
     public String selectStarQuery(String tableName);
+    public String selectQueryMultipleFields(String tableName, String operand, String[] fields, String[] values);
 
 }

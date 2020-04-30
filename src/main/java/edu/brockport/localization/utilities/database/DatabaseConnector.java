@@ -199,6 +199,13 @@ public class DatabaseConnector implements IDatabaseConnector {
         return rs;
     }
 
+    public ResultSet selectQueryMultipleFields(Connection connection, IQueryBuilder queryBuilder, String tableName, String operand, String[] fields, String[] values) throws SQLException {
+        String query = queryBuilder.selectQueryMultipleFields(tableName, operand, fields, values);
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        return rs;
+    }
+
     public Connection getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

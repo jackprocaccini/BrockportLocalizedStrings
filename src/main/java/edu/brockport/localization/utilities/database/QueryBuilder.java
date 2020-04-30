@@ -147,6 +147,22 @@ public class QueryBuilder extends AbstractQueryBuilder{
         return query;
     }
 
+    public String selectQueryMultipleFields(String tableName, String operand, String[] fields, String[] values){
+        String query = "SELECT " + operand + " FROM " + tableName + " WHERE (";
+
+        for(int i = 0; i < fields.length; i++){
+            if(i < fields.length - 1){
+                query += fields[i] + "='" + values[i] + "' AND ";
+            } else {
+                query += fields[i] + "='" + values[i] + "'";
+            }
+        }
+
+        query += ")";
+
+        return query;
+    }
+
     /**
      * Takes in user fields and formats values into a single SQL readable String. Used primarily as helper method, is able
      * to distinguish between Strings and numbers contained within the 'values' array.
