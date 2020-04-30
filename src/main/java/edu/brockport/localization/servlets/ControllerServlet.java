@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,7 +31,8 @@ public class ControllerServlet extends HttpServlet {
         /*https://coderanch.com/t/488280/java/Accented-Characters-Displayed-Wrongly
          *https://stackoverflow.com/questions/3182328/handling-spanish-characters-in-java-jsp
          * Was not displaying some characters correctly, so we had to set the character encoding
-         * to this iso-8859-15 thing.
+         * to this iso-8859-15 thing for every response. Also had to be included on every JSP that display characters
+         * Code ranch one is gave the answer we needed, but SO link looked helpful too
          */
         res.setCharacterEncoding("iso-8859-15");
 
@@ -53,19 +56,38 @@ public class ControllerServlet extends HttpServlet {
             }
 
             HttpSession session = req.getSession();
-            session.setAttribute("flagList", selectedInfo);
+            session.setAttribute("translationsToFlagList", selectedInfo);
             res.sendRedirect("jsp/flagtranslations.jsp");
             return;
-//            PrintWriter out = res.getWriter();
+
+        } else if(stateChange.equals("flagTranslations")) {
+            HttpSession session = req.getSession();
+            String[] selectedInfo = (String[])session.getAttribute("translationsToFlagList");
+            String[] selectedInfoNotes = req.getParameterValues("notes");
+            PrintWriter out = res.getWriter();
 //
-//            if(selectedInfo == null){
-//                out.println("selectedInfo is null");
-//            } else {
-//                for(int i = 0; i < selectedInfo.length; i++){
-//                    out.println("selected info " + i + ": " + selectedInfo[i] +"\n");
-//                }
+//
+//
+//            for(int i = 0; i < selectedInfo.length; i++){
+//                out.println("selected info: " + selectedInfo[i] + selectedInfoNotes[i]);
 //            }
-//            return;
+
+            DatabaseConnector dbc = DatabaseConnector.getInstance();
+
+            try{
+                for(int i = 0; i < selectedInfo.length; i++){
+                    String[] currentEntryToFlag = selectedInfo[i].split("#");
+                    ResultSet transKeyIDResultSet = dbc.selectFromTable(dbc.getConnection(), new QueryBuilder(), "translationkeys", "ID",
+                            "TransKey", currentEntryToFlag[0]);
+                    transKeyIDResultSet.next();
+                    String transKeyID = transKeyIDResultSet.getString("ID");
+//                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " TransKeyID: " + transKeyID);
+
+                }
+            } catch(SQLException e){
+                out.println("something went wrong: " + e.getMessage());
+            }
+
         } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");
             HttpSession session = req.getSession();
@@ -73,7 +95,5 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("jsp/login.jsp");
             return;
         }
-
-
     }
 }

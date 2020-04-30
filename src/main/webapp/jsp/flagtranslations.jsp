@@ -9,14 +9,15 @@
 <html>
 <head>
     <title>Flag Translations</title>
+    <link rel="stylesheet" href="../tablesort.css">
 </head>
 <body>
     <%
-        String[] translationsToFlag = (String[])session.getAttribute("flagList");
+        String[] translationsToFlag = (String[])session.getAttribute("translationsToFlagList");
     %>
 
-    <form>
-        <table>
+    <form action="/controller" method="post">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Key</th>
@@ -31,11 +32,11 @@
                 <%
                     if(translationsToFlag != null){
                         for(int i = 0; i < translationsToFlag.length; i++){
-                            String[] temp = translationsToFlag[i].split("#");
+                            String[] temp = translationsToFlag[i].split("#"); //just used to display selected info on table. All we're really interested in is the Notes section
                             out.println("<tr>");
                             out.println("<td>" + temp[0] + "</td>");
-                            out.println("<td>" + temp[2] + "</td>");
                             out.println("<td>" + temp[1] + "</td>");
+                            out.println("<td>" + temp[2] + "</td>");
                             out.println("<td>" + temp[3] + "</td>");
                             out.println("<td>" + "<input type=\"text\" name=\"notes\">" + "</td>");
                             out.println("</tr>");
@@ -44,6 +45,7 @@
                 %>
             </tbody>
         </table>
+        <button type="submit" name="changeState" value="flagTranslations">Flag Selected Translations</button>
     </form>
 </body>
 </html>
