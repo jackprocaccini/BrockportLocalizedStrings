@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.Logger;
@@ -27,9 +28,9 @@ public class ControllerServlet extends HttpServlet {
 
         if(stateChange.equals("log")){
             Scanner sc = new Scanner(new File("src/main/java/edu/brockport/localization/logs/ErrorLog.log"));
-            String logContents = "";
+            ArrayList<String> logContents = new ArrayList<>();
             while(sc.hasNextLine()){
-                logContents += sc.nextLine() + "\n";
+                logContents.add(sc.nextLine());
             }
             HttpSession session = req.getSession();
             session.setAttribute("logContents", logContents);

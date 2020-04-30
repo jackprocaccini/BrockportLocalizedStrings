@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 4/27/2020
@@ -12,9 +12,11 @@
 </head>
 <body>
     <%
-        String logContents = (String)session.getAttribute("logContents");
+        ArrayList<String> logContents = (ArrayList<String>)session.getAttribute("logContents");
         if(logContents != null){
-            out.println("<p>" + logContents + "</p>");
+            for(int i = 0; i < logContents.size(); i++){
+                out.println(logContents.get(i) + "\n");
+            }
         }
     %>
 
