@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.Logger;
@@ -23,6 +26,8 @@ import org.apache.logging.log4j.LogManager;
 public class ControllerServlet extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(ControllerServlet.class);
+    private static DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    private static Calendar cal = Calendar.getInstance();
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -83,10 +88,23 @@ public class ControllerServlet extends HttpServlet {
                     String transKeyID = transKeyIDResultSet.getString("ID");
 //                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " TransKeyID: " + transKeyID);
 
+                    ResultSet translationValueIDResultSet = dbc.selectQueryMultipleFields(dbc.getConnection(), new QueryBuilder(),
+                            "translations", "ID", new String[]{"TransKeyFK", "Translation", "Locale"},
+                            new String[]{transKeyID, currentEntryToFlag[1], currentEntryToFlag[2]});
+                    translationValueIDResultSet.next();
+                    String translationID = translationValueIDResultSet.getString("ID");
+
+//                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
+
+                    dbc.insertIntoTable(dbc.getConnection(), new QueryBuilder(), "translationtracking",
+                            new String[]{"TranslationKeyFK", "DateFlagged", "DateResolved", "Notes"},
+                            new String[]{translationID, sdf.format(cal.getTime()), "", selectedInfoNotes[i]});
                 }
             } catch(SQLException e){
+                log.error("Error in ControllerServlet flagging: " + e.getMessage());
                 out.println("something went wrong: " + e.getMessage());
             }
+            out.println("Selected items successfully inserted!");
 
         } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");
