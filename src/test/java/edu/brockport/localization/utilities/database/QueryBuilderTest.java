@@ -79,4 +79,16 @@ class QueryBuilderTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void selectQueryMultipleFields() {
+        //Arrange
+        String[] fields = {"TransKeyFK", "Locale", "Translations", "Status"};
+        String[] values = {"153", "en_US", "Overview", "Active"};
+        String expected = "SELECT TransKeyFK FROM Translations WHERE (TransKeyFK='153' AND Locale='en_US' AND Translations='Overview' AND Status='Active')";
+        //Act
+        String actual = qb.selectQueryMultipleFields("Translations", "TransKeyFK", fields, values);
+        //Assert
+        assertEquals(expected, actual);
+    }
+
 }
