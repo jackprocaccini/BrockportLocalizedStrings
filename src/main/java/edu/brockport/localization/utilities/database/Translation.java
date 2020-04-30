@@ -62,6 +62,6 @@ public class Translation {
     }
 
     public String toString(){
-        return transKey + "|" + locale + "|" + transValue + "|" + status + "|" + resourceType;
+        return transKey + "#" + locale + "#" + transValue + "#" + status + "#" + resourceType;
     }
 }

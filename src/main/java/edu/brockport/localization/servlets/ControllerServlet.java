@@ -26,6 +26,13 @@ public class ControllerServlet extends HttpServlet {
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String stateChange = req.getParameter("changeState");
 
+        /*https://coderanch.com/t/488280/java/Accented-Characters-Displayed-Wrongly
+         *https://stackoverflow.com/questions/3182328/handling-spanish-characters-in-java-jsp
+         * Was not displaying some characters correctly, so we had to set the character encoding
+         * to this iso-8859-15 thing.
+         */
+        res.setCharacterEncoding("iso-8859-15");
+
         if(stateChange.equals("log")){
             Scanner sc = new Scanner(new File("src/main/java/edu/brockport/localization/logs/ErrorLog.log"));
             ArrayList<String> logContents = new ArrayList<>();
@@ -38,22 +45,32 @@ public class ControllerServlet extends HttpServlet {
             return;
 
         } else if(stateChange.equals("selections")){
-            String[] selectedInfo = req.getParameterValues("translationsList");
-            PrintWriter out = res.getWriter();
-
+            String[] selectedInfo = req.getParameterValues("selectionsList");
             if(selectedInfo == null){
-                out.println("selectedInfo is null");
-            } else {
-                for(int i = 0; i < selectedInfo.length; i++){
-                    out.println("selected info " + i + ": " + selectedInfo[i] +"\n");
-                }
+                log.warn("No information selected from translations.jsp");
+                res.sendRedirect("jsp/translations.jsp");
+                return;
             }
+
+            HttpSession session = req.getSession();
+            session.setAttribute("flagList", selectedInfo);
+            res.sendRedirect("jsp/flagtranslations.jsp");
             return;
+//            PrintWriter out = res.getWriter();
+//
+//            if(selectedInfo == null){
+//                out.println("selectedInfo is null");
+//            } else {
+//                for(int i = 0; i < selectedInfo.length; i++){
+//                    out.println("selected info " + i + ": " + selectedInfo[i] +"\n");
+//                }
+//            }
+//            return;
         } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");
             HttpSession session = req.getSession();
             session.setAttribute("error", "Error in ControllerServlet: stateChange parameter is null!");
-            res.sendRedirect("index.jsp");
+            res.sendRedirect("jsp/login.jsp");
             return;
         }
 

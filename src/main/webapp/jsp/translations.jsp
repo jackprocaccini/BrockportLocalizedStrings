@@ -1,6 +1,6 @@
 <%@ page import="edu.brockport.localization.utilities.database.Translation" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=iso-8859-15" language="java" %>
 <html>
 <head>
     <title>Translations</title>
@@ -42,7 +42,7 @@
                             out.println("<td>" + translations.get(i).getTransValue() + "</td>");
                             out.println("<td>" + translations.get(i).getLocale() + "</td>");
                             out.println("<td>" + translations.get(i).getStatus() + "</td>");
-                            out.println("<td>" + "<input type=\"checkbox\" class=\"check\" name=\"translationsList\" value=\"" + translations.get(i).toString() + "\">" + "</td>");
+                            out.println("<td>" + "<input type=\"checkbox\" class=\"check\" name=\"selectionsList\" value=\"" + translations.get(i).toString() + "\">" + "</td>");
                             out.println("</tr>");
                         }
                     }
