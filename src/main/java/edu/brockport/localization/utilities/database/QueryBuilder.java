@@ -141,7 +141,7 @@ public class QueryBuilder extends AbstractQueryBuilder{
         if(isInt(value)){
             query += value;
         } else {
-            query += "'" + value + "'";
+            query += "\"" + value + "\"";
         }
 
         return query;
@@ -152,9 +152,9 @@ public class QueryBuilder extends AbstractQueryBuilder{
 
         for(int i = 0; i < fields.length; i++){
             if(i < fields.length - 1){
-                query += fields[i] + "='" + values[i] + "' AND ";
+                query += fields[i] + "=\"" + values[i] + "\" AND ";
             } else {
-                query += fields[i] + "='" + values[i] + "'";
+                query += fields[i] + "=\"" + values[i] + "\"";
             }
         }
 

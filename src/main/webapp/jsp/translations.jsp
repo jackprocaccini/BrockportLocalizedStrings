@@ -56,6 +56,10 @@
         <button type="submit" name="changeState" value="selections">Flag Translations</button>
     </form>
 
+    <form action="/controller" method="post">
+        <button type="submit" name="changeState" value="log">View Log</button>
+    </form>
+
 <%--    <form action="/controller" method="post">--%>
 <%--        <button type="submit" name="changeState" value="log">View Logs</button>--%>
 <%--    </form>--%>
