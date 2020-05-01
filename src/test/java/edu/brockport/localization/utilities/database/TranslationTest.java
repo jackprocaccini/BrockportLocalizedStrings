@@ -18,6 +18,7 @@ class TranslationTest {
 
     @BeforeEach
     void setUp() throws SQLException {
+        //Arrange
         mockResultSet = Mockito.mock(ResultSet.class);
         Mockito.when(mockResultSet.next()).thenReturn(true).thenReturn(false);
         Mockito.when(mockResultSet.getString("TransKey")).thenReturn("TestTransKey");
@@ -29,7 +30,9 @@ class TranslationTest {
 
     @Test
     public void testGetTransKey(){
+        //Act
         Translation t2 = t1;
+        //Assert
         assertEquals("app.time.header", t1.getTransKey());
     }
 
@@ -55,12 +58,16 @@ class TranslationTest {
 
     @Test
     public void testGetTranslationList() throws SQLException {
+        //Arrange
         DatabaseConnector dbc = Mockito.mock(DatabaseConnector.class);
         Mockito.when(dbc.selectJoinFromTable(Mockito.any(Connection.class), Mockito.any(AbstractQueryBuilder.class))).thenReturn(mockResultSet);
 
         ResultSet rs = dbc.selectJoinFromTable(Mockito.mock(Connection.class), new QueryBuilder());
 
+        //Act
         ArrayList<Translation> translations = Translation.getTranslationList(rs);
+
+        //Assert
         assertTrue(translations.size() != 0 && translations.get(0).getTransValue().equals("test translation"));
     }
 
