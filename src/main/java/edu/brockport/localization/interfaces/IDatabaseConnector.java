@@ -15,4 +15,5 @@ public interface IDatabaseConnector {
     public boolean existsInTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String operand, String field, String value) throws SQLException;
     public ResultSet selectFromTable(Connection connection, IQueryBuilder queryBuilder, String tableName, String operand, String field, String value) throws SQLException;
     public ResultSet selectStarFromTable(Connection connection, IQueryBuilder queryBuilder, String tableName) throws SQLException;
+    public ResultSet selectQueryMultipleFields(Connection connection, IQueryBuilder queryBuilder, String tableName, String operand, String[] fields, String[] values) throws SQLException;
 }

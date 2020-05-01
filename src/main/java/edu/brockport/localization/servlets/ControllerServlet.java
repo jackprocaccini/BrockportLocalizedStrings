@@ -82,6 +82,7 @@ public class ControllerServlet extends HttpServlet {
             try{
                 for(int i = 0; i < selectedInfo.length; i++){
                     String[] currentEntryToFlag = selectedInfo[i].split("#");
+
                     ResultSet transKeyIDResultSet = dbc.selectFromTable(dbc.getConnection(), new QueryBuilder(), "translationkeys", "ID",
                             "TransKey", currentEntryToFlag[0]);
                     transKeyIDResultSet.next();
@@ -93,7 +94,6 @@ public class ControllerServlet extends HttpServlet {
                             new String[]{transKeyID, currentEntryToFlag[1], currentEntryToFlag[2]});
                     translationValueIDResultSet.next();
                     String translationID = translationValueIDResultSet.getString("ID");
-
 //                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
 
                     dbc.insertIntoTable(dbc.getConnection(), new QueryBuilder(), "translationtracking",
@@ -104,7 +104,28 @@ public class ControllerServlet extends HttpServlet {
                 log.error("Error in ControllerServlet flagging: " + e.getMessage());
                 out.println("something went wrong: " + e.getMessage());
             }
-            out.println("Selected items successfully inserted!");
+//            out.println("Selected items successfully inserted!");
+            session.setAttribute("status", "Successfully inserted selected information into the database!");
+            res.sendRedirect("jsp/status.jsp");
+            return;
+        } else if(stateChange.equals("translations")){
+            DatabaseConnector dbc = DatabaseConnector.getInstance();
+            ArrayList<Translation> translations;
+            HttpSession session = req.getSession();
+            try{
+                ResultSet translationsRs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
+                translations = Translation.getTranslationList(translationsRs);
+                session = req.getSession();
+                session.setAttribute("display", "all translations");
+                session.setAttribute("translations", translations);
+                res.sendRedirect("jsp/translations.jsp");
+                return;
+            } catch(SQLException e){
+                log.error("Error in ControllerServlet - displaying all translations: " + e.getMessage());
+                session.setAttribute("error","Error in ControllerServlet - displaying all translations: " + e.getMessage());
+                res.sendRedirect("jsp/login.jsp");
+                return;
+            }
 
         } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");
