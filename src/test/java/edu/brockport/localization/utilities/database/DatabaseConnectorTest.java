@@ -24,7 +24,6 @@ class DatabaseConnectorTest {
 
     @BeforeEach
     void setUp(){
-        //Arrange
         mockConnection = Mockito.mock(Connection.class);
         mockStatement = Mockito.mock(Statement.class);
         mockIDResultSet = Mockito.mock(ResultSet.class);
@@ -37,7 +36,6 @@ class DatabaseConnectorTest {
 
     @Test
     void testInsertJSIntoDatabase() throws SQLException, IOException {
-        //Arrange
         DatabaseConnector dbc = DatabaseConnector.getInstance();
         DatabaseConnector dbcSpy = Mockito.spy(dbc); // allows us to use real logic of class
 
@@ -60,13 +58,11 @@ class DatabaseConnectorTest {
 
         Mockito.doReturn(mockConnection).when(dbcSpy).getConnection();
 
-        //Act and Assert
         dbcSpy.insertJSIntoDatabase(mockConnection, new QueryBuilder(), jsFile);
     }
 
     @Test
     void testInsertRESXIntoDatabase() throws SQLException, IOException, ParserConfigurationException, SAXException {
-        //Arrange
         DatabaseConnector dbc = DatabaseConnector.getInstance();
         DatabaseConnector dbcSpy = Mockito.spy(dbc); // allows us to use real logic of class
 
@@ -88,7 +84,6 @@ class DatabaseConnectorTest {
 
         Mockito.doReturn(mockConnection).when(dbcSpy).getConnection();
 
-        //Act and Assert
         dbcSpy.insertRESXIntoDatabase(mockConnection, new QueryBuilder(), resxFile);
     }
 }

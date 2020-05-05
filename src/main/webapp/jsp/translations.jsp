@@ -37,11 +37,7 @@
                 <%
                     if(translations != null){
                         for(int i = 0; i < translations.size(); i++){
-                            if(translations.get(i).isFlagged()){
-                                out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " flagged all\" style=\"color: red\">");
-                            } else {
-                                out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
-                            }
+                            out.println("<tr class=\"" + translations.get(i).getResourceType() + " " + translations.get(i).getLocale() + " all\">");
                             out.println("<td>" + translations.get(i).getTransKey() + "</td>");
                             out.println("<td>" + translations.get(i).getTransValue() + "</td>");
                             out.println("<td>" + translations.get(i).getLocale() + "</td>");
@@ -57,12 +53,8 @@
     </form>
 
     <form action="/controller" method="post">
-        <button type="submit" name="changeState" value="log">View Log</button>
+        <button type="submit" name="changeState" value="log">View Logs</button>
     </form>
-
-<%--    <form action="/controller" method="post">--%>
-<%--        <button type="submit" name="changeState" value="log">View Logs</button>--%>
-<%--    </form>--%>
 
     <p id="selectedInfoStrings"></p>
 
