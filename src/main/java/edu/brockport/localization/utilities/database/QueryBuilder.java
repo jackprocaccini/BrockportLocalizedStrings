@@ -30,7 +30,7 @@ public class QueryBuilder extends AbstractQueryBuilder{
         if(isInt(value)){
             return "DELETE FROM " + tableName + " WHERE " + field + "=" + value;
         } else {
-            return "DELETE FROM " + tableName + " WHERE " + field + "='" + value + "'";
+            return "DELETE FROM " + tableName + " WHERE " + field + "=\"" + value + "\"";
         }
     }
 
@@ -107,7 +107,7 @@ public class QueryBuilder extends AbstractQueryBuilder{
             if(isInt(updateValues[i])){
                 query += updateFields[i] + "=" + updateValues[i] + ",";
             } else {
-                query += updateFields[i] + "='" + updateValues[i] + "',";
+                query += updateFields[i] + "=\"" + updateValues[i] + "\",";
             }
         }
 
@@ -118,7 +118,7 @@ public class QueryBuilder extends AbstractQueryBuilder{
         if(isInt(whereClauseValue)){
             query += whereClauseValue;
         } else {
-            query += "'" + whereClauseValue + "'";
+            query += "\"" + whereClauseValue + "\"";
         }
 
         return query;
@@ -141,7 +141,7 @@ public class QueryBuilder extends AbstractQueryBuilder{
         if(isInt(value)){
             query += value;
         } else {
-            query += "'" + value + "'";
+            query += "\"" + value + "\"";
         }
 
         return query;
@@ -152,9 +152,9 @@ public class QueryBuilder extends AbstractQueryBuilder{
 
         for(int i = 0; i < fields.length; i++){
             if(i < fields.length - 1){
-                query += fields[i] + "='" + values[i] + "' AND ";
+                query += fields[i] + "=\"" + values[i] + "\" AND ";
             } else {
-                query += fields[i] + "='" + values[i] + "'";
+                query += fields[i] + "=\"" + values[i] + "\"";
             }
         }
 
@@ -166,7 +166,7 @@ public class QueryBuilder extends AbstractQueryBuilder{
     /**
      * Takes in user fields and formats values into a single SQL readable String. Used primarily as helper method, is able
      * to distinguish between Strings and numbers contained within the 'values' array.
-     * Passing in an array containing ["Jack", "Procaccini", "122298"] yields "('Jack', 'Procaccini', 122209)"
+     * Passing in an array containing ["Jack", "Procaccini", "122298"] yields "("Jack", "Procaccini", 122298)"
      * @param values The values that you wish to use in your sql statement
      * @return A formatted SQL String which places values in the form (field1, field2, ...)
      */
@@ -178,7 +178,8 @@ public class QueryBuilder extends AbstractQueryBuilder{
             if(isInt(values[i])){
                 str += values[i] + ",";
             } else {
-                str += "'" + values[i] + "',";
+                values[i] = values[i].replace("\"", "\"\"");
+                str += "\"" + values[i] + "\",";
             }
         }
 

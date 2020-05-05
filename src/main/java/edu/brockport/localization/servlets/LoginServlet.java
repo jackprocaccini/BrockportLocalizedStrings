@@ -46,8 +46,8 @@ public class LoginServlet extends HttpServlet {
                 ResultSet translationsRs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
                 translations = Translation.getTranslationList(translationsRs);
                 HttpSession session = req.getSession();
-                session.setAttribute("display", "all translations");
-                session.setAttribute("translations", translations);
+//                session.setAttribute("display", "all translations");
+                session.setAttribute("translationsList", translations);
                 res.sendRedirect("jsp/translations.jsp");
                 return;
 

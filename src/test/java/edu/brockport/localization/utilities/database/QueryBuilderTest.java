@@ -74,7 +74,7 @@ class QueryBuilderTest {
                 "WHERE (translationkeys.ID = translations.TransKeyFK AND sourceresource.ID = translationkeys.SourceResourceKeyFK) " +
                 "ORDER BY translationkeys.TransKey;";
         //Act
-        String actual = qb.selectJoinQuery();
+        String actual = qb.selectJoinQueryMain();
         //Assert
         assertEquals(expected, actual);
     }

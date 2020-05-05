@@ -27,6 +27,7 @@
             if(error != null){
                 out.println("<p style=\"color: red\">" + error + "</p>");
             }
+            session.removeAttribute("error");
         %>
     </div>
 </body>

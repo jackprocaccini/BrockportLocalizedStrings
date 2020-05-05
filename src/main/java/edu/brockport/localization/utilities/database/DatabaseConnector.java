@@ -10,6 +10,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Properties;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -193,7 +196,7 @@ public class DatabaseConnector implements IDatabaseConnector {
     }
 
     public ResultSet selectJoinFromTable(Connection connection, AbstractQueryBuilder queryBuilder) throws SQLException {
-        String query = queryBuilder.selectJoinQuery();
+        String query = queryBuilder.selectJoinQueryMain();
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;
@@ -211,8 +214,34 @@ public class DatabaseConnector implements IDatabaseConnector {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(url, username, password);
         } catch(Exception e){
-            log.error( "Cannot obtain connection to DataBase. " + e.getMessage());
+            log.error( "Cannot obtain connection to Database: " + e.getMessage());
             return null;
+        }
+    }
+
+    public void insertFlaggedTranslations(String[] selectedInfo, String[] selectedInfoNotes) throws SQLException {
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar cal = Calendar.getInstance();
+
+        for(int i = 0; i < selectedInfo.length; i++){
+            String[] currentEntryToFlag = selectedInfo[i].split("#");
+            ResultSet transKeyIDResultSet = selectFromTable(getConnection(), new QueryBuilder(), "translationkeys", "ID",
+                    "TransKey", currentEntryToFlag[0]);
+            transKeyIDResultSet.next();
+            String transKeyID = transKeyIDResultSet.getString("ID");
+//                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " TransKeyID: " + transKeyID);
+
+            ResultSet translationValueIDResultSet = selectQueryMultipleFields(getConnection(), new QueryBuilder(),
+                    "translations", "ID", new String[]{"TransKeyFK", "Translation", "Locale"},
+                    new String[]{transKeyID, currentEntryToFlag[1], currentEntryToFlag[2]});
+            translationValueIDResultSet.next();
+            String translationID = translationValueIDResultSet.getString("ID");
+
+//                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
+
+            insertIntoTable(getConnection(), new QueryBuilder(), "translationtracking",
+                    new String[]{"TranslationKeyFK", "DateFlagged", "DateResolved", "Notes"},
+                    new String[]{translationID, sdf.format(cal.getTime()), "", selectedInfoNotes[i]});
         }
     }
 

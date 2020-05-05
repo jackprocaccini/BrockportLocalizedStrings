@@ -24,6 +24,8 @@ public class xmlPropertiesBuilder extends DefaultHandler {
     private Stack<String> elementStack = new Stack();
     private Stack<Data> objectStack = new Stack();
 
+    //https://stackoverflow.com/questions/21430207/unable-to-parse-value-containing-special-character-using-sax-parser/21430590
+
     public xmlPropertiesBuilder(File xmlFile) throws SAXException, IOException, ParserConfigurationException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();

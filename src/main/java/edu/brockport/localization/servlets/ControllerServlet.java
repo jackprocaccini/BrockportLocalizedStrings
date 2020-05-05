@@ -35,8 +35,8 @@ public class ControllerServlet extends HttpServlet {
 
         /*https://coderanch.com/t/488280/java/Accented-Characters-Displayed-Wrongly
          *https://stackoverflow.com/questions/3182328/handling-spanish-characters-in-java-jsp
-         * Was not displaying some characters correctly, so we had to set the character encoding
-         * to this iso-8859-15 thing for every response. Also had to be included on every JSP that display characters
+         * Was not displaying some characters correctly in browser, so we had to set the character encoding
+         * to this iso-8859-15 thing for every response. Also had to be included on every JSP that displays characters
          * Code ranch one is gave the answer we needed, but SO link looked helpful too
          */
         res.setCharacterEncoding("iso-8859-15");
@@ -70,47 +70,57 @@ public class ControllerServlet extends HttpServlet {
             String[] selectedInfo = (String[])session.getAttribute("translationsToFlagList");
             String[] selectedInfoNotes = req.getParameterValues("notes");
             PrintWriter out = res.getWriter();
-//
-//
-//
-//            for(int i = 0; i < selectedInfo.length; i++){
-//                out.println("selected info: " + selectedInfo[i] + selectedInfoNotes[i]);
-//            }
 
             DatabaseConnector dbc = DatabaseConnector.getInstance();
 
             try{
-                for(int i = 0; i < selectedInfo.length; i++){
-                    String[] currentEntryToFlag = selectedInfo[i].split("#");
-                    ResultSet transKeyIDResultSet = dbc.selectFromTable(dbc.getConnection(), new QueryBuilder(), "translationkeys", "ID",
-                            "TransKey", currentEntryToFlag[0]);
-                    transKeyIDResultSet.next();
-                    String transKeyID = transKeyIDResultSet.getString("ID");
-//                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " TransKeyID: " + transKeyID);
-
-                    ResultSet translationValueIDResultSet = dbc.selectQueryMultipleFields(dbc.getConnection(), new QueryBuilder(),
-                            "translations", "ID", new String[]{"TransKeyFK", "Translation", "Locale"},
-                            new String[]{transKeyID, currentEntryToFlag[1], currentEntryToFlag[2]});
-                    translationValueIDResultSet.next();
-                    String translationID = translationValueIDResultSet.getString("ID");
-
-//                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
-
-                    dbc.insertIntoTable(dbc.getConnection(), new QueryBuilder(), "translationtracking",
-                            new String[]{"TranslationKeyFK", "DateFlagged", "DateResolved", "Notes"},
-                            new String[]{translationID, sdf.format(cal.getTime()), "", selectedInfoNotes[i]});
-                }
+                dbc.insertFlaggedTranslations(selectedInfo, selectedInfoNotes);
             } catch(SQLException e){
                 log.error("Error in ControllerServlet flagging: " + e.getMessage());
-                out.println("something went wrong: " + e.getMessage());
+                session.setAttribute("status", "Unable to flag selected translation(s): " + e.getMessage());
+                res.sendRedirect("jsp/status.jsp");
+                return;
             }
-            out.println("Selected items successfully inserted!");
+            session.setAttribute("status", "Successfully flagged selected translations!");
+            res.sendRedirect("jsp/status.jsp");
+            return;
+
+        } else if(stateChange.equals("viewTranslations")){
+            HttpSession session = req.getSession();
+            ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translationsList");
+
+            if(translations != null){
+                session.setAttribute("translationsList", translations);
+                res.sendRedirect("jsp/translations.jsp");
+                return;
+            } else {
+                try {
+                    DatabaseConnector dbc = DatabaseConnector.getInstance();
+                    ResultSet translationsRs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
+                    translations = Translation.getTranslationList(translationsRs);
+                    session.setAttribute("translationsList", translations);
+                    res.sendRedirect("jsp/translations.jsp");
+                    return;
+                } catch(SQLException e){
+                    log.error("Error in Controller Servlet: " + e.getMessage());
+                    System.out.println(e);
+                    session.setAttribute("error", "Something went wrong: " + e.getMessage());
+                    res.sendRedirect("index.jsp");
+                    return;
+                }
+
+            }
+
+        } else if(stateChange.equals("viewFlagged")){
+            PrintWriter out = res.getWriter();
+            out.println("To be implemented soon :)");
+            out.println("<a href=\"jsp/translations.jsp\">Back to Translations</a>");
 
         } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");
             HttpSession session = req.getSession();
-            session.setAttribute("error", "Error in ControllerServlet: stateChange parameter is null!");
-            res.sendRedirect("jsp/login.jsp");
+            session.setAttribute("error", "Error in ControllerServlet: stateChange parameter (" + stateChange + ") is null or unrecognized!");
+            res.sendRedirect("index.jsp");
             return;
         }
     }

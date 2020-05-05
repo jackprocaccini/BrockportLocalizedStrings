@@ -8,7 +8,7 @@
 </head>
 <body>
     <%
-        ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translations");
+        ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translationsList");
     %>
 
     <select align="center" id="selectionChoice">
@@ -54,6 +54,10 @@
 
     <form action="/controller" method="post">
         <button type="submit" name="changeState" value="log">View Logs</button>
+    </form>
+
+    <form action="/controller" method = "post">
+        <button type="submit" name="changeState" value="viewFlagged">View Currently Flagged Translations</button>
     </form>
 
     <p id="selectedInfoStrings"></p>

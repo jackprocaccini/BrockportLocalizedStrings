@@ -17,8 +17,12 @@
         out.println("<h1>" + status + "</h1>");
     %>
 
+    <%
+        session.removeAttribute("status");
+    %>
+
     <form action="/controller" method="post">
-        <button type="submit" name="changeState" value="translations">Return to Translations</button>
+        <button type="submit" name="changeState" value="viewTranslations">Return to Translations</button>
     </form>
 </body>
 </html>
