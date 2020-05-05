@@ -15,7 +15,8 @@
         ArrayList<String> logContents = (ArrayList<String>)session.getAttribute("logContents");
         if(logContents != null){
             for(int i = 0; i < logContents.size(); i++){
-                out.println(logContents.get(i) + "\n");
+                out.println(logContents.get(i));
+                out.println("<br>");
             }
         }
     %>

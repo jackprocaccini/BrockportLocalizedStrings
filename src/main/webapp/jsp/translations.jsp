@@ -50,13 +50,7 @@
             </tbody>
         </table>
         <button type="submit" name="changeState" value="selections">Flag Translations</button>
-    </form>
-
-    <form action="/controller" method="post">
         <button type="submit" name="changeState" value="log">View Logs</button>
-    </form>
-
-    <form action="/controller" method = "post">
         <button type="submit" name="changeState" value="viewFlagged">View Currently Flagged Translations</button>
     </form>
 
@@ -65,82 +59,8 @@
     <a href="../index.jsp">Back to main</a>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../javascript/tablesort.js"></script>
-
-    <script type="text/javascript">
-        //whenever a checkbox is clicked, all the data pertaining to that checkbox's row is collected
-        const $selectedInformation = $("#selectedInfoStrings");
-        $selectedInformation.hide();
-        var $checkboxes = $(".check");
-        for(var i = 0; i < $checkboxes.length; i++){
-            var $thischeckbox = $($checkboxes[i]);
-            $thischeckbox.click(function() {
-                if($(this).is(":checked")){
-                    console.log("Checked:" + $(this).parent().parent().text());
-
-                    //sets selected text to a paragraph beneath the table with the id 'selectedInfoStrings'
-                    $selectedInformation.text($selectedInformation.text() + $(this).parent().parent().text() + ",");
-                } else {
-                    //removes the previously selected string from the paragraph beneath the table
-                    console.log("Unchecked:" + $(this).parent().parent().text());
-                    var $tempSelected = $selectedInformation.text().replace($(this).parent().parent().text() + ",", "");
-                    $selectedInformation.text($tempSelected);
-                }
-            });
-        }
-    </script>
-
-    <script type="text/javascript">
-        // Whenever the selection is changed in the dropdown menu, the table updates based on the selection
-        $("#selectionChoice").change(function() {
-            var selectedType = $("#selectionChoice :selected").val();
-            console.log(selectedType);
-            displayTranslations(selectedType);
-            // console.log($("#translationchoice :selected").val());
-        });
-
-        // Displays table contents based on the drop down menu's selected type
-        function displayTranslations(translationType){
-            console.log("display function: " + translationType);
-            console.log($("." + translationType).text());
-
-            var $tableRows = $("tbody tr");
-
-            console.log($tableRows);
-
-            $tableRows.each(function(){
-                if($(this).hasClass(translationType)){
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        }
-    </script>
-
-    <script type="text/javascript">
-        $("#searchBox").keyup(function(){
-            let searchVal = $("#searchBox").val();
-
-            if(!searchVal){ //if x is an empty string, display all translations based on the current dropdown selection
-                console.log("Emtpy String!")
-                displayTranslations($("#selectionChoice").val());
-            } else { //otherwise, get all currently visible information and check if the input from the search box is present
-                let $visibleData = $("tbody ." + $("#selectionChoice").val());
-                console.log("visible data: " + $visibleData.text());
-                let temp = "";
-
-                $visibleData.each(function(){
-                    temp = $(this).text();
-                    console.log("Index of " + searchVal + " in " + temp + ": " + temp.indexOf(searchVal));
-
-                    if(temp.indexOf(searchVal) == -1){
-                        $(this).hide();
-                    } else {
-                        $(this).show();
-                    }
-                });
-            }
-        });
-    </script>
+    <script type="text/javascript" src="../javascript/checkboxselection.js"></script>
+    <script type="text/javascript" src="../javascript/dropdown_table_filter.js"></script>
+    <script type="text/javascript" src="../javascript/searchbox_filter.js"></script>
 </body>
 </html>
