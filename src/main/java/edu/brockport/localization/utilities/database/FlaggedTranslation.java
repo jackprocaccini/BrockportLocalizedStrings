@@ -45,6 +45,16 @@ public class FlaggedTranslation extends Translation{
     }
 
     public String toString(){
-        return super.toString() + "#" + dateFlagged + "#" + dateResolved + "#" + notes + "#";
+        return super.toString() + dateFlagged + "#" + dateResolved + "#" + notes;
+    }
+
+    public String toStringHTML(){
+        /*https://stackoverflow.com/questions/2428572/how-do-i-escape-a-single-quote
+         * Needed for when a "Notes" section contains double quotes. For example,
+         * if someone types this as a note for a flagged translation: Hello in spanish is "Hola" not "ola"
+         */
+        String str = this.toString();
+        str = str.replace("\"", "&#34");
+        return str;
     }
 }

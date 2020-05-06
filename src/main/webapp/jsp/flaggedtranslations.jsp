@@ -20,8 +20,7 @@
                 <th>Date Flagged</th>
                 <th>Date Resolved</th>
                 <th>Notes</th>
-                <th>Translation Status</th>
-                <th>Unflag</th>
+                <th>Resolve</th>
             </tr>
         </thead>
 
@@ -36,8 +35,8 @@
                         out.println("<td>" + translations.get(i).getDateFlagged() + "</td>");
                         out.println("<td>" + translations.get(i).getDateResolved() + "</td>");
                         out.println("<td>" + translations.get(i).getNotes() + "</td>");
-                        out.println("<td>" + translations.get(i).getStatus() + "</td>");
-                        out.println("<td>" + "<input type=\"checkbox\" class=\"check\" name=\"selectionsList\" value=\"" + translations.get(i).toString() + "\">" + "</td>");
+//                        out.println("<td>" + translations.get(i).getStatus() + "</td>");
+                        out.println("<td>" + "<input type=\"checkbox\" class=\"check\" name=\"selectionsList\" value=\"" + translations.get(i).toStringHTML() + "\">" + "</td>");
                         out.println("</tr>");
                     }
                 }
