@@ -21,6 +21,8 @@
         }
     %>
 
-    <a href="translations.jsp">Back to Translations</a>
+    <<form action="/controller" method="post">
+        <button type="submit" name="changeState" value="viewTranslations">Return to Translations</button>
+    </form>
 </body>
 </html>

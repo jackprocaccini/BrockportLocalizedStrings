@@ -20,8 +20,8 @@
                 <th>Date Flagged</th>
                 <th>Date Resolved</th>
                 <th>Notes</th>
-                <th>Status</th>
-                <th>Select</th>
+                <th>Translation Status</th>
+                <th>Unflag</th>
             </tr>
         </thead>
 
@@ -44,5 +44,9 @@
             %>
         </tbody>
     </table>
+
+    <form action="/controller" method="post">
+        <button type="submit" name="changeState" value="viewTranslations">Return to Translations</button>
+    </form>
 </body>
 </html>

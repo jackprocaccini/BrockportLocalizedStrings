@@ -249,6 +249,10 @@ public class DatabaseConnector implements IDatabaseConnector {
             insertIntoTable(getConnection(), new QueryBuilder(), "translationtracking",
                     new String[]{"TranslationKeyFK", "DateFlagged", "DateResolved", "Notes"},
                     new String[]{translationID, sdf.format(cal.getTime()), "", selectedInfoNotes[i]});
+
+            String setStatusQuery = "UPDATE translations set Status=\"Inactive\" WHERE ID=" + translationID;
+            Statement st = getConnection().createStatement();
+            st.executeUpdate(setStatusQuery);
         }
     }
 

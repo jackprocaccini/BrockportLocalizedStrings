@@ -42,7 +42,7 @@ public class ControllerServlet extends HttpServlet {
          */
         res.setCharacterEncoding("iso-8859-15");
 
-        if(stateChange.equals("log")){
+        if(stateChange.equals("log")){ //view the log page
             Scanner sc = new Scanner(new File("src/main/java/edu/brockport/localization/logs/ErrorLog.log"));
             ArrayList<String> logContents = new ArrayList<>();
             while(sc.hasNextLine()){
@@ -53,7 +53,7 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("jsp/log.jsp");
             return;
 
-        } else if(stateChange.equals("selections")){
+        } else if(stateChange.equals("selections")){ //go to the page that lists all selections from the main page
             String[] selectedInfo = req.getParameterValues("selectionsList");
             if(selectedInfo == null){
                 log.warn("No information selected from translations.jsp");
@@ -66,11 +66,10 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("jsp/flagtranslations.jsp");
             return;
 
-        } else if(stateChange.equals("flagTranslations")) {
+        } else if(stateChange.equals("flagTranslations")) { //flag translations from the "selections" page
             HttpSession session = req.getSession();
             String[] selectedInfo = (String[])session.getAttribute("translationsToFlagList");
             String[] selectedInfoNotes = req.getParameterValues("notes");
-            PrintWriter out = res.getWriter();
 
             DatabaseConnector dbc = DatabaseConnector.getInstance();
 
@@ -82,6 +81,8 @@ public class ControllerServlet extends HttpServlet {
                 res.sendRedirect("jsp/status.jsp");
                 return;
             }
+
+            session.removeAttribute("translationsToFlagList");
             session.setAttribute("status", "Successfully flagged selected translations!");
             res.sendRedirect("jsp/status.jsp");
             return;
@@ -90,26 +91,19 @@ public class ControllerServlet extends HttpServlet {
             HttpSession session = req.getSession();
             ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translationsList");
 
-            if(translations != null){
+            try {
+                DatabaseConnector dbc = DatabaseConnector.getInstance();
+                ResultSet translationsRs = dbc.selectJoinQueryMain(dbc.getConnection(), new QueryBuilder());
+                translations = Translation.getTranslationList(translationsRs);
                 session.setAttribute("translationsList", translations);
                 res.sendRedirect("jsp/translations.jsp");
                 return;
-            } else {
-                try {
-                    DatabaseConnector dbc = DatabaseConnector.getInstance();
-                    ResultSet translationsRs = dbc.selectJoinQueryMain(dbc.getConnection(), new QueryBuilder());
-                    translations = Translation.getTranslationList(translationsRs);
-                    session.setAttribute("translationsList", translations);
-                    res.sendRedirect("jsp/translations.jsp");
-                    return;
-                } catch(SQLException e){
-                    log.error("Error in Controller Servlet: " + e.getMessage());
-                    System.out.println(e);
-                    session.setAttribute("error", "Something went wrong: " + e.getMessage());
-                    res.sendRedirect("index.jsp");
-                    return;
-                }
-
+            } catch(SQLException e){
+                log.error("Error in Controller Servlet: " + e.getMessage());
+                System.out.println(e);
+                session.setAttribute("error", "Could not get all translations: " + e.getMessage());
+                res.sendRedirect("jsp/translations.jsp");
+                return;
             }
 
         } else if(stateChange.equals("viewFlagged")){

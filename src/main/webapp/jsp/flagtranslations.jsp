@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 4/30/2020
-  Time: 2:48 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html; charset=iso-8859-15" language="java" %>
 <html>
 <head>
@@ -46,6 +39,9 @@
             </tbody>
         </table>
         <button type="submit" name="changeState" value="flagTranslations">Flag Selected Translations</button>
+    </form>
+    <form action="/controller" method="post">
+        <button type="submit" name="changeState" value="viewTranslations">Return to Translations</button>
     </form>
 </body>
 </html>
