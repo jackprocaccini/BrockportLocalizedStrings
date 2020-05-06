@@ -56,9 +56,9 @@ class TranslationTest {
     @Test
     public void testGetTranslationList() throws SQLException {
         DatabaseConnector dbc = Mockito.mock(DatabaseConnector.class);
-        Mockito.when(dbc.selectJoinFromTable(Mockito.any(Connection.class), Mockito.any(AbstractQueryBuilder.class))).thenReturn(mockResultSet);
+        Mockito.when(dbc.selectJoinQueryMain(Mockito.any(Connection.class), Mockito.any(AbstractQueryBuilder.class))).thenReturn(mockResultSet);
 
-        ResultSet rs = dbc.selectJoinFromTable(Mockito.mock(Connection.class), new QueryBuilder());
+        ResultSet rs = dbc.selectJoinQueryMain(Mockito.mock(Connection.class), new QueryBuilder());
 
         ArrayList<Translation> translations = Translation.getTranslationList(rs);
         assertTrue(translations.size() != 0 && translations.get(0).getTransValue().equals("test translation"));

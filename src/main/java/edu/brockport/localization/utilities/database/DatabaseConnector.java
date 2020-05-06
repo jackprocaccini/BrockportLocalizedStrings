@@ -195,8 +195,15 @@ public class DatabaseConnector implements IDatabaseConnector {
         return rs;
     }
 
-    public ResultSet selectJoinFromTable(Connection connection, AbstractQueryBuilder queryBuilder) throws SQLException {
+    public ResultSet selectJoinQueryMain(Connection connection, AbstractQueryBuilder queryBuilder) throws SQLException {
         String query = queryBuilder.selectJoinQueryMain();
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        return rs;
+    }
+
+    public ResultSet selectJoinQueryFlagged(Connection connection, AbstractQueryBuilder queryBuilder) throws SQLException {
+        String query = queryBuilder.selectJoinQueryFlagged();
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
         return rs;

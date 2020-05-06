@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Flag Translations</title>
-    <link rel="stylesheet" href="../tablesort.css">
+    <link rel="stylesheet" href="../css/tablesort.css">
 </head>
 <body>
     <%

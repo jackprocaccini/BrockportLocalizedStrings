@@ -1,6 +1,7 @@
 package edu.brockport.localization.servlets;
 
 import edu.brockport.localization.utilities.database.DatabaseConnector;
+import edu.brockport.localization.utilities.database.FlaggedTranslation;
 import edu.brockport.localization.utilities.database.QueryBuilder;
 import edu.brockport.localization.utilities.database.Translation;
 
@@ -96,7 +97,7 @@ public class ControllerServlet extends HttpServlet {
             } else {
                 try {
                     DatabaseConnector dbc = DatabaseConnector.getInstance();
-                    ResultSet translationsRs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
+                    ResultSet translationsRs = dbc.selectJoinQueryMain(dbc.getConnection(), new QueryBuilder());
                     translations = Translation.getTranslationList(translationsRs);
                     session.setAttribute("translationsList", translations);
                     res.sendRedirect("jsp/translations.jsp");
@@ -112,9 +113,18 @@ public class ControllerServlet extends HttpServlet {
             }
 
         } else if(stateChange.equals("viewFlagged")){
-            PrintWriter out = res.getWriter();
-            out.println("To be implemented soon :)");
-            out.println("<a href=\"jsp/translations.jsp\">Back to Translations</a>");
+            try {
+                DatabaseConnector dbc = DatabaseConnector.getInstance();
+                ResultSet flaggedTranslationsRs = dbc.selectJoinQueryFlagged(dbc.getConnection(), new QueryBuilder());
+                ArrayList<FlaggedTranslation> flaggedTranslationList = FlaggedTranslation.getFlaggedTranslationList(flaggedTranslationsRs);
+                HttpSession session = req.getSession();
+                session.setAttribute("flaggedTranslationsList", flaggedTranslationList);
+                res.sendRedirect("jsp/flaggedtranslations.jsp");
+                return;
+
+            } catch(SQLException e){
+
+            }
 
         } else {
             log.error("Error in ControllerServlet: stateChange parameter is null!");

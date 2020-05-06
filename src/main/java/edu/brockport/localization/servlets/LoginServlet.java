@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 
             if(inputPass.equals(dbPassword)){
                 log.info("Login successful for user " + inputName);
-                ResultSet translationsRs = dbc.selectJoinFromTable(dbc.getConnection(), new QueryBuilder());
+                ResultSet translationsRs = dbc.selectJoinQueryMain(dbc.getConnection(), new QueryBuilder());
                 translations = Translation.getTranslationList(translationsRs);
                 HttpSession session = req.getSession();
 //                session.setAttribute("display", "all translations");

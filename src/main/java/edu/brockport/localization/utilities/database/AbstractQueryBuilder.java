@@ -16,4 +16,15 @@ public abstract class AbstractQueryBuilder implements IQueryBuilder {
         return query;
     }
 
+    public String selectJoinQueryFlagged(){
+        String query = "SELECT translationkeys.TransKey, translations.Locale, translations.Translation, translations.Status, sourceresource.ResourceName, " +
+                "translationtracking.DateFlagged, translationtracking.DateResolved, translationtracking.Notes " +
+                "FROM translationkeys, translations, sourceresource, translationtracking " +
+                "WHERE (translationkeys.ID = translations.TransKeyFK AND sourceresource.ID = translationkeys.SourceResourceKeyFK AND " +
+                "translationtracking.TranslationKeyFK = translations.ID) " +
+                "ORDER BY translationkeys.TransKey;";
+
+        return query;
+    }
+
 }
