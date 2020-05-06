@@ -4,23 +4,71 @@
 <html>
 <head>
     <title>Translations</title>
-    <link rel="stylesheet" href="../tablesort.css">
+    <style>
+        body{
+            background-color: lightgrey;
+            font-family: Futura;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin-left: 20px;
+            margin-right:10px;
+            width:97%;
+            text-align:center;
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+        td, thead, tbody, tr, th {
+            padding: 10px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align:center;
+        }
+
+        .header{
+            background-color: whitesmoke;
+        }
+
+        searchBox {
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        selectionChoice{
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
+
+<div class="row">
+<div class="header">
+    <h1>Localization of Strings</h1>
+</div>
+</div>
+
     <%
         ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translations");
     %>
-
+    <div class="selectionChoice">
     <select align="center" id="selectionChoice">
+        <option value="all">All</option>
         <option value="javascript">Javascript</option>
         <option value="resx">Resx</option>
         <option value="en_US">en_US</option>
         <option value="es_ES">es_ES</option>
-        <option value="all">All</option>
     </select>
+    </div>
 
+    <div class="searchBox">
     <input type="text" id="searchBox" placeholder="Search">
-
+    </div>
     <table class="table table-sortable">
         <thead>
             <tr>
