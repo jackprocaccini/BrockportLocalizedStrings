@@ -247,9 +247,14 @@ public class DatabaseConnector implements IDatabaseConnector {
 
 //                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
 
+            String notes = selectedInfoNotes[i];
+            if(notes.isEmpty()){
+                notes = "No notes provided.";
+            }
+
             insertIntoTable(connection, new QueryBuilder(), "translationtracking",
                     new String[]{"TranslationKeyFK", "DateFlagged", "DateResolved", "Notes"},
-                    new String[]{translationID, sdf.format(cal.getTime()), "Unresolved", selectedInfoNotes[i]});
+                    new String[]{translationID, sdf.format(cal.getTime()), "Unresolved", notes});
 
             String setStatusQuery = "UPDATE translations set Status=\"Inactive\" WHERE ID=" + translationID;
             Statement st = connection.createStatement();
@@ -275,9 +280,12 @@ public class DatabaseConnector implements IDatabaseConnector {
             translationValueIDResultSet.next();
             String translationID = translationValueIDResultSet.getString("ID");
 
+            String notes = translationToResolve[7];
+            notes = notes.replace("\"", "\"\"");
+
             String updateDateFlaggedStatement = "UPDATE translationtracking SET DateResolved=\"" + sdf.format(cal.getTime()) +
                     "\" WHERE(TranslationKeyFK=\"" + translationID + "\" AND DateFlagged=\"" + translationToResolve[5] +
-                    "\" AND Notes=\"" + translationToResolve[7] + "\")";
+                    "\" AND Notes=\"" + notes + "\")";
 
             Statement st = connection.createStatement();
             st.executeUpdate(updateDateFlaggedStatement);

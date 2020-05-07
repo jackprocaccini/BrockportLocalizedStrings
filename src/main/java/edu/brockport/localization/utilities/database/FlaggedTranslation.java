@@ -28,6 +28,18 @@ public class FlaggedTranslation extends Translation{
         return notes;
     }
 
+    public void setDateFlagged(String dateFlagged) {
+        this.dateFlagged = dateFlagged;
+    }
+
+    public void setDateResolved(String dateResolved) {
+        this.dateResolved = dateResolved;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     public static ArrayList<FlaggedTranslation> getFlaggedTranslationList(ResultSet resultSet) throws SQLException {
         ArrayList<FlaggedTranslation> translations = new ArrayList<FlaggedTranslation>();
         while(resultSet.next()) {
@@ -45,7 +57,7 @@ public class FlaggedTranslation extends Translation{
     }
 
     public String toString(){
-        return super.toString() + dateFlagged + "#" + dateResolved + "#" + notes;
+        return super.toString() + dateFlagged + "#" + dateResolved + "#" + notes + "#";
     }
 
     public String toStringHTML(){

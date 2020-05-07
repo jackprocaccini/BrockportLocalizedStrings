@@ -22,7 +22,7 @@ public abstract class AbstractQueryBuilder implements IQueryBuilder {
                 "FROM translationkeys, translations, sourceresource, translationtracking " +
                 "WHERE (translationkeys.ID = translations.TransKeyFK AND sourceresource.ID = translationkeys.SourceResourceKeyFK AND " +
                 "translationtracking.TranslationKeyFK = translations.ID) " +
-                "ORDER BY translationkeys.TransKey;";
+                "ORDER BY translationtracking.DateResolved;";
 
         return query;
     }

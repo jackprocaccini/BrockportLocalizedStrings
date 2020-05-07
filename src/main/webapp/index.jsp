@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Brockport Localized Strings - Login</title>
+    <link rel="stylesheet" href="/css/login_page.css">
 </head>
 <body style="text-align: center">
     <form action="/login" method="post">

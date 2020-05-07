@@ -35,6 +35,9 @@
                             out.println("<td>" + translations.get(i).getLocale() + "</td>");
                             out.println("<td>" + translations.get(i).getDateFlagged() + "</td>");
                             out.println("<td>" + translations.get(i).getDateResolved() + "</td>");
+                            if(translations.get(i).getNotes().isEmpty()){
+                                translations.get(i).setNotes("No notes provided.");
+                            }
                             out.println("<td>" + translations.get(i).getNotes() + "</td>");
     //                        out.println("<td>" + translations.get(i).getStatus() + "</td>");
                             out.println("<td>" + "<input type=\"checkbox\" class=\"check\" name=\"flaggedSelectionsList\" value=\"" + translations.get(i).toStringHTML() + "\">" + "</td>");
