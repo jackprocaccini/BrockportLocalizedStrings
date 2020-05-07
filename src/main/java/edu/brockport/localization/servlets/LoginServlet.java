@@ -59,12 +59,13 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
 //                session.setAttribute("display", "all translations");
                 session.setAttribute("translationsList", translations);
+                session.removeAttribute("error");
                 connection.close();
                 res.sendRedirect("jsp/translations.jsp");
                 return;
 
             } else {
-                log.warn("Incorrect password inputted");
+                log.warn("Incorrect password for user: " + inputName);
                 HttpSession session = req.getSession();
                 session.setAttribute("error", "Incorrect password");
                 connection.close();

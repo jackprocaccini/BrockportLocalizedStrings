@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="/css/login_page.css">
 </head>
 <body>
+<%
+    String error = "";
+    if(session.getAttribute("error") != null){
+        error = (String)session.getAttribute("error");
+    }
+%>
 <div class="login-page">
     <div class="form">
         <form action="/login" method="post" class="login-form">
@@ -22,18 +28,19 @@
             <br>
             <button type="submit">Login</button>
         </form>
+        <p class="errorSection"><%=error%></p>
     </div>
 </div>
 
-    <div id="errorSection">
-        <%
-            String error = (String)session.getAttribute("error");
+<%--    <div id="errorSection">--%>
+<%--        <%--%>
+<%--            String error = (String)session.getAttribute("error");--%>
 
-            if(error != null){
-                out.println("<p style=\"color: red\">" + error + "</p>");
-            }
-            session.removeAttribute("error");
-        %>
-    </div>
+<%--            if(error != null){--%>
+<%--                out.println("<p style=\"color: red\">" + error + "</p>");--%>
+<%--            }--%>
+<%--            session.removeAttribute("error");--%>
+<%--        %>--%>
+<%--    </div>--%>
 </body>
 </html>
