@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             if(connection == null){
                 log.error("Connection to database is null. Please make sure the database is up and running");
                 HttpSession session = req.getSession();
-                session.setAttribute("error", "Connection to database is null. Please make sure the database is up and running");
+                session.setAttribute("error", "Connection to database is null. Please make sure the database is up and running.");
                 res.sendRedirect("index.jsp");
                 return;
             }
@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 log.warn("Incorrect password for user: " + inputName);
                 HttpSession session = req.getSession();
-                session.setAttribute("error", "Incorrect password");
+                session.setAttribute("error", "Incorrect password.");
                 connection.close();
                 res.sendRedirect("index.jsp");
                 return;

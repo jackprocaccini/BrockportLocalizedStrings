@@ -18,6 +18,9 @@
         error = (String)session.getAttribute("error");
     }
 %>
+<header class="heading">
+    <h1 class="mainHeading">Localized Strings</h1>
+</header>
 <div class="login-page">
     <div class="form">
         <form action="/login" method="post" class="login-form">

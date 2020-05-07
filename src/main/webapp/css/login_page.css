@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+/*based heavily off of: https://codepen.io/colorlib/pen/rxddKy?editors=0100*/
 .login-page {
     width: 360px;
     padding: 8% 0 0;
@@ -53,4 +54,16 @@
 body {
     background: #004B8D;
     font-family: "Roboto", sans-serif;
+}
+
+header .mainHeading{
+    width: 100%;
+    padding: 15px;
+    font-family: "Roboto", sans-serif;
+    color: #FFFFFF;
+    font-size: 64px;
+    margin: auto;
+    width: auto;
+    position: relative;
+    text-align: center;
 }
