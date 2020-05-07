@@ -10,4 +10,14 @@ define({
     'app.time.employee.pto.widget.units.hour': 'hour',
     'app.time.employee.pto.widget.units.units': 'units',
     'app.time.employee.pto.widget.units.unit': 'unit',
+    'app.time.employee.drawers.calendarIntegrationDrawer.drawerTitle': 'Calendar sync',
+    'app.time.employee.drawers.calendarIntegrationDrawer.topSectionHeader': 'Update your personal calendar settings',
+    'app.time.employee.drawers.calendarIntegrationDrawer.topSectionDescription': 'Stay up to date by sharing your schedule and time off changes with your own calendar',
+    'app.time.employee.drawers.calendarIntegrationDrawer.bottomSectionHeader': 'What calendar do you want to sync to?',
+    'app.time.employee.drawers.calendarIntegrationDrawer.syncOptionsHeader': 'Choose what data you\'d like to sync:',
+    'app.time.employee.drawers.calendarIntegrationDrawer.syncOptionScheduleTitle': 'Schedules',
+    'app.time.employee.drawers.calendarIntegrationDrawer.syncOptionTimeOffTitle': 'Time Off',
+    'app.time.employee.drawers.calendarIntegrationDrawer.saveButtonTitle': 'Save',
+    'app.time.employee.drawers.calendarIntegrationDrawer.registerButtonTitle': 'Register',
+    'app.time.employee.drawers.calendarIntegrationDrawer.unregisterButtonTitle': 'Unregister'
 });

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -24,30 +26,40 @@ public class LoginServlet extends HttpServlet {
         String inputName = req.getParameter("reqUser");
         String inputPass = req.getParameter("reqPassword");
         String dbPassword = null;
-        DatabaseConnector dbc = null;
+        DatabaseConnector dbc = DatabaseConnector.getInstance();
         ArrayList<Translation> translations;
 
         try {
-            dbc = getDatabaseConnector();
-            ResultSet rs = dbc.selectFromTable(dbc.getConnection(),new QueryBuilder(),"login", "Password", "Username", inputName);
+            Connection connection = dbc.getConnection();
+            if(connection == null){
+                log.error("Connection to database is null. Please make sure the database is up and running");
+                HttpSession session = req.getSession();
+                session.setAttribute("error", "Connection to database is null. Please make sure the database is up and running");
+                res.sendRedirect("index.jsp");
+                return;
+            }
+            ResultSet rs = dbc.selectFromTable(connection, new QueryBuilder(),"login", "Password", "Username", inputName);
             if(rs.next()){
                 dbPassword = rs.getString("password");
+                rs.close();
 
             } else {
                 log.warn("Incorrect username. User " + inputName + " not found.");
                 HttpSession session = req.getSession();
                 session.setAttribute("error", "Incorrect username. User " + inputName + " not found.");
+                connection.close();
                 res.sendRedirect("index.jsp");
                 return;
             }
 
             if(inputPass.equals(dbPassword)){
                 log.info("Login successful for user " + inputName);
-                ResultSet translationsRs = dbc.selectJoinQueryMain(dbc.getConnection(), new QueryBuilder());
+                ResultSet translationsRs = dbc.selectJoinQueryMain(connection, new QueryBuilder());
                 translations = Translation.getTranslationList(translationsRs);
                 HttpSession session = req.getSession();
 //                session.setAttribute("display", "all translations");
                 session.setAttribute("translationsList", translations);
+                connection.close();
                 res.sendRedirect("jsp/translations.jsp");
                 return;
 
@@ -55,14 +67,14 @@ public class LoginServlet extends HttpServlet {
                 log.warn("Incorrect password inputted");
                 HttpSession session = req.getSession();
                 session.setAttribute("error", "Incorrect password");
+                connection.close();
                 res.sendRedirect("index.jsp");
                 return;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             log.error("Error in LoginServlet " + e.getMessage());
-            System.out.println(e);
             HttpSession session = req.getSession();
-            session.setAttribute("error", "Something went wrong: " + e.getLocalizedMessage());
+            session.setAttribute("error", "Something went wrong in Login Servlet: " + e.getMessage());
             res.sendRedirect("index.jsp");
             return;
         }

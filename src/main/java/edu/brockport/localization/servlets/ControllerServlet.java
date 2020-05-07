@@ -13,8 +13,10 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("jsp/log.jsp");
             return;
 
-        } else if(stateChange.equals("selections")){ //go to the page that lists all selections from the main page
+        } else if(stateChange.equals("selections")){ //go to the page that lists all selections
             String[] selectedInfo = req.getParameterValues("selectionsList");
             if(selectedInfo == null){
                 log.warn("No information selected from translations.jsp");
@@ -74,7 +76,9 @@ public class ControllerServlet extends HttpServlet {
             DatabaseConnector dbc = DatabaseConnector.getInstance();
 
             try{
-                dbc.insertFlaggedTranslations(selectedInfo, selectedInfoNotes);
+                Connection connection = dbc.getConnection();
+                dbc.insertFlaggedTranslations(connection, selectedInfo, selectedInfoNotes);
+                connection.close();
             } catch(SQLException e){
                 log.error("Error in ControllerServlet flagging: " + e.getMessage());
                 session.setAttribute("status", "Unable to flag selected translation(s): " + e.getMessage());
@@ -87,37 +91,68 @@ public class ControllerServlet extends HttpServlet {
             res.sendRedirect("jsp/status.jsp");
             return;
 
-        } else if(stateChange.equals("viewTranslations")){
+        } else if(stateChange.equals("viewTranslations")){ //views all translations, regardless of flagging or not
             HttpSession session = req.getSession();
             ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translationsList");
 
             try {
                 DatabaseConnector dbc = DatabaseConnector.getInstance();
-                ResultSet translationsRs = dbc.selectJoinQueryMain(dbc.getConnection(), new QueryBuilder());
+                Connection connection = dbc.getConnection();
+                ResultSet translationsRs = dbc.selectJoinQueryMain(connection, new QueryBuilder());
                 translations = Translation.getTranslationList(translationsRs);
+                connection.close();
                 session.setAttribute("translationsList", translations);
                 res.sendRedirect("jsp/translations.jsp");
                 return;
             } catch(SQLException e){
                 log.error("Error in Controller Servlet: " + e.getMessage());
-                System.out.println(e);
-                session.setAttribute("error", "Could not get all translations: " + e.getMessage());
-                res.sendRedirect("jsp/translations.jsp");
+                session.setAttribute("status", "Could not get all translations: " + e.getMessage());
+                res.sendRedirect("jsp/status.jsp");
                 return;
             }
 
-        } else if(stateChange.equals("viewFlagged")){
+        } else if(stateChange.equals("viewFlagged")){ //views all currently flagged translations
             try {
                 DatabaseConnector dbc = DatabaseConnector.getInstance();
-                ResultSet flaggedTranslationsRs = dbc.selectJoinQueryFlagged(dbc.getConnection(), new QueryBuilder());
+                Connection connection = dbc.getConnection();
+                ResultSet flaggedTranslationsRs = dbc.selectJoinQueryFlagged(connection, new QueryBuilder());
                 ArrayList<FlaggedTranslation> flaggedTranslationList = FlaggedTranslation.getFlaggedTranslationList(flaggedTranslationsRs);
+                flaggedTranslationsRs.close();
+                connection.close();
                 HttpSession session = req.getSession();
                 session.setAttribute("flaggedTranslationsList", flaggedTranslationList);
-                res.sendRedirect("jsp/flaggedtranslations.jsp");
+                res.sendRedirect("jsp/viewflaggedtranslations.jsp");
                 return;
 
             } catch(SQLException e){
+                HttpSession session = req.getSession();
+                session.setAttribute("status", "Unable to view flagged translations. Check the log for more information: " + e.getMessage());
+                res.sendRedirect("jsp/status.jsp");
+                return;
+            }
 
+        } else if(stateChange.equals("resolveFlaggedTranslations")){ //resolves currently flagged translations
+            String[] selectedInfo = req.getParameterValues("flaggedSelectionsList");
+            HttpSession session = req.getSession();
+
+            if(selectedInfo == null){
+                log.warn("No information selected from viewflaggedtranslations.jsp");
+                res.sendRedirect("jsp/viewflaggedtranslations.jsp");
+                return;
+            }
+
+            try{
+                DatabaseConnector dbc = DatabaseConnector.getInstance();
+                Connection connection = dbc.getConnection();
+                dbc.resolveFlaggedTranslations(connection, new QueryBuilder(), selectedInfo);
+                connection.close();
+                session.setAttribute("status" ,"Successfully resolved selected translations!");
+                res.sendRedirect("jsp/status.jsp");
+                return;
+            } catch(SQLException e){
+                log.error("Error in ControllerServlet: Could not resolve selected translations: " + e.getMessage());
+                session.setAttribute("status", "Error in ControllerServlet: Could not resolve selected translations: " + e.getMessage());
+                res.sendRedirect("jsp/status.jsp");
             }
 
         } else {

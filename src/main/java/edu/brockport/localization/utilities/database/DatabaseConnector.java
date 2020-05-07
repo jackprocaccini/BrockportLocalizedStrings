@@ -29,8 +29,10 @@ public class DatabaseConnector implements IDatabaseConnector {
      * @throws SQLException Throws SQL exception if the mysql driver class cannot be found.
      */
     private DatabaseConnector(){
-        url ="jdbc:mysql://brockportpaychex.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        username = "Brockport@brockportpaychex";
+//        url ="jdbc:mysql://brockportpaychex.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        url ="jdbc:mysql://brockportlocalizedstrings.mysql.database.azure.com:3306/translations?useSSL=true&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//        username = "Brockport@brockportpaychex";
+        username = "Brockport@brockportlocalizedstrings";
         password = "Paychex2020";
     }
 
@@ -60,7 +62,6 @@ public class DatabaseConnector implements IDatabaseConnector {
         st = connection.createStatement();
         st.executeUpdate(query);
         st.close();
-        connection.close();
     }
 
     /**
@@ -91,23 +92,23 @@ public class DatabaseConnector implements IDatabaseConnector {
         String locale = jsBuilder.getLanguage();
 
         for(String key : jsProperties.stringPropertyNames()) {
-            if (existsInTable(getConnection(),queryBuilder, "TranslationKeys", "ID", "TransKey", key)) {
+            if (existsInTable(connection,queryBuilder, "TranslationKeys", "ID", "TransKey", key)) {
                 String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(keyIDQuery);
                 rs.next();
                 String keyID = rs.getString("ID");
 //              insertIntoTable("Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
-                insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status",},
+                insertIntoTable(connection, queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status",},
                         new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
             } else {
-                insertIntoTable(getConnection(), queryBuilder, "TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "1", "Active"});
+                insertIntoTable(connection, queryBuilder, "TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "1", "Active"});
                 String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(keyIDQuery);
                 rs.next();
                 String keyID = rs.getString("ID");
-                insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
+                insertIntoTable(connection, queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, jsProperties.getProperty(key), "Active"});
             }
         }
         connection.close();
@@ -127,22 +128,22 @@ public class DatabaseConnector implements IDatabaseConnector {
         String locale = xmlBuilder.getLanguage();
 
         for(String key : xmlProperties.stringPropertyNames()){
-            if(existsInTable(getConnection(),queryBuilder,"TranslationKeys", "ID", "TransKey", key)){
+            if(existsInTable(connection,queryBuilder,"TranslationKeys", "ID", "TransKey", key)){
                 String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(keyIDQuery);
                 rs.next();
                 String keyID = rs.getString("ID");
-                insertIntoTable(getConnection(), queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"},
+                insertIntoTable(connection, queryBuilder, "Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"},
                         new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
             } else {
-                insertIntoTable(getConnection(), queryBuilder,"TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "2", "Active"});
+                insertIntoTable(connection, queryBuilder,"TranslationKeys", new String[]{"TransKey", "SourceResourceKeyFK", "Status"}, new String[]{key, "2", "Active"});
                 String keyIDQuery = queryBuilder.selectQuery("TranslationKeys", "ID", "TransKey", key);
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(keyIDQuery);
                 rs.next();
                 String keyID = rs.getString("ID");
-                insertIntoTable(getConnection(), queryBuilder,"Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
+                insertIntoTable(connection, queryBuilder,"Translations", new String[]{"TransKeyFK", "Locale", "Translation", "Status"}, new String[]{keyID, locale, xmlProperties.getProperty(key), "Active"});
             }
         }
 
@@ -226,19 +227,19 @@ public class DatabaseConnector implements IDatabaseConnector {
         }
     }
 
-    public void insertFlaggedTranslations(String[] selectedInfo, String[] selectedInfoNotes) throws SQLException {
+    public void insertFlaggedTranslations(Connection connection, String[] selectedInfo, String[] selectedInfoNotes) throws SQLException {
         DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Calendar cal = Calendar.getInstance();
 
         for(int i = 0; i < selectedInfo.length; i++){
             String[] currentEntryToFlag = selectedInfo[i].split("#");
-            ResultSet transKeyIDResultSet = selectFromTable(getConnection(), new QueryBuilder(), "translationkeys", "ID",
+            ResultSet transKeyIDResultSet = selectFromTable(connection, new QueryBuilder(), "translationkeys", "ID",
                     "TransKey", currentEntryToFlag[0]);
             transKeyIDResultSet.next();
             String transKeyID = transKeyIDResultSet.getString("ID");
 //                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " TransKeyID: " + transKeyID);
 
-            ResultSet translationValueIDResultSet = selectQueryMultipleFields(getConnection(), new QueryBuilder(),
+            ResultSet translationValueIDResultSet = selectQueryMultipleFields(connection, new QueryBuilder(),
                     "translations", "ID", new String[]{"TransKeyFK", "Translation", "Locale"},
                     new String[]{transKeyID, currentEntryToFlag[1], currentEntryToFlag[2]});
             translationValueIDResultSet.next();
@@ -246,14 +247,56 @@ public class DatabaseConnector implements IDatabaseConnector {
 
 //                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
 
-            insertIntoTable(getConnection(), new QueryBuilder(), "translationtracking",
+            insertIntoTable(connection, new QueryBuilder(), "translationtracking",
                     new String[]{"TranslationKeyFK", "DateFlagged", "DateResolved", "Notes"},
-                    new String[]{translationID, sdf.format(cal.getTime()), "", selectedInfoNotes[i]});
+                    new String[]{translationID, sdf.format(cal.getTime()), "Unresolved", selectedInfoNotes[i]});
 
             String setStatusQuery = "UPDATE translations set Status=\"Inactive\" WHERE ID=" + translationID;
-            Statement st = getConnection().createStatement();
+            Statement st = connection.createStatement();
             st.executeUpdate(setStatusQuery);
         }
+        connection.close();
+    }
+
+    public void resolveFlaggedTranslations(Connection connection, IQueryBuilder queryBuilder, String[] flaggedTranslations) throws SQLException {
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar cal = Calendar.getInstance();
+
+        for(int i = 0; i < flaggedTranslations.length; i++){
+            String[] translationToResolve = flaggedTranslations[i].split("#");
+            ResultSet transKeyIDResultSet = selectFromTable(connection, queryBuilder, "translationkeys", "ID",
+                    "TransKey", translationToResolve[0]);
+            transKeyIDResultSet.next();
+            String transKeyID = transKeyIDResultSet.getString("ID");
+
+            ResultSet translationValueIDResultSet = selectQueryMultipleFields(connection, new QueryBuilder(),
+                    "translations", "ID", new String[]{"TransKeyFK", "Translation", "Locale"},
+                    new String[]{transKeyID, translationToResolve[1], translationToResolve[2]});
+            translationValueIDResultSet.next();
+            String translationID = translationValueIDResultSet.getString("ID");
+
+            String updateDateFlaggedStatement = "UPDATE translationtracking SET DateResolved=\"" + sdf.format(cal.getTime()) +
+                    "\" WHERE(TranslationKeyFK=\"" + translationID + "\" AND DateFlagged=\"" + translationToResolve[5] +
+                    "\" AND Notes=\"" + translationToResolve[7] + "\")";
+
+            Statement st = connection.createStatement();
+            st.executeUpdate(updateDateFlaggedStatement);
+
+            //selects all unresolved
+            String countQuery = "select count(*) as \"Count\" from translationtracking where (TranslationKeyFK=" + translationID + " and DateResolved=\"Unresolved\")";
+            Statement countStatement = connection.createStatement();
+            ResultSet countResultSet = countStatement.executeQuery(countQuery);
+            countResultSet.next();
+
+            int count = countResultSet.getInt("Count");
+
+            if(count == 0){
+                String setStatusStatement = "UPDATE translations set Status=\"Active\" WHERE ID=" + translationID;
+                Statement updateTranslationStatusStatement = connection.createStatement();
+                updateTranslationStatusStatement.executeUpdate(setStatusStatement);
+            }
+        }
+        connection.close();
     }
 
 }
