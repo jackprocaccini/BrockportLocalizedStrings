@@ -11,15 +11,19 @@
     <title>Brockport Localized Strings - Login</title>
     <link rel="stylesheet" href="/css/login_page.css">
 </head>
-<body style="text-align: center">
-    <form action="/login" method="post">
-        <label for="reqUser">Username</label>
-        <input type="text" id="reqUser" name="reqUser"><br>
-        <label for="reqPassword">Password</label>
-        <input type="password" id="reqPassword" name="reqPassword">
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+<body>
+<div class="login-page">
+    <div class="form">
+        <form action="/login" method="post" class="login-form">
+<%--            <label for="reqUser">Username</label>--%>
+            <input type="text" id="reqUser" name="reqUser" placeholder="username"><br>
+<%--            <label for="reqPassword">Password</label>--%>
+            <input type="password" id="reqPassword" name="reqPassword" placeholder="password">
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
 
     <div id="errorSection">
         <%
