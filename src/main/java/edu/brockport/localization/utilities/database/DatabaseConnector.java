@@ -248,7 +248,7 @@ public class DatabaseConnector implements IDatabaseConnector {
 //                    out.println(selectedInfo[i] + "#" + selectedInfoNotes[i] + " Translation ID: " + translationID);
 
             String notes = selectedInfoNotes[i];
-            if(notes.isEmpty()){
+            if(notes.trim().isEmpty()){
                 notes = "No notes provided.";
             }
 

@@ -12,17 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -73,6 +72,14 @@ public class ControllerServlet extends HttpServlet {
             String[] selectedInfo = (String[])session.getAttribute("translationsToFlagList");
             String[] selectedInfoNotes = req.getParameterValues("notes");
 
+            for(int i = 0; i < selectedInfoNotes.length; i++){
+                if(selectedInfoNotes[i].contains("<script>") || selectedInfoNotes[i].contains("</script>")){
+                    session.removeAttribute("translationsToFlagList");
+                    res.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                    return;
+                }
+            }
+
             DatabaseConnector dbc = DatabaseConnector.getInstance();
 
             try{
@@ -119,6 +126,9 @@ public class ControllerServlet extends HttpServlet {
                 ArrayList<FlaggedTranslation> flaggedTranslationList = FlaggedTranslation.getFlaggedTranslationList(flaggedTranslationsRs);
                 flaggedTranslationsRs.close();
                 connection.close();
+                for(int i = 0; i < flaggedTranslationList.size(); i++){
+                    flaggedTranslationList.get(i).setNotes(StringEscapeUtils.escapeHtml4(flaggedTranslationList.get(i).getNotes()));
+                }
                 HttpSession session = req.getSession();
                 session.setAttribute("flaggedTranslationsList", flaggedTranslationList);
                 res.sendRedirect("jsp/viewflaggedtranslations.jsp");
@@ -144,6 +154,10 @@ public class ControllerServlet extends HttpServlet {
             try{
                 DatabaseConnector dbc = DatabaseConnector.getInstance();
                 Connection connection = dbc.getConnection();
+
+                for(int i = 0; i < selectedInfo.length; i++){
+                    selectedInfo[i] = StringEscapeUtils.unescapeHtml4(selectedInfo[i]);
+                }
                 dbc.resolveFlaggedTranslations(connection, new QueryBuilder(), selectedInfo);
                 connection.close();
                 session.setAttribute("status" ,"Successfully resolved selected translations!");

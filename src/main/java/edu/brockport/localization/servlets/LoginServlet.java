@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class LoginServlet extends HttpServlet {
 
@@ -46,7 +47,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 log.warn("Incorrect username. User " + inputName + " not found.");
                 HttpSession session = req.getSession();
-                session.setAttribute("error", "Incorrect username. User " + inputName + " not found.");
+                session.setAttribute("error", "Incorrect username. User " + StringEscapeUtils.escapeHtml4(inputName) + " not found.");
                 connection.close();
                 res.sendRedirect("index.jsp");
                 return;
