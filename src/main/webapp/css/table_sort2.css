@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.main-page{
+    width: 100%;
+    margin: auto;
+    font-family:"Roboto", sans-serif;
+}
+
+.filters{
+    position: relative;
+    max-width: 50%;
+    margin: 0 auto 10;
+    padding: 10px;
+    text-align: center;
+}
+
+.filters input{
+    margin: 10;
+    width: 70%;
+    padding: 10;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.filters select{
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.main-table table{
+    border-collapse: collapse;
+    width: 95%;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    font-weight: bold;
+}
+
+th, td{
+    z-index: 1;
+    background-color: white;
+    width: 20%;
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+th{
+    background-color: lightgray;
+}
+
+body{
+    background: #004B8D
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+.table-sortable th {
+    cursor: pointer;
+}
+
+.table-sortable .th-sort-asc::after {
+    content: "\25b4";
+}
+
+.table-sortable .th-sort-desc::after {
+    content: "\25be";
+}
+
+.table-sortable .th-sort-asc::after,
+.table-sortable .th-sort-desc::after {
+    margin-left: 5px;
+}
+
+.buttons{
+    position: relative;
+    padding: 10px;
+}
+
+.buttons button{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #004B8D;
+    width: 33%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.buttons button:hover,.buttons button:active,.buttons button:focus {
+    background: #006FD1;
+}
+
+.msg{
+    width: 100%;
+    padding: 15px;
+    font-family: "Roboto", sans-serif;
+    color: #FFFFFF;
+    font-size: 64px;
+    margin: auto;
+    width: auto;
+    position: relative;
+    text-align: center;
+}

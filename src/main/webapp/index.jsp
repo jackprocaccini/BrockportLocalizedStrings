@@ -23,7 +23,7 @@
 </header>
 <div class="login-page">
     <div class="form">
-        <form action="/login" method="post" class="login-form">
+        <form action="/login" method="post">
 <%--            <label for="reqUser">Username</label>--%>
             <input type="text" id="reqUser" name="reqUser" placeholder="username"><br>
 <%--            <label for="reqPassword">Password</label>--%>

@@ -2,20 +2,27 @@
 <html>
 <head>
     <title>Brockport Localized Strings - Status</title>
+    <link rel="stylesheet" href="../css/table_sort2.css">
 </head>
 <body style="text-align: center">
-    <%
-        String status = (String)session.getAttribute("status");
+    <div class="main-page">
+        <div class="msg">
+            <%
+                String status = (String)session.getAttribute("status");
 
-        out.println("<h1>" + status + "</h1>");
-    %>
+                out.println("<h1>" + status + "</h1>");
+            %>
 
-    <%
-        session.removeAttribute("status");
-    %>
+            <%
+                session.removeAttribute("status");
+            %>
+        </div>
 
-    <form action="/controller" method="post">
-        <button type="submit" name="changeState" value="viewTranslations">Return to Translations</button>
-    </form>
+        <form action="/controller" method="post">
+            <div class="buttons">
+                <button type="submit" name="changeState" value="viewTranslations">Return to Translations</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

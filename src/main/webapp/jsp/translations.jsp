@@ -4,23 +4,26 @@
 <html>
 <head>
     <title>Translations</title>
-    <link rel="stylesheet" href="../css/tablesort.css">
+    <link rel="stylesheet" href="../css/table_sort2.css">
 </head>
 <body>
     <%
         ArrayList<Translation> translations = (ArrayList<Translation>) session.getAttribute("translationsList");
     %>
+<div class="main-page">
 
-    <select align="center" id="selectionChoice">
-        <option value="all">All</option>
-        <option value="js">Javascript</option>
-        <option value="resx">.NET</option>
-        <option value="en_US">en_US</option>
-        <option value="es_ES">es_ES</option>
-    </select>
+    <div class="filters">
+        <select align="center" id="selectionChoice">
+            <option value="all">All</option>
+            <option value="js">Javascript</option>
+            <option value="resx">.NET</option>
+            <option value="en_US">en_US</option>
+            <option value="es_ES">es_ES</option>
+        </select>
+        <input type="text" id="searchBox" placeholder="Search">
+    </div>
 
-    <input type="text" id="searchBox" placeholder="Search">
-
+    <div class="main-table">
     <form action="/controller" method="post">
         <table class="table table-sortable">
             <thead>
@@ -49,13 +52,16 @@
                 %>
             </tbody>
         </table>
-        <button type="submit" name="changeState" value="selections">Flag Translations</button>
-        <button type="submit" name="changeState" value="log">View Logs</button>
-        <button type="submit" name="changeState" value="viewFlagged">View Currently Flagged Translations</button>
+        <div class="buttons">
+            <button type="submit" name="changeState" value="selections">Flag Translations</button>
+            <button type="submit" name="changeState" value="log">View Logs</button>
+            <button type="submit" name="changeState" value="viewFlagged">View Currently Flagged Translations</button>
+        </div>
     </form>
+    </div>
 
     <p id="selectedInfoStrings"></p>
-
+</div>
     <a href="../index.jsp">Back to main</a>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../javascript/tablesort.js"></script>
