@@ -47,7 +47,7 @@ public class ControllerServlet extends HttpServlet {
             Scanner sc = new Scanner(new File("src/main/java/edu/brockport/localization/logs/ErrorLog.log"));
             ArrayList<String> logContents = new ArrayList<>();
             while(sc.hasNextLine()){
-                logContents.add(sc.nextLine());
+                logContents.add(StringEscapeUtils.escapeHtml4(sc.nextLine()));
             }
             HttpSession session = req.getSession();
             session.setAttribute("logContents", logContents);
@@ -74,7 +74,6 @@ public class ControllerServlet extends HttpServlet {
 
             for(int i = 0; i < selectedInfoNotes.length; i++){
                 if(selectedInfoNotes[i].contains("<script>") || selectedInfoNotes[i].contains("</script>")){
-                    session.removeAttribute("translationsToFlagList");
                     res.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
                     return;
                 }

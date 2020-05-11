@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
                 rs.close();
 
             } else {
-                log.warn("Incorrect username. User " + inputName + " not found.");
+                log.warn("Incorrect username. User " + StringEscapeUtils.escapeHtml4(inputName) + " not found.");
                 HttpSession session = req.getSession();
                 session.setAttribute("error", "Incorrect username. User " + StringEscapeUtils.escapeHtml4(inputName) + " not found.");
                 connection.close();
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
             }
 
             if(inputPass.equals(dbPassword)){
-                log.info("Login successful for user " + inputName);
+                log.info("Login successful for user " + StringEscapeUtils.escapeHtml4(inputName));
                 ResultSet translationsRs = dbc.selectJoinQueryMain(connection, new QueryBuilder());
                 translations = Translation.getTranslationList(translationsRs);
                 HttpSession session = req.getSession();
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
                 return;
 
             } else {
-                log.warn("Incorrect password for user: " + inputName);
+                log.warn("Incorrect password for user: " + StringEscapeUtils.escapeHtml4(inputName));
                 HttpSession session = req.getSession();
                 session.setAttribute("error", "Incorrect password.");
                 connection.close();
